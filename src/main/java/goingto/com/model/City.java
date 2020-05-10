@@ -44,6 +44,24 @@ public class City {
 		this.id = id;
 		this.name = name;
 	}
+	
+
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+
+	public Locatable getLocatable() {
+		return locatable;
+	}
+
+	public void setLocatable(Locatable locatable) {
+		this.locatable = locatable;
+	}
+
 
 	@ManyToOne
 	@JoinColumn(name = "country_id")

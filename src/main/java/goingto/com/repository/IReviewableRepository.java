@@ -1,5 +1,9 @@
 package goingto.com.repository;
 
-public interface IReviewableRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import goingto.com.model.Reviewable;
+
+public interface IReviewableRepository extends JpaRepository<Reviewable, Long> {
 
 }

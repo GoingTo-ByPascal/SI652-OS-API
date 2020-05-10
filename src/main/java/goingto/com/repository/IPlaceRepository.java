@@ -1,5 +1,12 @@
 package goingto.com.repository;
 
-public interface IPlaceRepository {
+import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import goingto.com.model.City;
+import goingto.com.model.Place;
+
+public interface IPlaceRepository extends JpaRepository<Place, Long> {
+	List<Place> findAllByCity(City city);
 }

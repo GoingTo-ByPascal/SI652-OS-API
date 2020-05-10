@@ -1,5 +1,9 @@
 package goingto.com.repository;
 
-public interface ILocatableRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.sun.jdi.Locatable;
+
+public interface ILocatableRepository extends JpaRepository<Locatable, Long> {
 
 }
