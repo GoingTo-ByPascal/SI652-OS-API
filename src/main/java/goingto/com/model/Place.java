@@ -40,6 +40,32 @@ public class Place {
 		this.name = name;
 	}
 
+	public String getStars() {
+		return stars;
+	}
+
+	public void setStars(String stars) {
+		this.stars = stars;
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+	public Locatable getLocatable() {
+		return locatable;
+	}
+
+	public void setLocatable(Locatable locatable) {
+		this.locatable = locatable;
+	}
+
+
+
 	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private City city;

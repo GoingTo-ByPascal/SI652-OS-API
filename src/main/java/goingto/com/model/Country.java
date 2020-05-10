@@ -11,7 +11,16 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "countries")
 public class Country {
     @Id
@@ -48,9 +57,26 @@ public class Country {
         this.fullName = fullName;
     }
 
-    @OneToOne
+    
+    public Locatable getLocatable() {
+		return locatable;
+	}
+
+	public void setLocatable(Locatable locatable) {
+		this.locatable = locatable;
+	}
+
+	public Country(Long id, @NotEmpty String shortName, @NotEmpty String fullName, Locatable locatable) {
+		super();
+		this.id = id;
+		this.shortName = shortName;
+		this.fullName = fullName;
+		this.locatable = locatable;
+	}
+
+
+	@OneToOne
 	@JoinColumn(name = "locatable_id")
 	private Locatable locatable;
-
 
 }
