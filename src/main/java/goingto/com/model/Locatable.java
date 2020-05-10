@@ -71,6 +71,13 @@ public class Locatable {
 		this.longitude = longitude;
 	}
 
+	public Reviewable getReviewable() {
+		return reviewable;
+	}
+	public void setReviewable(Reviewable reviewable) {
+		this.reviewable = reviewable;
+	}
+
 	@OneToOne
 	@JoinColumn(name="reviewable_id")
 	private Reviewable reviewable;
