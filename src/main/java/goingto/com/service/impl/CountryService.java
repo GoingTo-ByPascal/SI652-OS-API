@@ -13,7 +13,7 @@ public class CountryService implements ICountryService {
 	@Autowired
 	private ICountryRepository countryRepository;
 	@Override
-	public Country getCountry(Long id) {
+	public Country getCountry(Integer id) {
 		return countryRepository.findById(id).orElse(null);
 	}
 

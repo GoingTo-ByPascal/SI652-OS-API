@@ -15,7 +15,7 @@ import javax.validation.constraints.NotEmpty;
 public class Locatable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @NotEmpty
     @Column(name = "description",length = 100)
     private String description;
@@ -28,58 +28,6 @@ public class Locatable {
     @NotEmpty
     @Column(name = "longitude")
     private float longitude;
-    
 
-	public Locatable() {
-	}
-	public Locatable(Long id, @NotEmpty String description, @NotEmpty String address, @NotEmpty float latitude,
-			@NotEmpty float longitude) {
-		this.id = id;
-		this.description = description;
-		this.address = address;
-		this.latitude = latitude;
-		this.longitude = longitude;
-	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public float getLatitude() {
-		return latitude;
-	}
-	public void setLatitude(float latitude) {
-		this.latitude = latitude;
-	}
-	public float getLongitude() {
-		return longitude;
-	}
-	public void setLongitude(float longitude) {
-		this.longitude = longitude;
-	}
-
-	public Reviewable getReviewable() {
-		return reviewable;
-	}
-	public void setReviewable(Reviewable reviewable) {
-		this.reviewable = reviewable;
-	}
-
-	@OneToOne
-	@JoinColumn(name="reviewable_id")
-	private Reviewable reviewable;
 
 }

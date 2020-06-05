@@ -6,7 +6,7 @@ import goingto.com.model.City;
 import goingto.com.model.Country;
 
 public interface ICityService {
-	City getCity(Long id);
+	City getCity(Integer id);
 	List<City> listAllCities();
 	List<City> findByCountry(Country country);
 	

@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @NotEmpty
     @Column(name = "short_name",length = 3)
     private String shortName;

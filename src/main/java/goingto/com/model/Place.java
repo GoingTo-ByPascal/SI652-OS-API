@@ -1,5 +1,9 @@
 package goingto.com.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,61 +14,19 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-
+@Data @AllArgsConstructor @NoArgsConstructor
 @Entity
 @Table(name = "places")
 public class Place {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 	@NotEmpty
 	@Column(name = "name", length = 45)
 	private String name;
 	@NotEmpty
 	@Column(name = "stars")
 	private String stars;
-	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getStars() {
-		return stars;
-	}
-
-	public void setStars(String stars) {
-		this.stars = stars;
-	}
-
-	public City getCity() {
-		return city;
-	}
-
-	public void setCity(City city) {
-		this.city = city;
-	}
-
-	public Locatable getLocatable() {
-		return locatable;
-	}
-
-	public void setLocatable(Locatable locatable) {
-		this.locatable = locatable;
-	}
-
-
 
 	@ManyToOne
 	@JoinColumn(name = "city_id")

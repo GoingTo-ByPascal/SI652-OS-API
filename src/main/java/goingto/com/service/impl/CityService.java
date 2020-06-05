@@ -18,7 +18,7 @@ public class CityService implements ICityService {
 	
 	
 	@Override
-	public City getCity(Long id) {
+	public City getCity(Integer id) {
 		return cityRepository.findById(id).orElse(null);
 	}
 

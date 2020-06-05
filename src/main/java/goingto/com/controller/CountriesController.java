@@ -30,7 +30,7 @@ public class CountriesController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Country>getById(@PathVariable Long id)
+	public ResponseEntity<Country>getById(@PathVariable Integer id)
 	{
 		Country country = countryService.getCountry(id);
 		if(country ==null)

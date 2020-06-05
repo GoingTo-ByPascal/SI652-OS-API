@@ -6,10 +6,10 @@ import goingto.com.model.City;
 import goingto.com.model.Place;
 
 public interface IPlaceService {
-	Place getPlace(Long id);
+	Place getPlace(Integer id);
 	List<Place> listAllPlaces();
 	List<Place> listAllCitiesByCity(City city);
 	Place save(Place place);
-	Place edit(Place place, Long id);
-	void deleteById(Long id);
+	Place edit(Place place, Integer id);
+	void deleteById(Integer id);
 }

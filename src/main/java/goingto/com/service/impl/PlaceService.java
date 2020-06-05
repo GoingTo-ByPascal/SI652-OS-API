@@ -18,7 +18,7 @@ public class PlaceService implements IPlaceService{
 	
 	
 	@Override
-	public Place getPlace(Long id) {
+	public Place getPlace(Integer id) {
 		return placeRepository.findById(id).orElse(null);
 	}
 
@@ -40,7 +40,7 @@ public class PlaceService implements IPlaceService{
 
 	@Override
 	@Transactional
-	public Place edit(Place place, Long id) {
+	public Place edit(Place place, Integer id) {
 		return placeRepository.findById(id).map(p->{
 			p.setName(place.getName());
 			return placeRepository.save(p);
@@ -48,7 +48,7 @@ public class PlaceService implements IPlaceService{
 	}
 
 	@Override
-	public void deleteById(Long id) {
+	public void deleteById(Integer id) {
 		placeRepository.deleteById(id);
 	}
 

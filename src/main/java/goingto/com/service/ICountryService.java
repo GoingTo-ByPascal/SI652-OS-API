@@ -6,7 +6,7 @@ import goingto.com.model.Country;
 
 public interface ICountryService {
 
-	Country getCountry(Long id);
+	Country getCountry(Integer id);
 	List<Country> listAllCountries();
 	
 	

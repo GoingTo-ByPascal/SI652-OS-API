@@ -26,9 +26,9 @@ public class CitiesController {
 	private ICityService cityService;
 	
 	@GetMapping
-	public ResponseEntity<List<City>> listCity(@RequestParam(name="CountryId",required = false)Long countryId){
+	public ResponseEntity<List<City>> listCity(@RequestParam(name="CountryId",required = false)Integer countryId){
 		List<City> cities = new ArrayList<>();
-		if(null==countryId)
+		if(countryId == null)
 		{
 			cities = cityService.listAllCities();
 			if(cities.isEmpty()) {
@@ -43,7 +43,7 @@ public class CitiesController {
 	
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<City>getById(@PathVariable Long id)
+	public ResponseEntity<City>getById(@PathVariable Integer id)
 	{
 		City city = cityService.getCity(id);
 		if(city ==null)

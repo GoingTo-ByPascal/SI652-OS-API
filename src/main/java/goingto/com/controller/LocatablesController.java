@@ -29,7 +29,7 @@ public class LocatablesController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Locatable>getById(@PathVariable Long id)
+	public ResponseEntity<Locatable>getById(@PathVariable Integer id)
 	{
 		Locatable locatable = locatableService.getLocatable(id);
 		if(locatable ==null)

@@ -16,53 +16,13 @@ import javax.validation.constraints.NotEmpty;
 public class City {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 	@NotEmpty
 	@Column(name = "name", length = 45)
 	private String name;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public String getName() {
 		return name;
 	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public City() {
-	}
-
-	public City(Long id, @NotEmpty String name) {
-		this.id = id;
-		this.name = name;
-	}
-	
-
-	public Country getCountry() {
-		return country;
-	}
-
-	public void setCountry(Country country) {
-		this.country = country;
-	}
-
-	public Locatable getLocatable() {
-		return locatable;
-	}
-
-	public void setLocatable(Locatable locatable) {
-		this.locatable = locatable;
-	}
-
-
 	@ManyToOne
 	@JoinColumn(name = "country_id")
 	private Country country;

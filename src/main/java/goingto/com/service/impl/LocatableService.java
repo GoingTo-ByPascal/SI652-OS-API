@@ -15,7 +15,7 @@ public class LocatableService implements ILocatableService{
 	private ILocatableRepository locatableRepository;
 	
 	@Override
-	public Locatable getLocatable(Long id) {
+	public Locatable getLocatable(Integer id) {
 		return locatableRepository.findById(id).orElse(null);
 	}
 

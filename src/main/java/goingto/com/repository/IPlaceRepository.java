@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import goingto.com.model.City;
 import goingto.com.model.Place;
 
-public interface IPlaceRepository extends JpaRepository<Place, Long> {
+public interface IPlaceRepository extends JpaRepository<Place, Integer> {
 	List<Place> findAllByCity(City city);
 }
