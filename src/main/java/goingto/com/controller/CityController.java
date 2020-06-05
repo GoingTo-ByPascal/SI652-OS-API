@@ -14,16 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import goingto.com.model.City;
 import goingto.com.model.Country;
-import goingto.com.service.ICityService;
+import goingto.com.service.CityService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/cities")
-public class CitiesController {
+public class CityController {
 
 	@Autowired
-	private ICityService cityService;
+	private CityService cityService;
 	
 	@GetMapping
 	public ResponseEntity<List<City>> listCity(@RequestParam(name="CountryId",required = false)Integer countryId){

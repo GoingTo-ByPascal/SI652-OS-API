@@ -3,18 +3,24 @@ package goingto.com.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.sun.jdi.Locatable;
-import goingto.com.service.ILocatableService;
+import goingto.com.service.LocatableService;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-public class LocatablesController {
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/locatables")
+public class LocatableController {
 
 	@Autowired
-	private ILocatableService locatableService;
+	private LocatableService locatableService;
 	
 	@GetMapping
 	public ResponseEntity<List<Locatable>> listLocatables(){

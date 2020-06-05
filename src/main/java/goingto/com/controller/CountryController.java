@@ -3,19 +3,22 @@ package goingto.com.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 
 import goingto.com.model.Country;
-import goingto.com.service.ICountryService;
+import goingto.com.service.CountryService;
 
-public class CountriesController {
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/countries")
+public class CountryController {
 
 	@Autowired
-	private ICountryService countryService;
+	private CountryService countryService;
 	
 	@GetMapping
 	public ResponseEntity<List<Country>> listCountry(){

@@ -24,9 +24,6 @@ public class City {
 	@NotEmpty
 	@Column(name = "name", length = 45)
 	private String name;
-	public String getName() {
-		return name;
-	}
 	@ManyToOne
 	@JoinColumn(name = "country_id")
 	private Country country;

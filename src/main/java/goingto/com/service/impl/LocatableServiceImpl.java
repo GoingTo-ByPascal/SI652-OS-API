@@ -6,14 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sun.jdi.Locatable;
 
-import goingto.com.repository.ILocatableRepository;
-import goingto.com.service.ILocatableService;
+import goingto.com.repository.LocatableRepository;
+import org.springframework.stereotype.Service;
 
-public class LocatableService implements ILocatableService{
+@Service
+public class LocatableServiceImpl implements goingto.com.service.LocatableService {
 
 	@Autowired
-	private ILocatableRepository locatableRepository;
-	
+	private LocatableRepository locatableRepository;
+
 	@Override
 	public Locatable getLocatable(Integer id) {
 		return locatableRepository.findById(id).orElse(null);

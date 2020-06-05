@@ -7,14 +7,12 @@ import org.springframework.stereotype.Service;
 
 import goingto.com.model.City;
 import goingto.com.model.Country;
-import goingto.com.repository.ICityRepository;
-import goingto.com.service.ICityService;
+import goingto.com.repository.CityRepository;
 
 @Service
-public class CityService implements ICityService {
-
+public class CityServiceImpl implements goingto.com.service.CityService {
 	@Autowired
-	private ICityRepository cityRepository;
+	private CityRepository cityRepository;
 	
 	
 	@Override

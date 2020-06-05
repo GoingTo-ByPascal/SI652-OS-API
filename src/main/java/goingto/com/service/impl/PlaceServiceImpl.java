@@ -8,13 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import goingto.com.model.City;
 import goingto.com.model.Place;
-import goingto.com.repository.IPlaceRepository;
-import goingto.com.service.IPlaceService;
+import goingto.com.repository.PlaceRepository;
+import org.springframework.stereotype.Service;
 
-public class PlaceService implements IPlaceService{
+@Service
+public class PlaceServiceImpl implements goingto.com.service.PlaceService {
 
 	@Autowired
-	private IPlaceRepository placeRepository;
+	private PlaceRepository placeRepository;
 	
 	
 	@Override

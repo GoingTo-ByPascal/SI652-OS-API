@@ -6,7 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import goingto.com.model.City;
 import goingto.com.model.Place;
+import org.springframework.stereotype.Repository;
 
-public interface IPlaceRepository extends JpaRepository<Place, Integer> {
+@Repository
+public interface PlaceRepository extends JpaRepository<Place, Integer> {
 	List<Place> findAllByCity(City city);
 }

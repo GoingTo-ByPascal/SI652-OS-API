@@ -5,7 +5,7 @@ import java.util.List;
 import com.sun.jdi.Locatable;
 
 
-public interface ILocatableService {
+public interface LocatableService {
 	Locatable getLocatable(Integer id);
 	List<Locatable> listAllLocatable();
 	

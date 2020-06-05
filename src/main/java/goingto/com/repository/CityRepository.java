@@ -6,7 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import goingto.com.model.City;
 import goingto.com.model.Country;
+import org.springframework.stereotype.Repository;
 
-public interface ICityRepository extends JpaRepository<City, Integer> {
+@Repository
+public interface CityRepository extends JpaRepository<City, Integer> {
  List<City> findByCountryId(Country country);
 }
