@@ -20,7 +20,7 @@ public class LocatableService implements ILocatableService{
 	}
 
 	@Override
-	public List<Locatable> listAllLocatables() {
+	public List<Locatable> listAllLocatable() {
 		return locatableRepository.findAll();
 	}
 

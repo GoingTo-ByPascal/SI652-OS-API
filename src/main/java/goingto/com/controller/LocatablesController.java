@@ -20,7 +20,7 @@ public class LocatablesController {
 	public ResponseEntity<List<Locatable>> listLocatables(){
 		List<Locatable> locatables = new ArrayList<>();
 		
-			locatables = locatableService.listAllLocatables();
+			locatables = locatableService.listAllLocatable();
 			if(locatables.isEmpty()) {
 				return ResponseEntity.noContent().build();
 			}
