@@ -1,20 +1,16 @@
 package goingto.com.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -37,5 +33,13 @@ public class Country {
 	@OneToOne
 	@JoinColumn(name = "locatable_id")
 	private Locatable locatable;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "country_languages",
+            joinColumns = {@JoinColumn(name = "country_id")},
+            inverseJoinColumns = {@JoinColumn(name = "language_id")})
+    @JsonIgnore
+    List<Language> languages;
 
 }
