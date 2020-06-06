@@ -30,10 +30,11 @@ public class Locatable {
     private String address;
     @NotEmpty
     @Column(name = "latitude")
-    private float latitude;
+    private Float latitude;
     @NotEmpty
     @Column(name = "longitude")
-    private float longitude;
+    private Float longitude;
+
 
 
 }
