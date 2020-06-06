@@ -19,49 +19,17 @@ public class CountryServiceImpl implements goingto.com.service.CountryService {
 
 	@Autowired
 	private CountryRepository countryRepository;
-	@Autowired
-	private LanguageRepository languageRepository;
-	@Override
-	public Country getCountry(Integer id) {
-		return countryRepository.findById(id).orElse(null);
-	}
 
 	@Override
-	public List<Country> listAllCountries() {
+	public List<Country> getAllCountries() {
 		return countryRepository.findAll();
 	}
 
 	@Override
-	public Country assignCountryLanguage(Integer countryId, Integer languageId) {
-		Language language = languageRepository.findById(languageId)
-				.orElseThrow(() -> new ResourceNotFoundException("Language", "Id", languageId));
-		return countryRepository.findById(countryId).map(post -> {
-			if(!post.getLanguages().contains(language)) {
-				post.getLanguages().add(language);
-				return countryRepository.save(post);
-			}
-			return post;
-		}).orElseThrow(() -> new ResourceNotFoundException("Post", "Id", countryId));
+	public Country getCountryById(Integer countryId) {
+		return countryRepository.findById(countryId)
+				.orElseThrow(() -> new ResourceNotFoundException("Country", "Id", countryId));
 	}
 
-	@Override
-	public Country unassignCountryLanguage(Integer countryId, Integer languageId) {
-		Language language = languageRepository.findById(languageId)
-				.orElseThrow(() -> new ResourceNotFoundException("Language", "Id", languageId));
-		return countryRepository.findById(countryId).map(country -> {
-			country.getLanguages().remove(language);
-			return countryRepository.save(country);
-		}).orElseThrow(() -> new ResourceNotFoundException("Country", "Id", countryId));
-	}
-
-	@Override
-	public Page<Country> getAllCountriesByLanguageId(Integer languageId, Pageable pageable) {
-		return languageRepository.findById(languageId).map(language -> {
-			List<Country> countries = language.getCountries();
-			int countriesCount = countries.size();
-			return new PageImpl<>(countries, pageable, countriesCount);
-		})
-				.orElseThrow(() -> new ResourceNotFoundException("Language", "Id", languageId));
-	}
 
 }

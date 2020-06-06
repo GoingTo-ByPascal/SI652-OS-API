@@ -8,6 +8,5 @@ import java.util.List;
 
 public interface CurrencyService {
     List<Currency> getAllCurrencies();
-    Page<Currency> getAllCurrenciesByCountryId(Integer countryId, Pageable pageable);
     Currency getCurrencyById(Integer currencyId);
 }

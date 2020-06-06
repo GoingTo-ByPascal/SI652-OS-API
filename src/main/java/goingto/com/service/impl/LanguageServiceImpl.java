@@ -17,22 +17,10 @@ import java.util.List;
 public class LanguageServiceImpl implements LanguageService {
     @Autowired
     private LanguageRepository languageRepository;
-    @Autowired
-    private CountryRepository countryRepository;
 
     @Override
-    public Page<Language> getAllLanguages(Pageable pageable) {
-        return languageRepository.findAll(pageable);
-    }
-
-    @Override
-    public Page<Language> getAllLanguagesByCountryId(Integer countryId, Pageable pageable) {
-        return countryRepository.findById(countryId).map(country -> {
-            List<Language> languages = country.getLanguages();
-            int languagesCount = languages.size();
-            return new PageImpl<>(languages, pageable, languagesCount);
-        })
-                .orElseThrow(() -> new ResourceNotFoundException("Country", "Id",countryId));
+    public List<Language> getAllLanguages() {
+        return languageRepository.findAll();
     }
 
     @Override

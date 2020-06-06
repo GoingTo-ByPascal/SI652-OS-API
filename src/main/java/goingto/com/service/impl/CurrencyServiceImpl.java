@@ -17,22 +17,10 @@ import java.util.List;
 public class CurrencyServiceImpl implements CurrencyService {
     @Autowired
     private CurrencyRepository currencyRepository;
-    @Autowired
-    private CountryRepository countryRepository;
 
     @Override
     public List<Currency> getAllCurrencies() {
         return currencyRepository.findAll();
-    }
-
-    @Override
-    public Page<Currency> getAllCurrenciesByCountryId(Integer countryId, Pageable pageable) {
-        return countryRepository.findById(countryId).map(country -> {
-            List<Currency> currencies = country.getCurrencies();
-            int currenciesCount = currencies.size();
-            return new PageImpl<>(currencies, pageable, currenciesCount);
-        })
-                .orElseThrow(() -> new ResourceNotFoundException("Country", "Id",countryId));
     }
 
     @Override
