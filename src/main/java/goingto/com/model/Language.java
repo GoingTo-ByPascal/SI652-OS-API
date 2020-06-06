@@ -1,24 +1,20 @@
 package goingto.com.model;
 
-
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Table(name = "countries")
-public class Country {
+@Entity
+@Table(name = "languages")
+public class Language {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -29,17 +25,10 @@ public class Country {
     @Column(name = "full_name",length = 100)
     private String fullName;
 
-
-	@OneToOne
-	@JoinColumn(name = "locatable_id")
-	private Locatable locatable;
-
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "country_languages",
-            joinColumns = {@JoinColumn(name = "country_id")},
-            inverseJoinColumns = {@JoinColumn(name = "language_id")})
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            mappedBy = "languages")
     @JsonIgnore
-    List<Language> languages;
+    private List<Country> countries;
 
 }
