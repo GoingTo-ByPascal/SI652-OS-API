@@ -16,10 +16,16 @@ public class Tip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @NotEmpty
     @Column(name = "text",length = 100)
     private String text;
+
     @ManyToOne
     @JoinColumn(name = "locatable_id")
     private Locatable locatable;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

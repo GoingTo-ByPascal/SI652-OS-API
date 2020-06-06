@@ -22,13 +22,14 @@ public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @NotEmpty
     @Column(name = "short_name",length = 3)
     private String shortName;
+
     @NotEmpty
     @Column(name = "full_name",length = 100)
     private String fullName;
-
 
 	@OneToOne
 	@JoinColumn(name = "locatable_id")

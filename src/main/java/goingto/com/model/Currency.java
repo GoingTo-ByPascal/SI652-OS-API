@@ -23,9 +23,11 @@ public class Currency {
     public Integer id;
 
     @NotEmpty
+    @Column(name = "unit",length = 10)
     public String unit;
 
     @NotEmpty
+    @Column(name = "short_name",length = 10)
     public String shortName;
 
     @ManyToMany(fetch = FetchType.LAZY,

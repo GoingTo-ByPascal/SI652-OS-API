@@ -5,12 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Data
-@Entity
-@Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +22,8 @@ public class User {
 
     @Column(name = "password", nullable = false, length = 50)
     private String password;
+
+    @OneToOne
+    @JoinColumn(name = "type_id")
+    private UserType userType;
 }

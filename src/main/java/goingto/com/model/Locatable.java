@@ -20,15 +20,19 @@ public class Locatable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotEmpty
-    @Column(name = "description",length = 100)
-    private String description;
+
     @NotEmpty
     @Column(name = "address",length = 100)
     private String address;
+
+    @NotEmpty
+    @Column(name = "description",length = 100)
+    private String description;
+
     @NotEmpty
     @Column(name = "latitude")
     private Float latitude;
+
     @NotEmpty
     @Column(name = "longitude")
     private Float longitude;
