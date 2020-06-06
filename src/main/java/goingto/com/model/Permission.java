@@ -11,21 +11,13 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "achievements")
-public class Achievement {
+@Table(name = "permissions")
+public class Permission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotEmpty
-    @Column(name = "name",length = 100)
-    private String name;
-
-    @NotEmpty
-    @Column(name = "text",length = 100)
-    private String text;
-
-    @NotEmpty
-    @Column(name = "points")
-    private Integer points;
+    @Column(name = "description", length = 45)
+    private String description;
 }

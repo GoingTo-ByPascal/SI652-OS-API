@@ -21,12 +21,14 @@ public class Place {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
 	@NotEmpty
 	@Column(name = "name", length = 45)
 	private String name;
+
 	@NotEmpty
 	@Column(name = "stars")
-	private String stars;
+	private Integer stars;
 
 	@ManyToOne
 	@JoinColumn(name = "city_id")
