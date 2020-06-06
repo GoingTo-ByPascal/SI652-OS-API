@@ -20,6 +20,7 @@ import java.util.List;
 @RequestMapping("/locatables")
 public class LocatableController {
 
+    @Autowired
     private LocatableService locatableService;
 
     @GetMapping
