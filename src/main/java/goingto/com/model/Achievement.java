@@ -11,22 +11,18 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="reviews")
-public class Reviews {
+@Table(name = "achievements")
+public class Achievement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotEmpty
-    @Column(name = "comment",length = 100)
-    private String comment;
+    @Column(name = "name",length = 100)
+    private String name;
     @NotEmpty
-    @Column(name = "stars")
-    private Integer stars;
+    @Column(name = "text",length = 100)
+    private String text;
     @NotEmpty
-    @Column(name = "reviewed_at", length = 12)
-    private String reviewedAt;
-    @NotEmpty
-    @ManyToOne
-    @JoinColumn(name = "locatable_id")
-    private Locatable locatable;
+    @Column(name = "points")
+    private Integer points;
 }
