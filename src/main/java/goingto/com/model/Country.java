@@ -42,4 +42,12 @@ public class Country {
     @JsonIgnore
     List<Language> languages;
 
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "country_currencies",
+            joinColumns = {@JoinColumn(name = "country_id")},
+            inverseJoinColumns = {@JoinColumn(name = "currency_id")})
+    @JsonIgnore
+    List<Currency> currencies;
+
 }
