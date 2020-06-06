@@ -11,18 +11,15 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "achievements")
-public class Achievements {
+@Table(name="tips")
+public class Tip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotEmpty
-    @Column(name = "name",length = 100)
-    private String name;
-    @NotEmpty
     @Column(name = "text",length = 100)
     private String text;
-    @NotEmpty
-    @Column(name = "points")
-    private Integer points;
+    @ManyToOne
+    @JoinColumn(name = "locatable_id")
+    private Locatable locatable;
 }
