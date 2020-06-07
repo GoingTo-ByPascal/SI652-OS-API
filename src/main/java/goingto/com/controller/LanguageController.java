@@ -1,52 +1,61 @@
 package goingto.com.controller;
 
 import goingto.com.model.Language;
-import goingto.com.model.Locatable;
 import goingto.com.resource.LanguageResource;
+import goingto.com.resource.SaveLanguageResource;
 import goingto.com.resource.converter.LanguageConverter;
 import goingto.com.service.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/languages")
+@RequestMapping("/api")
 public class LanguageController {
+
+    @Autowired
+    private LanguageConverter mapper;
 
     @Autowired
     private LanguageService languageService;
 
-    @GetMapping
-    public ResponseEntity<List<Language>> listLanguage(){
+    @GetMapping("/languages")
+    public ResponseEntity<List<Language>> getAllLanguages() {
         List<Language> languages = new ArrayList<>();
-
         languages = languageService.getAllLanguages();
+        return ResponseEntity.ok(languages);
 
-        if(languages.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
+    }
 
+    @GetMapping("/languages/{id}")
+    public LanguageResource getLanguageById(@PathVariable(name = "id") Integer languageId) {
+        return mapper.convertToResource(languageService.getLanguageById(languageId));
+    }
+
+    @GetMapping("/countries/{countryId}/languages")
+    public ResponseEntity<List<Language>> getAllLanguagesByCountryId(@PathVariable(name = "countryId") Integer countryId) {
+       List<Language> languages = new ArrayList<>();
+        languages = languageService.getAllLanguagesByCountryId(countryId);
         return ResponseEntity.ok(languages);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Language>getById(@PathVariable Integer id)
-    {
-        Language language = languageService.getLanguageById(id);
-        if(language ==null)
-            return ResponseEntity.notFound().build();
-        else
-            return (ResponseEntity.ok(language));
+
+    @PostMapping("/languages")
+    public LanguageResource createLanguage(@Valid @RequestBody SaveLanguageResource resource) {
+        return mapper.convertToResource(languageService.createLanguage(mapper.convertToEntity(resource)));
+    }
+    @PutMapping("/languages/{id}")
+    public LanguageResource updateTag(@PathVariable(name = "id") Integer languageId, @Valid @RequestBody SaveLanguageResource resource) {
+        return mapper.convertToResource(languageService.updateLanguage(languageId, mapper.convertToEntity(resource)));
+    }
+
+    @DeleteMapping("/languages/{id}")
+    public ResponseEntity<?> deleteLanguage(@PathVariable(name = "id") Integer LanguageId) {
+        return languageService.deleteLanguage(LanguageId);
     }
 
 }

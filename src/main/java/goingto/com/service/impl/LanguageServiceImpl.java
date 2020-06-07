@@ -6,17 +6,19 @@ import goingto.com.repository.CountryRepository;
 import goingto.com.repository.LanguageRepository;
 import goingto.com.service.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LanguageServiceImpl implements LanguageService {
     @Autowired
     private LanguageRepository languageRepository;
+    @Autowired
+    private CountryRepository countryRepository;
+
 
     @Override
     public List<Language> getAllLanguages() {
@@ -24,8 +26,40 @@ public class LanguageServiceImpl implements LanguageService {
     }
 
     @Override
+    public List<Language> getAllLanguagesByCountryId(Integer countryId) {
+        return countryRepository.findById(countryId).map(country -> {
+            List<Language> languages = country.getLanguages();
+            return languages;
+    }).orElseThrow(() -> new ResourceNotFoundException("Country", "Id",countryId));
+    }
+
+    @Override
     public Language getLanguageById(Integer languageId) {
         return languageRepository.findById(languageId)
                 .orElseThrow(() -> new ResourceNotFoundException("Language", "Id", languageId));
     }
+
+    @Override
+    public Language createLanguage(Language language) {
+        return languageRepository.save(language);
+    }
+
+    @Override
+    public Language updateLanguage(Integer languageId, Language languageDetails) {
+        return languageRepository.findById(languageId).map(language -> {
+            language.setFullName(languageDetails.getFullName());
+            language.setShortName(languageDetails.getShortName());
+            return languageRepository.save(language);
+        }).orElseThrow(() -> new ResourceNotFoundException("Language", "Id", languageId));
+    }
+
+    @Override
+    public ResponseEntity<?> deleteLanguage(Integer languageId) {
+        return languageRepository.findById(languageId).map(Language -> {
+            languageRepository.delete(Language);
+            return ResponseEntity.ok().build();
+        }).orElseThrow(() -> new ResourceNotFoundException("Language", "Id", languageId));
+    }
+
 }
+
