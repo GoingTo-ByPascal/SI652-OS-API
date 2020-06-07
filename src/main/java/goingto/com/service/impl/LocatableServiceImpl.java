@@ -1,5 +1,6 @@
 package goingto.com.service.impl;
 
+import goingto.com.exception.ResourceNotFoundException;
 import goingto.com.model.Locatable;
 import goingto.com.repository.LocatableRepository;
 import goingto.com.service.LocatableService;
@@ -16,8 +17,9 @@ public class LocatableServiceImpl implements LocatableService {
     private LocatableRepository locatableRepository;
 
     @Override
-    public Locatable getLocatable(Integer id) {
-        return locatableRepository.findById(id).orElse(null);
+    public Locatable getLocatable(Integer locatableId) {
+        return locatableRepository.findById(locatableId)
+                .orElseThrow(() -> new ResourceNotFoundException("City", "Id", locatableId));
     }
 
     @Override

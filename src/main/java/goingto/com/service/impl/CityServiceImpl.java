@@ -2,6 +2,7 @@ package goingto.com.service.impl;
 
 import java.util.List;
 
+import goingto.com.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,9 @@ public class CityServiceImpl implements goingto.com.service.CityService {
 	
 	
 	@Override
-	public City getCity(Integer id) {
-		return cityRepository.findById(id).orElse(null);
+	public City getCity(Integer cityId) {
+		return cityRepository.findById(cityId)
+				.orElseThrow(() -> new ResourceNotFoundException("City", "Id", cityId));
 	}
 
 	@Override

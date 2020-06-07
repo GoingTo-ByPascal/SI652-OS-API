@@ -1,5 +1,6 @@
 package goingto.com.service.impl;
 
+import goingto.com.exception.ResourceNotFoundException;
 import goingto.com.repository.UserRepository;
 import goingto.com.service.UserService;
 import goingto.com.model.User;
@@ -21,8 +22,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional (readOnly = true)
-    public User findById(int id) {
-        return userRepository.findById(id).orElse(null);
+    public User findById(int userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "Id", userId));
     }
 
     @Override

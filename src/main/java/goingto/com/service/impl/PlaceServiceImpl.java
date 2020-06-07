@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import goingto.com.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import goingto.com.model.City;
@@ -19,8 +20,9 @@ public class PlaceServiceImpl implements goingto.com.service.PlaceService {
 	
 	
 	@Override
-	public Place getPlace(Integer id) {
-		return placeRepository.findById(id).orElse(null);
+	public Place getPlace(Integer placeId) {
+		return placeRepository.findById(placeId)
+				.orElseThrow(() -> new ResourceNotFoundException("City", "Id", placeId));
 	}
 
 	@Override
