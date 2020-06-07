@@ -18,8 +18,8 @@ public class ReviewController {
 
     @Autowired
     ReviewService reviewService;
-
-   /* @GetMapping
+/*
+    @GetMapping
     public ResponseEntity<List<Review>> listReviews(){
         List<Review> reviews = new ArrayList<>();
 
@@ -30,7 +30,26 @@ public class ReviewController {
 
         return ResponseEntity.ok(reviews);
     }*/
-/*
+
+    @GetMapping
+    public ResponseEntity<List<Review>> listReviewsByUser(@RequestParam(name="userId",required = false)Integer userId){
+        List<Review> reviews = new ArrayList<>();
+        if(userId == null)
+        {
+            reviews = reviewService.listAllReviews();
+            if(reviews.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+        }
+        else {
+            reviews=reviewService.getByUserId(User.builder().id(userId).build());
+            if(reviews.isEmpty()){
+                return ResponseEntity.notFound().build();
+            }
+        }
+        return ResponseEntity.ok(reviews);
+    }
+    /*
     @GetMapping
     public ResponseEntity<List<Review>> listReviewsByLocatable(@RequestParam(name="locatableId",required = false)Integer locatableId){
         List<Review> reviews = new ArrayList<>();
@@ -46,8 +65,8 @@ public class ReviewController {
         }
         return ResponseEntity.ok(reviews);
     }
+    */
 
-*/
     @GetMapping("/{id}")
     public ResponseEntity<Review>getById(@PathVariable Integer id)
     {
