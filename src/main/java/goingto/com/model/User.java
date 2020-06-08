@@ -26,10 +26,9 @@ public class User {
 
     @Column(name = "password", nullable = false, length = 50)
     private String password;
-/*
+
     @OneToOne
-    @JoinColumn(name = "type_id")
-    private UserType userType;
-*/
+    @JoinColumn(name = "wallet_id")
+    private Wallet wallet;
 
 }
