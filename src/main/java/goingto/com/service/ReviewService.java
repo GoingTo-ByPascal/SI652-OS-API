@@ -1,17 +1,20 @@
 package goingto.com.service;
 
+import goingto.com.model.Review;
 import goingto.com.model.Locatable;
 import goingto.com.model.Review;
 import goingto.com.model.User;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 public interface ReviewService {
 
-    Review getReview(Integer id);
-    List<Review> listAllReviews();
-    List<Review> getByUserId(User user);
-    List<Review> getByLocatableId(Locatable locatable);
-    Review save(Review review);
-    void delete (int id);
+    List<Review> getAllReviews();
+    List<Review> getAllReviewsByUserId(Integer userId);
+    List<Review> getAllReviewsByLocatableId(Integer locatableId);
+    Review getReviewById(Integer reviewId);
+    Review createReview(Review review);
+    Review updateReview(Integer reviewId, Review reviewDetails);
+    ResponseEntity<?> deleteReview(Integer reviewId);
 }

@@ -1,6 +1,9 @@
 package goingto.com.controller;
 
 import goingto.com.model.*;
+import goingto.com.resource.ReviewResource;
+import goingto.com.resource.SaveReviewResource;
+import goingto.com.resource.converter.ReviewConverter;
 import goingto.com.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,92 +11,62 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/reviews")
+@RequestMapping("/api")
 public class ReviewController {
 
     @Autowired
     ReviewService reviewService;
-/*
-    @GetMapping
-    public ResponseEntity<List<Review>> listReviews(){
+
+    @Autowired
+    ReviewConverter mapper;
+
+    @GetMapping("/reviews")
+    public ResponseEntity<List<Review>> getAllReviews() {
         List<Review> reviews = new ArrayList<>();
-
-        reviews = reviewService.listAllReviews();
-        if(reviews.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-
+        reviews = reviewService.getAllReviews();
         return ResponseEntity.ok(reviews);
-    }*/
 
-    @GetMapping
-    public ResponseEntity<List<Review>> listReviewsByUser(@RequestParam(name="userId",required = false)Integer userId){
+    }
+
+    @GetMapping("/reviews/{id}")
+    public ReviewResource getReviewById(@PathVariable(name = "id") Integer reviewId) {
+        return mapper.convertToResource(reviewService.getReviewById(reviewId));
+    }
+
+    @GetMapping("/locatables/{locatableId}/reviews")
+    public ResponseEntity<List<Review>> getAllReviewsByLocatableId(@PathVariable(name = "locatableId") Integer locatableId) {
         List<Review> reviews = new ArrayList<>();
-        if(userId == null)
-        {
-            reviews = reviewService.listAllReviews();
-            if(reviews.isEmpty()) {
-                return ResponseEntity.noContent().build();
-            }
-        }
-        else {
-            reviews=reviewService.getByUserId(User.builder().id(userId).build());
-            if(reviews.isEmpty()){
-                return ResponseEntity.notFound().build();
-            }
-        }
+        reviews = reviewService.getAllReviewsByLocatableId(locatableId);
         return ResponseEntity.ok(reviews);
     }
-    /*
-    @GetMapping
-    public ResponseEntity<List<Review>> listReviewsByLocatable(@RequestParam(name="locatableId",required = false)Integer locatableId){
+
+    @GetMapping("/users/{userId}/reviews")
+    public ResponseEntity<List<Review>> getAllReviewsByUserId(@PathVariable(name = "userId") Integer userId){
         List<Review> reviews = new ArrayList<>();
-        if(locatableId == null)
-        {
-            reviews = reviewService.listAllReviews();
-            if(reviews.isEmpty()) {
-                return ResponseEntity.noContent().build();
-            }
-        }
-        else {
-            reviews=reviewService.getByLocatableId(Locatable.builder().id(locatableId).build());
-        }
+        reviews=reviewService.getAllReviewsByUserId(userId);
         return ResponseEntity.ok(reviews);
     }
-    */
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Review>getById(@PathVariable Integer id)
-    {
-        Review review = reviewService.getReview(id);
-        if(review ==null)
-            return ResponseEntity.notFound().build();
-        else
-            return (ResponseEntity.ok(review));
+    @PostMapping("/reviews")
+    public ReviewResource createReview(@Valid @RequestBody SaveReviewResource resource) {
+        return mapper.convertToResource(reviewService.createReview(mapper.convertToEntity(resource)));
     }
-    @PostMapping
-    public ResponseEntity<Review> newReview(@RequestBody Review review)
-    {
-        return ResponseEntity.status(HttpStatus.CREATED).body(reviewService.save((review)));
+    @PutMapping("/reviews/{id}")
+    public ReviewResource updateTag(@PathVariable(name = "id") Integer ReviewId, @Valid @RequestBody SaveReviewResource resource) {
+        return mapper.convertToResource(reviewService.updateReview(ReviewId, mapper.convertToEntity(resource)));
     }
 
-    /*@PutMapping
-    public ResponseEntity<Place> updatePlace(@RequestBody Place place,@PathVariable Integer id)
-    {
-        return  ResponseEntity.status(HttpStatus.OK).body(placeService.edit(place, id));
-    }*/
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Review> deleteReview(@PathVariable Integer id)
-    {
-        reviewService.delete(id);
-        return ResponseEntity.noContent().build();
+    @DeleteMapping("/reviews/{id}")
+    public ResponseEntity<?> deleteReview(@PathVariable(name = "id") Integer ReviewId) {
+        return reviewService.deleteReview(ReviewId);
     }
+
 
 
 }

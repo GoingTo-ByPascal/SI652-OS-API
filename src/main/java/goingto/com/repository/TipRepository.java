@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface TipRepository extends JpaRepository<Tip, Integer> {
-    List<Tip> getByUserId(User user);
-    List<Tip> getByLocatableId(Locatable locatable);
+    List<Tip> getByUserId(Integer id);
+    List<Tip> getByLocatableId(Integer id);
 }

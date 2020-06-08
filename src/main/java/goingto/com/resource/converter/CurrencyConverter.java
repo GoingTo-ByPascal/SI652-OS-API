@@ -11,14 +11,14 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class CurrencyConverter {
+
     private final ModelMapper modelMapper;
 
     public Currency convertToEntity(SaveCurrencyResource resource) {
         return modelMapper.map(resource, Currency.class);
     }
 
-    public CurrencyResource convertToResource(Currency entity) {
-        return modelMapper.map(entity, CurrencyResource.class);
+    public CurrencyResource convertToResource(Currency entity) { return modelMapper.map(entity, CurrencyResource.class);
     }
 }
 

@@ -3,10 +3,12 @@ package goingto.com.service.impl;
 import goingto.com.exception.ResourceNotFoundException;
 import goingto.com.model.Locatable;
 import goingto.com.model.Tip;
+import goingto.com.model.Tip;
 import goingto.com.model.User;
 import goingto.com.repository.TipRepository;
 import goingto.com.service.TipService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,33 +20,46 @@ public class TipServiceImpl implements TipService {
     private TipRepository tipRepository;
 
     @Override
-    public Tip getTip(Integer tipId) {
+    public List<Tip> getAllTips() {
+        return tipRepository.findAll();
+    }
+
+
+    @Override
+    public List<Tip> getAllTipsByUserId(Integer userId) {
+        return tipRepository.getByUserId(userId);
+    }
+
+    @Override
+    public List<Tip> getAllTipsByLocatableId(Integer locatableId) {
+        return tipRepository.getByLocatableId(locatableId);
+    }
+
+    @Override
+    public Tip getTipById(Integer tipId) {
         return tipRepository.findById(tipId)
                 .orElseThrow(() -> new ResourceNotFoundException("Tip", "Id", tipId));
     }
 
     @Override
-    public List<Tip> listAllTips() {
-        return tipRepository.findAll();
-    }
-
-    @Override
-    public List<Tip> getByUserId(User user) {
-        return tipRepository.getByUserId(user);
-    }
-
-    @Override
-    public List<Tip> getByLocatableId(Locatable locatable) {
-        return tipRepository.getByLocatableId(locatable);
-    }
-
-    @Override
-    public Tip save(Tip tip) {
+    public Tip createTip(Tip tip) {
         return tipRepository.save(tip);
     }
 
     @Override
-    public void delete(int id) {
-        tipRepository.deleteById(id);
+    public Tip updateTip(Integer tipId, Tip tipDetails) {
+        return tipRepository.findById(tipId).map(Tip -> {
+            Tip.setText(tipDetails.getText());
+            return tipRepository.save(Tip);
+        }).orElseThrow(() -> new ResourceNotFoundException("Tip", "Id", tipId));
+    }
+
+    @Override
+    public ResponseEntity<?> deleteTip(Integer tipId) {
+        return tipRepository.findById(tipId).map(Language -> {
+            tipRepository.delete(Language);
+            return ResponseEntity.ok().build();
+        }).orElseThrow(() -> new ResourceNotFoundException("Tip", "Id", tipId));
     }
 }
+

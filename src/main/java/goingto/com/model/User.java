@@ -1,5 +1,6 @@
 package goingto.com.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -24,8 +26,10 @@ public class User {
 
     @Column(name = "password", nullable = false, length = 50)
     private String password;
-
+/*
     @OneToOne
     @JoinColumn(name = "type_id")
     private UserType userType;
+*/
+
 }

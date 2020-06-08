@@ -1,5 +1,5 @@
 package goingto.com.model;
-
+/*
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,3 +25,4 @@ public class UserType {
     @Column(name = "description", length = 45)
     private String description;
 }
+*/
