@@ -55,8 +55,8 @@ public class LanguageServiceImpl implements LanguageService {
 
     @Override
     public ResponseEntity<?> deleteLanguage(Integer languageId) {
-        return languageRepository.findById(languageId).map(Language -> {
-            languageRepository.delete(Language);
+        return languageRepository.findById(languageId).map(language -> {
+            languageRepository.delete(language);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException("Language", "Id", languageId));
     }

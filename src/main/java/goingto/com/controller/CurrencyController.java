@@ -2,46 +2,63 @@ package goingto.com.controller;
 
 import goingto.com.model.Country;
 import goingto.com.model.Currency;
+import goingto.com.model.Currency;
+import goingto.com.resource.CurrencyResource;
+import goingto.com.resource.SaveCurrencyResource;
 import goingto.com.resource.converter.CurrencyConverter;
 import goingto.com.service.CurrencyService;
 import io.swagger.models.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/currencies")
+@RequestMapping("/api")
 public class CurrencyController {
+
     @Autowired
     private CurrencyService currencyService;
+    @Autowired 
+    CurrencyConverter mapper;
 
-    @GetMapping
-    public ResponseEntity<List<Currency>> listCurrency(){
+    @GetMapping("/currencies")
+    public ResponseEntity<List<Currency>> getAllCurrencies() {
         List<Currency> currencies = new ArrayList<>();
-
         currencies = currencyService.getAllCurrencies();
+        return ResponseEntity.ok(currencies);
 
-        if(currencies.isEmpty())
-            return ResponseEntity.noContent().build();
+    }
 
+    @GetMapping("/currencies/{id}")
+    public CurrencyResource getCurrencyById(@PathVariable(name = "id") Integer currencyId) {
+        return mapper.convertToResource(currencyService.getCurrencyById(currencyId));
+    }
+
+    @GetMapping("/countries/{countryId}/currencies")
+    public ResponseEntity<List<Currency>> getAllCurrenciesByCountryId(@PathVariable(name = "countryId") Integer countryId) {
+        List<Currency> currencies = new ArrayList<>();
+        currencies = currencyService.getAllCurrenciesByCountryId(countryId);
         return ResponseEntity.ok(currencies);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Currency>getById(@PathVariable Integer id)
-    {
-        Currency currency = currencyService.getCurrencyById(id);
-        if(currency ==null)
-            return ResponseEntity.notFound().build();
-        else
-            return (ResponseEntity.ok(currency));
+
+    @PostMapping("/currencies")
+    public CurrencyResource createCurrency(@Valid @RequestBody SaveCurrencyResource resource) {
+        return mapper.convertToResource(currencyService.createCurrency(mapper.convertToEntity(resource)));
+    }
+    @PutMapping("/currencies/{id}")
+    public CurrencyResource updateTag(@PathVariable(name = "id") Integer CurrencyId, @Valid @RequestBody SaveCurrencyResource resource) {
+        return mapper.convertToResource(currencyService.updateCurrency(CurrencyId, mapper.convertToEntity(resource)));
+    }
+
+    @DeleteMapping("/currencies/{id}")
+    public ResponseEntity<?> deleteCurrency(@PathVariable(name = "id") Integer CurrencyId) {
+        return currencyService.deleteCurrency(CurrencyId);
     }
 }

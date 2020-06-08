@@ -1,19 +1,14 @@
 package goingto.com.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
+
 @Data @AllArgsConstructor @NoArgsConstructor
 @Entity
 @Table(name = "places")
@@ -37,4 +32,12 @@ public class Place {
 	@OneToOne
 	@JoinColumn(name="locatable_id")
 	private Locatable locatable;
+
+	@ManyToMany(fetch = FetchType.LAZY,
+			cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinTable(name = "place_categories",
+			joinColumns = {@JoinColumn(name = "place_id")},
+			inverseJoinColumns = {@JoinColumn(name = "category_id")})
+	@JsonIgnore
+	List<Category> categories;
 }
