@@ -15,7 +15,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/user/{userId}/locatables/{locatableId}/tips")
+@RequestMapping("/users/{userId}/locatables/{locatableId}/tips")
 public class UserLocatableTipsController {
     @Autowired
     private UserService userService;
@@ -32,9 +32,11 @@ public class UserLocatableTipsController {
         var existingLocatable = locatableService.getLocatable(locatableId);
         if(existingLocatable==null)
             return ResponseEntity.notFound().build();
-        if(existingLocatable==null)
+        if(existingUser==null)
             return ResponseEntity.notFound().build();
         var tip = tipConverter.convertToEntity(resource);
+        tip.setLocatable(existingLocatable);
+        tip.setUser(existingUser);
         var result = tipService.createTip(tip);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
