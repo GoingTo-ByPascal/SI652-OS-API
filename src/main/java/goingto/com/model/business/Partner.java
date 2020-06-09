@@ -1,6 +1,6 @@
 package goingto.com.model.business;
 
-import goingto.com.model.account.Profile;
+import goingto.com.model.account.UserProfile;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +24,6 @@ public class Partner {
 
     @OneToOne
     @JoinColumn(name = "profile_id")
-    private Profile profile;
+    private UserProfile profile;
 
 }
