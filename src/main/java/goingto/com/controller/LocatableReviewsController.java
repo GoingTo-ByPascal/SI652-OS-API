@@ -1,12 +1,11 @@
 package goingto.com.controller;
 
-import goingto.com.model.account.User;
-import goingto.com.model.interaction.Tip;
+import goingto.com.model.geographic.Locatable;
 import goingto.com.resource.converter.ReviewConverter;
 import goingto.com.resource.converter.TipConverter;
+import goingto.com.service.LocatableService;
 import goingto.com.service.ReviewService;
 import goingto.com.service.TipService;
-import goingto.com.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,32 +14,27 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
-public class UserTipsController {
+public class LocatableReviewsController {
 
     @Autowired
-    TipService tipService;
-
+    private ReviewService reviewService;
     @Autowired
-    UserService userService;
-
+    private LocatableService locatableService;
     @Autowired
-    TipConverter mapper;
+    private ReviewConverter mapper;
 
-    @GetMapping("/users/{userId}/tips")
-    public ResponseEntity<?> getAllTipsByUserId(@PathVariable(name = "userId") Integer userId){
-        User existingUser = userService.findById(userId);
-        if(existingUser==null)
+    @GetMapping("/locatables/{locatableId}/reviews")
+    public ResponseEntity<?> getAllReviewsByLocatableId(@PathVariable Integer locatableId){
+        Locatable existingLocatable = locatableService.getLocatable(locatableId);
+        if(existingLocatable==null)
             return ResponseEntity.notFound().build();
-        var tips = tipService.getAllTipsByUserId(userId);
-        var result = tips.stream().map(mapper::convertToResource).collect(Collectors.toList());
+        var reviews = reviewService.getAllReviewsByLocatableId(locatableId);
+        var result = reviews.stream().map(mapper::convertToResource).collect(Collectors.toList());
         return ResponseEntity.ok(result);
     }
-
 }

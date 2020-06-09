@@ -15,13 +15,13 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/locatables")
+@RequestMapping("/api")
 public class LocatableController {
 
     @Autowired
     private LocatableService locatableService;
 
-    @GetMapping
+    @GetMapping("/locatables")
     public ResponseEntity<List<Locatable>> listLocatable(){
         List<Locatable> locatables = new ArrayList<>();
 
@@ -33,7 +33,7 @@ public class LocatableController {
         return ResponseEntity.ok(locatables);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/locatables/{id}")
     public ResponseEntity<Locatable>getById(@PathVariable Integer id)
     {
         Locatable locatable = locatableService.getLocatable(id);

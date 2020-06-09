@@ -10,32 +10,32 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/wallets")
+@RequestMapping("/api")
 public class WalletController {
 
     @Autowired
     private WalletService walletService;
 
 
-    @GetMapping
+    @GetMapping("/wallets")
     public List<Wallet> GetAll() {
         return walletService.ListWallets();
     }
 
 
-    @GetMapping("/{id}")
+    @GetMapping("/wallets/{id}")
     public Wallet show(@PathVariable int id) {
         return walletService.findById(id);
     }
 
-    @PostMapping
+    @PostMapping("/wallets")
     @ResponseStatus(HttpStatus.ACCEPTED) //201: successfully created
     public Wallet create(@RequestBody Wallet wallet) {
         return walletService.save(wallet);
     }
 
 
-    @PutMapping("/{id}")
+    @PutMapping("/wallets/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Wallet update(@RequestBody Wallet wallet, @PathVariable int id) {
 
@@ -45,7 +45,6 @@ public class WalletController {
 
         return walletService.save(existingWallet);
     }
-
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

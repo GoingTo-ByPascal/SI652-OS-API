@@ -36,13 +36,6 @@ public class LanguageController {
         return mapper.convertToResource(languageService.getLanguageById(languageId));
     }
 
-    @GetMapping("/countries/{countryId}/languages")
-    public ResponseEntity<List<Language>> getAllLanguagesByCountryId(@PathVariable(name = "countryId") Integer countryId) {
-       List<Language> languages = new ArrayList<>();
-        languages = languageService.getAllLanguagesByCountryId(countryId);
-        return ResponseEntity.ok(languages);
-    }
-
 
     @PostMapping("/languages")
     public LanguageResource createLanguage(@Valid @RequestBody SaveLanguageResource resource) {

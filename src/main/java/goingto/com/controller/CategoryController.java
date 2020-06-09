@@ -26,7 +26,7 @@ public class CategoryController {
     CategoryConverter mapper;
 
     @GetMapping("/categories")
-    public ResponseEntity<List<Category>> getAllCurrencies() {
+    public ResponseEntity<List<Category>> getAllCategories() {
         List<Category> categories = new ArrayList<>();
         categories = categoryService.getAllCategories();
         return ResponseEntity.ok(categories);
@@ -36,13 +36,6 @@ public class CategoryController {
     @GetMapping("/categories/{id}")
     public CategoryResource getCategoryById(@PathVariable(name = "id") Integer categoryId) {
         return mapper.convertToResource(categoryService.getCategoryById(categoryId));
-    }
-
-    @GetMapping("/places/{placeId}/categories")
-    public ResponseEntity<List<Category>> getAllCurrenciesByCountryId(@PathVariable(name = "placeId") Integer placeId) {
-        List<Category> categories = new ArrayList<>();
-        categories = categoryService.getAllCategoriesByPlaceId(placeId);
-        return ResponseEntity.ok(categories);
     }
 
 

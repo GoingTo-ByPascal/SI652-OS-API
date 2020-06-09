@@ -38,20 +38,6 @@ public class ReviewController {
         return mapper.convertToResource(reviewService.getReviewById(reviewId));
     }
 
-    @GetMapping("/locatables/{locatableId}/reviews")
-    public ResponseEntity<List<Review>> getAllReviewsByLocatableId(@PathVariable(name = "locatableId") Integer locatableId) {
-        List<Review> reviews = new ArrayList<>();
-        reviews = reviewService.getAllReviewsByLocatableId(locatableId);
-        return ResponseEntity.ok(reviews);
-    }
-
-    @GetMapping("/users/{userId}/reviews")
-    public ResponseEntity<List<Review>> getAllReviewsByUserId(@PathVariable(name = "userId") Integer userId){
-        List<Review> reviews = new ArrayList<>();
-        reviews=reviewService.getAllReviewsByUserId(userId);
-        return ResponseEntity.ok(reviews);
-    }
-
     @PostMapping("/reviews")
     public ReviewResource createReview(@Valid @RequestBody SaveReviewResource resource) {
         return mapper.convertToResource(reviewService.createReview(mapper.convertToEntity(resource)));

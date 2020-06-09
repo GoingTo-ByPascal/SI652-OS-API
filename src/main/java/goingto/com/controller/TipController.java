@@ -38,20 +38,6 @@ public class TipController {
         return mapper.convertToResource(tipService.getTipById(tipId));
     }
 
-    @GetMapping("/locatables/{locatableId}/tips")
-    public ResponseEntity<List<Tip>> getAllTipsByLocatableId(@PathVariable(name = "locatableId") Integer locatableId) {
-        List<Tip> tips = new ArrayList<>();
-        tips = tipService.getAllTipsByLocatableId(locatableId);
-        return ResponseEntity.ok(tips);
-    }
-
-    @GetMapping("/users/{userId}/tips")
-    public ResponseEntity<List<Tip>> getAllTipsByUserId(@PathVariable(name = "userId") Integer userId){
-        List<Tip> tips = new ArrayList<>();
-        tips = tipService.getAllTipsByUserId(userId);
-        return ResponseEntity.ok(tips);
-    }
-
     @PostMapping("/tips")
     public TipResource createTip(@Valid @RequestBody SaveTipResource resource) {
         return mapper.convertToResource(tipService.createTip(mapper.convertToEntity(resource)));

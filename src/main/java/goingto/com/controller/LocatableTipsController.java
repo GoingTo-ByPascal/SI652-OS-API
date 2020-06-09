@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/locatables/{locatableId}/tips")
+@RequestMapping("/api")
 public class LocatableTipsController {
 
     @Autowired
@@ -24,15 +24,15 @@ public class LocatableTipsController {
     @Autowired
     private LocatableService locatableService;
     @Autowired
-    private TipConverter tipConverter;
+    private TipConverter mapper;
 
-    @GetMapping
-    public ResponseEntity<?> GetAllTipByLocatableId(@PathVariable Integer locatableId){
+    @GetMapping("/locatables/{locatableId}/tips")
+    public ResponseEntity<?> getAllTipsByLocatableId(@PathVariable Integer locatableId){
         Locatable existingLocatable = locatableService.getLocatable(locatableId);
         if(existingLocatable==null)
             return ResponseEntity.notFound().build();
         var tips = tipService.getAllTipsByLocatableId(locatableId);
-        var result = tips.stream().map(tipConverter::convertToResource).collect(Collectors.toList());
+        var result = tips.stream().map(mapper::convertToResource).collect(Collectors.toList());
         return ResponseEntity.ok(result);
     }
 

@@ -1,11 +1,10 @@
 package goingto.com.controller;
 
 import goingto.com.model.account.User;
-import goingto.com.model.interaction.Tip;
+import goingto.com.model.geographic.Locatable;
+import goingto.com.model.interaction.Review;
 import goingto.com.resource.converter.ReviewConverter;
-import goingto.com.resource.converter.TipConverter;
 import goingto.com.service.ReviewService;
-import goingto.com.service.TipService;
 import goingto.com.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,25 +21,24 @@ import java.util.stream.Collectors;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
-public class UserTipsController {
+public class UserReviewsController {
 
     @Autowired
-    TipService tipService;
+    ReviewService reviewService;
 
     @Autowired
     UserService userService;
 
     @Autowired
-    TipConverter mapper;
+    ReviewConverter mapper;
 
-    @GetMapping("/users/{userId}/tips")
-    public ResponseEntity<?> getAllTipsByUserId(@PathVariable(name = "userId") Integer userId){
+    @GetMapping("/users/{userId}/reviews")
+    public ResponseEntity<?> getAllReviewsByUserId(@PathVariable(name = "userId") Integer userId){
         User existingUser = userService.findById(userId);
         if(existingUser==null)
             return ResponseEntity.notFound().build();
-        var tips = tipService.getAllTipsByUserId(userId);
-        var result = tips.stream().map(mapper::convertToResource).collect(Collectors.toList());
+        var reviews = reviewService.getAllReviewsByUserId(userId);
+        var result = reviews.stream().map(mapper::convertToResource).collect(Collectors.toList());
         return ResponseEntity.ok(result);
     }
-
 }

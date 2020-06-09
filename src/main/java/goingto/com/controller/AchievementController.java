@@ -32,29 +32,22 @@ public class AchievementController {
 
     }
 
-    @GetMapping("/Achievements/{id}")
-    public AchievementResource getAchievementById(@PathVariable(name = "id") Integer AchievementId) {
-        return mapper.convertToResource(achievementService.getAchievementById(AchievementId));
-    }
-
-    @GetMapping("/users/{userId}/achievements")
-    public ResponseEntity<List<Achievement>> getAllAchievementsByUserId(@PathVariable(name = "userId") Integer userId) {
-        List<Achievement> achievements = new ArrayList<>();
-        achievements = achievementService.getAllAchievementsByUserId(userId);
-        return ResponseEntity.ok(achievements);
+    @GetMapping("/achievements/{id}")
+    public AchievementResource getAchievementById(@PathVariable(name = "id") Integer achievementId) {
+        return mapper.convertToResource(achievementService.getAchievementById(achievementId));
     }
 
 
-    @PostMapping("/Achievements")
+    @PostMapping("/achievements")
     public AchievementResource createAchievement(@Valid @RequestBody SaveAchievementResource resource) {
         return mapper.convertToResource(achievementService.createAchievement(mapper.convertToEntity(resource)));
     }
-    @PutMapping("/Achievements/{id}")
-    public AchievementResource updateTag(@PathVariable(name = "id") Integer achievementId, @Valid @RequestBody SaveAchievementResource resource) {
+    @PutMapping("/achievements/{id}")
+    public AchievementResource updateAchievement(@PathVariable(name = "id") Integer achievementId, @Valid @RequestBody SaveAchievementResource resource) {
         return mapper.convertToResource(achievementService.updateAchievement(achievementId, mapper.convertToEntity(resource)));
     }
 
-    @DeleteMapping("/Achievements/{id}")
+    @DeleteMapping("/achievements/{id}")
     public ResponseEntity<?> deleteAchievement(@PathVariable(name = "id") Integer achievementId) {
         return achievementService.deleteAchievement(achievementId);
     }

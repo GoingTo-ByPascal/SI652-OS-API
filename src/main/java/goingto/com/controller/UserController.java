@@ -10,32 +10,32 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
 
-    @GetMapping
+    @GetMapping("/users")
     public List<User> GetAll() {
         return userService.ListUsers();
     }
 
 
-    @GetMapping("/{id}")
+    @GetMapping("/users/{id}")
     public User show(@PathVariable int id) {
         return userService.findById(id);
     }
 
-    @PostMapping
+    @PostMapping("/users")
     @ResponseStatus(HttpStatus.ACCEPTED) //201: successfully created
     public User create(@RequestBody User user) {
         return userService.save(user);
     }
 
 
-    @PutMapping("/{id}")
+    @PutMapping("/users/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public User update(@RequestBody User user, @PathVariable int id) {
 
@@ -47,8 +47,7 @@ public class UserController {
         return userService.save(existingUser);
     }
 
-
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/users/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int id) {
         userService.delete(id);

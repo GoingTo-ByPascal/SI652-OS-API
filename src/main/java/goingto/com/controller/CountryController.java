@@ -14,13 +14,13 @@ import goingto.com.service.CountryService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/countries")
+@RequestMapping("/api")
 public class CountryController {
 
 	@Autowired
 	private CountryService countryService;
 
-	@GetMapping
+	@GetMapping("/countries")
 	public ResponseEntity<List<Country>> listCountries(){
 		List<Country> countries = new ArrayList<>();
 
@@ -33,7 +33,7 @@ public class CountryController {
 		return ResponseEntity.ok(countries);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/countries/{id}")
 	public ResponseEntity<Country>getById(@PathVariable Integer id)
 	{
 		Country country = countryService.getCountryById(id);

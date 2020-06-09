@@ -4,6 +4,7 @@ package goingto.com.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,13 +20,14 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/cities")
+@RequestMapping("/api")
 public class CityController {
 
 	@Autowired
 	private CityService cityService;
-	
-	@GetMapping
+
+	@ApiOperation("Fetch all Cities")
+	@GetMapping("/cities")
 	public ResponseEntity<List<City>> listCity(@RequestParam(name="CountryId",required = false)Integer countryId){
 		List<City> cities = new ArrayList<>();
 		if(countryId == null)
@@ -40,9 +42,9 @@ public class CityController {
 		}
 		return ResponseEntity.ok(cities);
 	}
-	
-	
-	@GetMapping("/{id}")
+
+	@ApiOperation("Fetch City by Id")
+	@GetMapping("/cities/{id}")
 	public ResponseEntity<City>getById(@PathVariable Integer id)
 	{
 		City city = cityService.getCity(id);

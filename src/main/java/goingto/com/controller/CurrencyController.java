@@ -38,14 +38,6 @@ public class CurrencyController {
         return mapper.convertToResource(currencyService.getCurrencyById(currencyId));
     }
 
-    @GetMapping("/countries/{countryId}/currencies")
-    public ResponseEntity<List<Currency>> getAllCurrenciesByCountryId(@PathVariable(name = "countryId") Integer countryId) {
-        List<Currency> currencies = new ArrayList<>();
-        currencies = currencyService.getAllCurrenciesByCountryId(countryId);
-        return ResponseEntity.ok(currencies);
-    }
-
-
     @PostMapping("/currencies")
     public CurrencyResource createCurrency(@Valid @RequestBody SaveCurrencyResource resource) {
         return mapper.convertToResource(currencyService.createCurrency(mapper.convertToEntity(resource)));
