@@ -1,5 +1,6 @@
 package goingto.com.controller;
 
+import goingto.com.model.Tip;
 import goingto.com.resource.SaveTipResource;
 import goingto.com.resource.converter.TipConverter;
 import goingto.com.service.LocatableService;
@@ -12,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -40,4 +43,15 @@ public class UserLocatableTipsController {
         var result = tipService.createTip(tip);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
-}
+    /*
+    @GetMapping
+    public ResponseEntity<List<Tip>> getAllTipsByUserIdAndLocatableId(@PathVariable(name = "userId") Integer userId,
+                                                                      @PathVariable(name = "locatableId") Integer locatableId){
+        var existingUserId = userId;
+        var existingLocatableId = locatableId;
+
+        List<Tip> tips = new ArrayList<>();
+     */
+
+    }
+

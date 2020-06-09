@@ -37,8 +37,5 @@ public class Locatable {
     @Column(name = "longitude")
     private Float longitude;
 
-    @OneToMany
-    @JsonIgnore
-    List<Review> reviews;
 
 }

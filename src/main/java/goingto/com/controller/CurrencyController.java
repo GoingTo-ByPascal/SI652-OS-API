@@ -24,6 +24,7 @@ public class CurrencyController {
 
     @Autowired
     private CurrencyService currencyService;
+
     @Autowired 
     CurrencyConverter mapper;
 

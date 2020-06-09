@@ -5,7 +5,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CurrencyResource {
-    public Integer Id;
+    public Integer id;
     public String unit;
     public String shortName;
 }

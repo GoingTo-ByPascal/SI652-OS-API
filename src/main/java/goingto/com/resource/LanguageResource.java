@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class LanguageResource {
-    public Integer Id;
+    public Integer id;
     public String shortName;
     public String fullName;
 }

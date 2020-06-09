@@ -1,11 +1,13 @@
 package goingto.com.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -28,4 +30,10 @@ public class Achievement {
     @NotEmpty
     @Column(name = "points")
     private Integer points;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            mappedBy = "achievements")
+    @JsonIgnore
+    private List<User> users;
 }

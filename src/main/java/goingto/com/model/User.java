@@ -31,4 +31,12 @@ public class User {
     @JoinColumn(name = "wallet_id")
     private Wallet wallet;
 
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "user_achievements",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "achievement_id")})
+    @JsonIgnore
+    List<Achievement> achievements;
+
 }
