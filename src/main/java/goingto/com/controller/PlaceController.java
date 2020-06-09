@@ -3,6 +3,7 @@ package goingto.com.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,8 +20,8 @@ public class PlaceController {
 
 	@Autowired
 	private PlaceService placeService;
-	
-	
+
+	@ApiOperation("Return all Places")
 	@GetMapping("/places")
 	public ResponseEntity<List<Place>> listPlaces(){
 		List<Place> places = new ArrayList<>();
@@ -32,7 +33,8 @@ public class PlaceController {
 	
 		return ResponseEntity.ok(places);
 	}
-	
+
+	@ApiOperation("Return Place by id")
 	@GetMapping("/places/{id}")
 	public ResponseEntity<Place>getById(@PathVariable Integer id)
 	{
@@ -42,19 +44,22 @@ public class PlaceController {
 		else
 			return (ResponseEntity.ok(places));
 	}
-	
+
+	@ApiOperation("Create new Place")
 	@PostMapping("/places")
 	public ResponseEntity<Place> newPlace(@RequestBody Place place)
 	{
 		return ResponseEntity.status(HttpStatus.CREATED).body(placeService.save((place)));
 	}
-	
+
+	@ApiOperation("Update existing Place by id")
 	@PutMapping("/places/{id}")
 	public ResponseEntity<Place> updatePlace(@RequestBody Place place,@PathVariable Integer id)
 	{
 		return  ResponseEntity.status(HttpStatus.OK).body(placeService.edit(place, id));
 	}
-	
+
+	@ApiOperation("Delete existing Place by id")
 	@DeleteMapping("/places/{id}")
 	public ResponseEntity<Place> deletePlace(@PathVariable Integer id)
 	{

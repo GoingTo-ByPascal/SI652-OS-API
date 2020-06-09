@@ -6,6 +6,7 @@ import goingto.com.resource.converter.TipConverter;
 import goingto.com.service.LocatableService;
 import goingto.com.service.ReviewService;
 import goingto.com.service.TipService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,7 @@ public class LocatableReviewsController {
     @Autowired
     private ReviewConverter mapper;
 
+    @ApiOperation("Return Reviews by Locatable id")
     @GetMapping("/locatables/{locatableId}/reviews")
     public ResponseEntity<?> getAllReviewsByLocatableId(@PathVariable Integer locatableId){
         Locatable existingLocatable = locatableService.getLocatable(locatableId);

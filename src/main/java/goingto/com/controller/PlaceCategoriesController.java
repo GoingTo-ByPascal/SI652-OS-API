@@ -6,6 +6,7 @@ import goingto.com.model.geographic.Place;
 import goingto.com.resource.converter.CategoryConverter;
 import goingto.com.service.CategoryService;
 import goingto.com.service.PlaceService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +34,7 @@ public class PlaceCategoriesController {
     CategoryConverter mapper;
 
 
+    @ApiOperation("Return Categories by Place id")
     @GetMapping("/places/{placeId}/categories")
     public ResponseEntity<?> getAllCategoriesByPlaceId(@PathVariable(name = "placeId") Integer placeId) {
         Place existingPlace = placeService.getPlace(placeId);

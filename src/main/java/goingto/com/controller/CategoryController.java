@@ -5,6 +5,7 @@ import goingto.com.resource.CategoryResource;
 import goingto.com.resource.SaveCategoryResource;
 import goingto.com.resource.converter.CategoryConverter;
 import goingto.com.service.CategoryService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,7 @@ public class CategoryController {
     @Autowired
     CategoryConverter mapper;
 
+    @ApiOperation("Return all Categories")
     @GetMapping("/categories")
     public ResponseEntity<List<Category>> getAllCategories() {
         List<Category> categories = new ArrayList<>();
@@ -33,21 +35,25 @@ public class CategoryController {
 
     }
 
+    @ApiOperation("Return Category by id")
     @GetMapping("/categories/{id}")
     public CategoryResource getCategoryById(@PathVariable(name = "id") Integer categoryId) {
         return mapper.convertToResource(categoryService.getCategoryById(categoryId));
     }
 
 
+    @ApiOperation("Create new Category")
     @PostMapping("/categories")
     public CategoryResource createCategory(@Valid @RequestBody SaveCategoryResource resource) {
         return mapper.convertToResource(categoryService.createCategory(mapper.convertToEntity(resource)));
     }
+    @ApiOperation("Update existing Category by id")
     @PutMapping("/categories/{id}")
     public CategoryResource updateTag(@PathVariable(name = "id") Integer categoryId, @Valid @RequestBody SaveCategoryResource resource) {
         return mapper.convertToResource(categoryService.updateCategory(categoryId, mapper.convertToEntity(resource)));
     }
 
+    @ApiOperation("Delete existing Category by id")
     @DeleteMapping("/categories/{id}")
     public ResponseEntity<?> deleteCategory(@PathVariable(name = "id") Integer CategoryId) {
         return categoryService.deleteCategory(CategoryId);

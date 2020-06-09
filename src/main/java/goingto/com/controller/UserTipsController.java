@@ -7,6 +7,7 @@ import goingto.com.resource.converter.TipConverter;
 import goingto.com.service.ReviewService;
 import goingto.com.service.TipService;
 import goingto.com.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +34,7 @@ public class UserTipsController {
     @Autowired
     TipConverter mapper;
 
+    @ApiOperation("Return Tips by User id")
     @GetMapping("/users/{userId}/tips")
     public ResponseEntity<?> getAllTipsByUserId(@PathVariable(name = "userId") Integer userId){
         User existingUser = userService.findById(userId);

@@ -3,6 +3,7 @@ package goingto.com.controller;
 import goingto.com.model.account.Achievement;
 import goingto.com.resource.converter.AchievementConverter;
 import goingto.com.service.AchievementService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,7 @@ public class UserAchievementsController {
     @Autowired
     private AchievementService achievementService;
 
+    @ApiOperation("Return Achievements by User id")
     @GetMapping("/users/{userId}/achievements")
     public ResponseEntity<List<Achievement>> getAllAchievementsByUserId(@PathVariable(name = "userId") Integer userId) {
         List<Achievement> achievements = new ArrayList<>();

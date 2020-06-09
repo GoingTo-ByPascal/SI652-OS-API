@@ -5,6 +5,7 @@ import goingto.com.resource.LanguageResource;
 import goingto.com.resource.SaveLanguageResource;
 import goingto.com.resource.converter.LanguageConverter;
 import goingto.com.service.LanguageService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,7 @@ public class LanguageController {
     @Autowired
     private LanguageService languageService;
 
+    @ApiOperation("Return all Languages")
     @GetMapping("/languages")
     public ResponseEntity<List<Language>> getAllLanguages() {
         List<Language> languages = new ArrayList<>();
@@ -31,21 +33,25 @@ public class LanguageController {
 
     }
 
+    @ApiOperation("Return Language by id")
     @GetMapping("/languages/{id}")
     public LanguageResource getLanguageById(@PathVariable(name = "id") Integer languageId) {
         return mapper.convertToResource(languageService.getLanguageById(languageId));
     }
 
-
+    @ApiOperation("Create new Language")
     @PostMapping("/languages")
     public LanguageResource createLanguage(@Valid @RequestBody SaveLanguageResource resource) {
         return mapper.convertToResource(languageService.createLanguage(mapper.convertToEntity(resource)));
     }
+
+    @ApiOperation("Update existing Language by id")
     @PutMapping("/languages/{id}")
-    public LanguageResource updateTag(@PathVariable(name = "id") Integer languageId, @Valid @RequestBody SaveLanguageResource resource) {
+    public LanguageResource updateLanguage(@PathVariable(name = "id") Integer languageId, @Valid @RequestBody SaveLanguageResource resource) {
         return mapper.convertToResource(languageService.updateLanguage(languageId, mapper.convertToEntity(resource)));
     }
 
+    @ApiOperation("Delete existing Language by id")
     @DeleteMapping("/languages/{id}")
     public ResponseEntity<?> deleteLanguage(@PathVariable(name = "id") Integer LanguageId) {
         return languageService.deleteLanguage(LanguageId);

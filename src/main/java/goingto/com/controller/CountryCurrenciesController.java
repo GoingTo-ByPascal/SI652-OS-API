@@ -6,6 +6,7 @@ import goingto.com.model.geographic.Locatable;
 import goingto.com.resource.converter.CurrencyConverter;
 import goingto.com.service.CountryService;
 import goingto.com.service.CurrencyService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class CountryCurrenciesController {
     @Autowired
     private CurrencyConverter mapper;
 
-
+    @ApiOperation("Return Currencies by Country id")
     @GetMapping("/countries/{countryId}/currencies")
     public ResponseEntity<?> getAllCurrenciesByCountryId(@PathVariable(name = "countryId") Integer countryId) {
             Country existingCountry = countryService.getCountryById(countryId);

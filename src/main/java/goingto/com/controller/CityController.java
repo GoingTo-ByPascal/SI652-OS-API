@@ -20,32 +20,24 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
+@ApiOperation("/Controller for Cities")
 @RequestMapping("/api")
 public class CityController {
 
 	@Autowired
 	private CityService cityService;
 
-	@ApiOperation("Fetch all Cities")
+	@ApiOperation("Return all Cities")
 	@GetMapping("/cities")
-	public ResponseEntity<List<City>> listCity(@RequestParam(name="CountryId",required = false)Integer countryId){
+	public ResponseEntity<List<City>> getAllCities(){
 		List<City> cities = new ArrayList<>();
-		if(countryId == null)
-		{
-			cities = cityService.listAllCities();
-			if(cities.isEmpty()) {
-				return ResponseEntity.noContent().build();
-			}
-		}
-		else {
-			cities=cityService.findByCountry(Country.builder().id(countryId).build());
-		}
+		cities = cityService.listAllCities();
 		return ResponseEntity.ok(cities);
 	}
 
-	@ApiOperation("Fetch City by Id")
+	@ApiOperation("Return City by Id")
 	@GetMapping("/cities/{id}")
-	public ResponseEntity<City>getById(@PathVariable Integer id)
+	public ResponseEntity<City>getCityById(@PathVariable Integer id)
 	{
 		City city = cityService.getCity(id);
 		if(city ==null)

@@ -5,6 +5,7 @@ import goingto.com.resource.converter.TipConverter;
 import goingto.com.service.LocatableService;
 import goingto.com.service.TipService;
 import goingto.com.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,7 @@ public class UserLocatableTipsController {
     @Autowired
     private TipConverter mapper;
 
+    @ApiOperation("Return Tips by User id and Locatable id")
     @PostMapping("/users/{userId}/locatables/{locatableId}/tips")
     public ResponseEntity<?> createTip (@PathVariable Integer userId, @PathVariable Integer locatableId, @Valid @RequestBody SaveTipResource resource){
         var existingUser = userService.findById(userId);

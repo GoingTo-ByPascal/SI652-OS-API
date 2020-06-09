@@ -4,6 +4,7 @@ import goingto.com.model.geographic.Locatable;
 import goingto.com.resource.converter.TipConverter;
 import goingto.com.service.LocatableService;
 import goingto.com.service.TipService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ public class LocatableTipsController {
     @Autowired
     private TipConverter mapper;
 
+    @ApiOperation("Return Tips by Locatable id")
     @GetMapping("/locatables/{locatableId}/tips")
     public ResponseEntity<?> getAllTipsByLocatableId(@PathVariable Integer locatableId){
         Locatable existingLocatable = locatableService.getLocatable(locatableId);

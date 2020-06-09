@@ -6,6 +6,7 @@ import goingto.com.model.interaction.Review;
 import goingto.com.resource.converter.ReviewConverter;
 import goingto.com.service.ReviewService;
 import goingto.com.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +33,7 @@ public class UserReviewsController {
     @Autowired
     ReviewConverter mapper;
 
+    @ApiOperation("Return Reviews by User id")
     @GetMapping("/users/{userId}/reviews")
     public ResponseEntity<?> getAllReviewsByUserId(@PathVariable(name = "userId") Integer userId){
         User existingUser = userService.findById(userId);

@@ -5,6 +5,7 @@ import goingto.com.model.geographic.Language;
 import goingto.com.resource.converter.LanguageConverter;
 import goingto.com.service.CountryService;
 import goingto.com.service.LanguageService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,7 @@ public class CountryLanguagesController {
     @Autowired
     private LanguageService languageService;
 
+    @ApiOperation("Return Languages by Country id")
     @GetMapping("/countries/{countryId}/languages")
     public ResponseEntity<?> getAllLanguagesByCountryId(@PathVariable(name = "countryId") Integer countryId) {
         Country existingCountry = countryService.getCountryById(countryId);

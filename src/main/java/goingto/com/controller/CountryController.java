@@ -3,6 +3,7 @@ package goingto.com.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,21 +21,17 @@ public class CountryController {
 	@Autowired
 	private CountryService countryService;
 
+	@ApiOperation("Return all Countries")
 	@GetMapping("/countries")
-	public ResponseEntity<List<Country>> listCountries(){
+	public ResponseEntity<List<Country>> getAllCountries(){
 		List<Country> countries = new ArrayList<>();
-
 		countries = countryService.getAllCountries();
-
-		if(countries.isEmpty()) {
-			return ResponseEntity.noContent().build();
-		}
-
 		return ResponseEntity.ok(countries);
 	}
 
+	@ApiOperation("Return Country by id")
 	@GetMapping("/countries/{id}")
-	public ResponseEntity<Country>getById(@PathVariable Integer id)
+	public ResponseEntity<Country>getCountryById(@PathVariable Integer id)
 	{
 		Country country = countryService.getCountryById(id);
 		if(country ==null)
