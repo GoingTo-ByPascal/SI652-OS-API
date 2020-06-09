@@ -1,6 +1,6 @@
 package goingto.com.controller;
 
-import goingto.com.model.Locatable;
+import goingto.com.model.geographic.Locatable;
 import goingto.com.resource.converter.TipConverter;
 import goingto.com.service.LocatableService;
 import goingto.com.service.TipService;

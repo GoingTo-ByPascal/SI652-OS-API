@@ -1,10 +1,7 @@
 package goingto.com.service.impl;
 
 import goingto.com.exception.ResourceNotFoundException;
-import goingto.com.model.Locatable;
-import goingto.com.model.Tip;
-import goingto.com.model.Tip;
-import goingto.com.model.User;
+import goingto.com.model.interaction.Tip;
 import goingto.com.repository.TipRepository;
 import goingto.com.service.TipService;
 import org.springframework.beans.factory.annotation.Autowired;

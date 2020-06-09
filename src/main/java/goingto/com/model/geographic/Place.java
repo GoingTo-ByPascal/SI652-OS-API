@@ -1,4 +1,4 @@
-package goingto.com.model;
+package goingto.com.model.geographic;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

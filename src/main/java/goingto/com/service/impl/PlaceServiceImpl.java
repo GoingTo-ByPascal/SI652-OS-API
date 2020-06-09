@@ -7,8 +7,8 @@ import javax.transaction.Transactional;
 import goingto.com.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import goingto.com.model.City;
-import goingto.com.model.Place;
+import goingto.com.model.geographic.City;
+import goingto.com.model.geographic.Place;
 import goingto.com.repository.PlaceRepository;
 import org.springframework.stereotype.Service;
 

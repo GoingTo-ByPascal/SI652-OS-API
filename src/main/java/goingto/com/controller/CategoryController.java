@@ -1,6 +1,6 @@
 package goingto.com.controller;
 
-import goingto.com.model.Category;
+import goingto.com.model.geographic.Category;
 import goingto.com.resource.CategoryResource;
 import goingto.com.resource.SaveCategoryResource;
 import goingto.com.resource.converter.CategoryConverter;

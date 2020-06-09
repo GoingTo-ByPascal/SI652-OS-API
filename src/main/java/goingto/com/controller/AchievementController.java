@@ -1,6 +1,6 @@
 package goingto.com.controller;
 
-import goingto.com.model.Achievement;
+import goingto.com.model.account.Achievement;
 import goingto.com.resource.AchievementResource;
 import goingto.com.resource.SaveAchievementResource;
 import goingto.com.resource.converter.AchievementConverter;

@@ -1,4 +1,4 @@
-package goingto.com.model;
+package goingto.com.model.geographic;
 
 
 import javax.persistence.*;
@@ -49,6 +49,6 @@ public class Country {
             joinColumns = {@JoinColumn(name = "country_id")},
             inverseJoinColumns = {@JoinColumn(name = "currency_id")})
     @JsonIgnore
-    List<Currency> currencies;
+    private List<Currency> currencies;
 
 }

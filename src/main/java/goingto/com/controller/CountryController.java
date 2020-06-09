@@ -2,22 +2,14 @@ package goingto.com.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import goingto.com.model.Locatable;
-import goingto.com.resource.CountryResource;
-import goingto.com.resource.converter.CountryConverter;
-import io.swagger.models.auth.In;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-import goingto.com.model.Country;
+import goingto.com.model.geographic.Country;
 import goingto.com.service.CountryService;
 
 @RestController

@@ -6,8 +6,8 @@ import goingto.com.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import goingto.com.model.City;
-import goingto.com.model.Country;
+import goingto.com.model.geographic.City;
+import goingto.com.model.geographic.Country;
 import goingto.com.repository.CityRepository;
 
 @Service

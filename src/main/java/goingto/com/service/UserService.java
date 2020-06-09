@@ -1,6 +1,6 @@
 package goingto.com.service;
 
-import goingto.com.model.User;
+import goingto.com.model.account.User;
 
 import java.util.List;
 

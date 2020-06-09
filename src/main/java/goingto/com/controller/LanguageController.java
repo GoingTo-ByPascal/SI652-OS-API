@@ -1,6 +1,6 @@
 package goingto.com.controller;
 
-import goingto.com.model.Language;
+import goingto.com.model.geographic.Language;
 import goingto.com.resource.LanguageResource;
 import goingto.com.resource.SaveLanguageResource;
 import goingto.com.resource.converter.LanguageConverter;

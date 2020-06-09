@@ -1,9 +1,6 @@
 package goingto.com.resource.converter;
 
-import goingto.com.model.Review;
-import goingto.com.model.Tip;
-import goingto.com.resource.ReviewResource;
-import goingto.com.resource.SaveReviewResource;
+import goingto.com.model.interaction.Tip;
 import goingto.com.resource.SaveTipResource;
 import goingto.com.resource.TipResource;
 import lombok.RequiredArgsConstructor;

@@ -1,13 +1,12 @@
 package goingto.com.service.impl;
 
 import goingto.com.exception.ResourceNotFoundException;
-import goingto.com.model.Locatable;
+import goingto.com.model.geographic.Locatable;
 import goingto.com.repository.LocatableRepository;
 import goingto.com.service.LocatableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.websocket.server.ServerEndpoint;
 import java.util.List;
 
 @Service

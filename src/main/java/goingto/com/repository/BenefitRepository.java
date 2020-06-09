@@ -1,9 +1,9 @@
 package goingto.com.repository;
 
-import goingto.com.model.account.Permission;
+import goingto.com.model.business.Benefit;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PermissionRepository extends JpaRepository<Permission, Integer> {
+public interface BenefitRepository extends JpaRepository<Benefit, Integer> {
 }

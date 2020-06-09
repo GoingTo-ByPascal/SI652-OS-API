@@ -1,6 +1,6 @@
 package goingto.com.service;
 
-import goingto.com.model.Achievement;
+import goingto.com.model.account.Achievement;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

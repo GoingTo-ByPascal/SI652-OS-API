@@ -1,13 +1,10 @@
 package goingto.com.controller;
 
-import goingto.com.model.Country;
-import goingto.com.model.Currency;
-import goingto.com.model.Currency;
+import goingto.com.model.geographic.Currency;
 import goingto.com.resource.CurrencyResource;
 import goingto.com.resource.SaveCurrencyResource;
 import goingto.com.resource.converter.CurrencyConverter;
 import goingto.com.service.CurrencyService;
-import io.swagger.models.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

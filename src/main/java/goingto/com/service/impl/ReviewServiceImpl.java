@@ -1,13 +1,8 @@
 package goingto.com.service.impl;
 
 import goingto.com.exception.ResourceNotFoundException;
-import goingto.com.model.Language;
-import goingto.com.model.Locatable;
-import goingto.com.model.Review;
-import goingto.com.model.User;
-import goingto.com.repository.LocatableRepository;
+import goingto.com.model.interaction.Review;
 import goingto.com.repository.ReviewRepository;
-import goingto.com.repository.UserRepository;
 import goingto.com.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

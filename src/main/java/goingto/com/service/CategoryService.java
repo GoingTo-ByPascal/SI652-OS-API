@@ -1,6 +1,6 @@
 package goingto.com.service;
 
-import goingto.com.model.Category;
+import goingto.com.model.geographic.Category;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

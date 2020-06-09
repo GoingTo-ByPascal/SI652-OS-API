@@ -1,6 +1,6 @@
 package goingto.com.controller;
 
-import goingto.com.model.User;
+import goingto.com.model.account.User;
 import goingto.com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

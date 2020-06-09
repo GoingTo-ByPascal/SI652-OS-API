@@ -1,6 +1,7 @@
-package goingto.com.model;
+package goingto.com.model.geographic;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import goingto.com.model.geographic.Country;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

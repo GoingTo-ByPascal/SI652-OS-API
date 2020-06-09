@@ -1,6 +1,6 @@
 package goingto.com.resource.converter;
 
-import goingto.com.model.Country;
+import goingto.com.model.geographic.Country;
 import goingto.com.resource.CountryResource;
 import goingto.com.resource.SaveCountryResource;
 import lombok.RequiredArgsConstructor;

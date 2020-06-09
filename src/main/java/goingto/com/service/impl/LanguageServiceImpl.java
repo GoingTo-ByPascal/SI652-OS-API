@@ -1,7 +1,7 @@
 package goingto.com.service.impl;
 
 import goingto.com.exception.ResourceNotFoundException;
-import goingto.com.model.Language;
+import goingto.com.model.geographic.Language;
 import goingto.com.repository.CountryRepository;
 import goingto.com.repository.LanguageRepository;
 import goingto.com.service.LanguageService;
@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class LanguageServiceImpl implements LanguageService {

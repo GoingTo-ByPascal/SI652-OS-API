@@ -1,6 +1,5 @@
 package goingto.com.controller;
 
-import goingto.com.model.Tip;
 import goingto.com.resource.SaveTipResource;
 import goingto.com.resource.converter.TipConverter;
 import goingto.com.service.LocatableService;
@@ -13,8 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor

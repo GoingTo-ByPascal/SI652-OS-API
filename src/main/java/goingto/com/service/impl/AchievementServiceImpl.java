@@ -1,7 +1,7 @@
 package goingto.com.service.impl;
 
 import goingto.com.exception.ResourceNotFoundException;
-import goingto.com.model.Achievement;
+import goingto.com.model.account.Achievement;
 import goingto.com.repository.UserRepository;
 import goingto.com.repository.AchievementRepository;
 import goingto.com.service.AchievementService;
@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AchievementServiceImpl implements AchievementService {

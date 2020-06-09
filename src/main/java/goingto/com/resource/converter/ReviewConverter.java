@@ -1,6 +1,6 @@
 package goingto.com.resource.converter;
 
-import goingto.com.model.Review;
+import goingto.com.model.interaction.Review;
 import goingto.com.resource.ReviewResource;
 import goingto.com.resource.SaveReviewResource;
 import lombok.RequiredArgsConstructor;

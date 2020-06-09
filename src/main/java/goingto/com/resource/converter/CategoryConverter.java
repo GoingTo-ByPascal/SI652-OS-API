@@ -1,7 +1,6 @@
 package goingto.com.resource.converter;
 
-import goingto.com.config.MapperConfig;
-import goingto.com.model.Category;
+import goingto.com.model.geographic.Category;
 import goingto.com.resource.CategoryResource;
 import goingto.com.resource.SaveCategoryResource;
 import lombok.RequiredArgsConstructor;

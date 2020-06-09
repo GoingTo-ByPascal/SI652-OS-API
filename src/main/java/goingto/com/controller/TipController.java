@@ -1,16 +1,12 @@
 package goingto.com.controller;
 
-import goingto.com.model.Locatable;
-import goingto.com.model.Tip;
-import goingto.com.model.Tip;
-import goingto.com.model.User;
+import goingto.com.model.interaction.Tip;
 import goingto.com.resource.TipResource;
 import goingto.com.resource.SaveTipResource;
 import goingto.com.resource.converter.TipConverter;
 import goingto.com.service.TipService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

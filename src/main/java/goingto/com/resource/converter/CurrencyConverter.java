@@ -1,7 +1,7 @@
 package goingto.com.resource.converter;
 
 
-import goingto.com.model.Currency;
+import goingto.com.model.geographic.Currency;
 import goingto.com.resource.CurrencyResource;
 import goingto.com.resource.SaveCurrencyResource;
 import lombok.RequiredArgsConstructor;

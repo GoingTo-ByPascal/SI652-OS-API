@@ -1,7 +1,6 @@
 package goingto.com.controller;
 
-import goingto.com.model.User;
-import goingto.com.model.Wallet;
+import goingto.com.model.account.Wallet;
 import goingto.com.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

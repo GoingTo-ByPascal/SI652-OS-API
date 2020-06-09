@@ -1,6 +1,8 @@
-package goingto.com.model;
+package goingto.com.model.interaction;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import goingto.com.model.account.User;
+import goingto.com.model.geographic.Locatable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

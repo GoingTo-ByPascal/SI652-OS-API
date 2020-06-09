@@ -1,6 +1,7 @@
-package goingto.com.model;
+package goingto.com.model.geographic;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import goingto.com.model.business.Promo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,6 +37,14 @@ public class Locatable {
     @NotEmpty
     @Column(name = "longitude")
     private Float longitude;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "locatable_promos",
+            joinColumns = {@JoinColumn(name = "locatable_id")},
+            inverseJoinColumns = {@JoinColumn(name = "promo_id")})
+    @JsonIgnore
+    private List<Promo> promos;
 
 
 }

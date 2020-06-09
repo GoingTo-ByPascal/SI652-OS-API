@@ -1,8 +1,6 @@
 package goingto.com.controller;
 
-import goingto.com.model.Country;
-import goingto.com.model.Locatable;
-import goingto.com.service.CountryService;
+import goingto.com.model.geographic.Locatable;
 import goingto.com.service.LocatableService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

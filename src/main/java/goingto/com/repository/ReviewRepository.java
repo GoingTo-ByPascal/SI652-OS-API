@@ -1,7 +1,6 @@
 package goingto.com.repository;
 
-import com.sun.jdi.event.LocatableEvent;
-import goingto.com.model.*;
+import goingto.com.model.interaction.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

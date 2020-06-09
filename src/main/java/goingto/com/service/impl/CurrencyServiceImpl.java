@@ -1,15 +1,11 @@
 package goingto.com.service.impl;
 
 import goingto.com.exception.ResourceNotFoundException;
-import goingto.com.model.Currency;
-import goingto.com.model.Language;
+import goingto.com.model.geographic.Currency;
 import goingto.com.repository.CountryRepository;
 import goingto.com.repository.CurrencyRepository;
 import goingto.com.service.CurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

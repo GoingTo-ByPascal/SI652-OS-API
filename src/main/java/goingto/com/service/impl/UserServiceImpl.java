@@ -3,7 +3,7 @@ package goingto.com.service.impl;
 import goingto.com.exception.ResourceNotFoundException;
 import goingto.com.repository.UserRepository;
 import goingto.com.service.UserService;
-import goingto.com.model.User;
+import goingto.com.model.account.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

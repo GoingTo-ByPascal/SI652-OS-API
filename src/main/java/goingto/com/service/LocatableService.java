@@ -1,7 +1,6 @@
 package goingto.com.service;
 
-import goingto.com.model.Locatable;
-import org.springframework.stereotype.Service;
+import goingto.com.model.geographic.Locatable;
 
 import java.util.List;
 

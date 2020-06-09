@@ -1,4 +1,4 @@
-package goingto.com.model;
+package goingto.com.model.account;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Data
@@ -37,6 +36,6 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "achievement_id")})
     @JsonIgnore
-    List<Achievement> achievements;
+    private List<Achievement> achievements;
 
 }

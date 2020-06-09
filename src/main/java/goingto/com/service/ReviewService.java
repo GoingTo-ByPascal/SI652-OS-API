@@ -1,9 +1,6 @@
 package goingto.com.service;
 
-import goingto.com.model.Review;
-import goingto.com.model.Locatable;
-import goingto.com.model.Review;
-import goingto.com.model.User;
+import goingto.com.model.interaction.Review;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

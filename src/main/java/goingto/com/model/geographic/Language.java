@@ -1,6 +1,7 @@
-package goingto.com.model;
+package goingto.com.model.geographic;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import goingto.com.model.geographic.Country;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,27 +14,24 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "achievements")
-public class Achievement {
+@Table(name = "languages")
+public class Language {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotEmpty
-    @Column(name = "name",length = 100)
-    private String name;
+    @Column(name = "short_name",length = 3)
+    private String shortName;
 
     @NotEmpty
-    @Column(name = "text",length = 100)
-    private String text;
-
-    @NotEmpty
-    @Column(name = "points")
-    private Integer points;
+    @Column(name = "full_name",length = 100)
+    private String fullName;
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-            mappedBy = "achievements")
+            mappedBy = "languages")
     @JsonIgnore
-    private List<User> users;
+    private List<Country> countries;
+
 }

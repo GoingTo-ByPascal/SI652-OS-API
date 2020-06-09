@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import goingto.com.model.City;
-import goingto.com.model.Country;
+import goingto.com.model.geographic.City;
+import goingto.com.model.geographic.Country;
 import goingto.com.service.CityService;
 import lombok.RequiredArgsConstructor;
 

@@ -1,8 +1,7 @@
 package goingto.com.service.impl;
 
 import goingto.com.exception.ResourceNotFoundException;
-import goingto.com.model.Category;
-import goingto.com.model.Language;
+import goingto.com.model.geographic.Category;
 import goingto.com.repository.CategoryRepository;
 import goingto.com.repository.PlaceRepository;
 import goingto.com.service.CategoryService;
@@ -10,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {

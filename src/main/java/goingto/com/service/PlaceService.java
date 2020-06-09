@@ -2,8 +2,8 @@ package goingto.com.service;
 
 import java.util.List;
 
-import goingto.com.model.City;
-import goingto.com.model.Place;
+import goingto.com.model.geographic.City;
+import goingto.com.model.geographic.Place;
 
 public interface PlaceService {
 	Place getPlace(Integer id);

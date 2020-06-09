@@ -1,5 +1,7 @@
-package goingto.com.model;
+package goingto.com.model.account;
 
+import goingto.com.model.account.User;
+import goingto.com.model.geographic.Country;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,6 @@
 package goingto.com.service;
 
-import goingto.com.model.Wallet;
+import goingto.com.model.account.Wallet;
 
 import java.util.List;
 
