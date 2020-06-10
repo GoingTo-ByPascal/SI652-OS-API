@@ -1,5 +1,7 @@
 package goingto.com.model.geographic;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import goingto.com.model.AuditModel;
 import goingto.com.model.geographic.Country;
 import goingto.com.model.geographic.Locatable;
 import lombok.AllArgsConstructor;
@@ -34,6 +36,7 @@ public class City {
 
 	@OneToOne
 	@JoinColumn(name = "locatable_id")
+	@JsonIgnore
 	private Locatable locatable;
 
 }
