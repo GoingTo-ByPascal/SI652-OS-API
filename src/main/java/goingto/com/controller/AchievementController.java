@@ -1,8 +1,8 @@
 package goingto.com.controller;
 
 import goingto.com.model.account.Achievement;
-import goingto.com.resource.AchievementResource;
-import goingto.com.resource.SaveAchievementResource;
+import goingto.com.resource.account.AchievementResource;
+import goingto.com.resource.account.SaveAchievementResource;
 import goingto.com.resource.converter.AchievementConverter;
 import goingto.com.service.AchievementService;
 import io.swagger.annotations.ApiOperation;

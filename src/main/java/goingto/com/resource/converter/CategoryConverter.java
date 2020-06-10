@@ -1,8 +1,8 @@
 package goingto.com.resource.converter;
 
 import goingto.com.model.geographic.Category;
-import goingto.com.resource.CategoryResource;
-import goingto.com.resource.SaveCategoryResource;
+import goingto.com.resource.geographic.CategoryResource;
+import goingto.com.resource.geographic.SaveCategoryResource;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

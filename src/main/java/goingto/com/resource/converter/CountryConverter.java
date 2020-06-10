@@ -1,8 +1,8 @@
 package goingto.com.resource.converter;
 
 import goingto.com.model.geographic.Country;
-import goingto.com.resource.CountryResource;
-import goingto.com.resource.SaveCountryResource;
+import goingto.com.resource.geographic.CountryResource;
+import goingto.com.resource.geographic.SaveCountryResource;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

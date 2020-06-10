@@ -1,6 +1,6 @@
 package goingto.com.controller;
 
-import goingto.com.resource.SaveTipResource;
+import goingto.com.resource.interaction.SaveTipResource;
 import goingto.com.resource.converter.TipConverter;
 import goingto.com.service.LocatableService;
 import goingto.com.service.TipService;

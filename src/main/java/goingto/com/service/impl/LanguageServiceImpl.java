@@ -2,8 +2,8 @@ package goingto.com.service.impl;
 
 import goingto.com.exception.ResourceNotFoundException;
 import goingto.com.model.geographic.Language;
-import goingto.com.repository.CountryRepository;
-import goingto.com.repository.LanguageRepository;
+import goingto.com.repository.geographic.CountryRepository;
+import goingto.com.repository.geographic.LanguageRepository;
 import goingto.com.service.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

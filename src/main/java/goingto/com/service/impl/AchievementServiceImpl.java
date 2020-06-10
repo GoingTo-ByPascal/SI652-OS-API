@@ -2,8 +2,8 @@ package goingto.com.service.impl;
 
 import goingto.com.exception.ResourceNotFoundException;
 import goingto.com.model.account.Achievement;
-import goingto.com.repository.UserRepository;
-import goingto.com.repository.AchievementRepository;
+import goingto.com.repository.account.UserRepository;
+import goingto.com.repository.account.AchievementRepository;
 import goingto.com.service.AchievementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

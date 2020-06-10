@@ -1,8 +1,8 @@
 package goingto.com.controller;
 
 import goingto.com.model.geographic.Category;
-import goingto.com.resource.CategoryResource;
-import goingto.com.resource.SaveCategoryResource;
+import goingto.com.resource.geographic.CategoryResource;
+import goingto.com.resource.geographic.SaveCategoryResource;
 import goingto.com.resource.converter.CategoryConverter;
 import goingto.com.service.CategoryService;
 import io.swagger.annotations.ApiOperation;

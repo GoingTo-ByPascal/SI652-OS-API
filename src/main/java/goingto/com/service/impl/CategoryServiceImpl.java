@@ -2,8 +2,8 @@ package goingto.com.service.impl;
 
 import goingto.com.exception.ResourceNotFoundException;
 import goingto.com.model.geographic.Category;
-import goingto.com.repository.CategoryRepository;
-import goingto.com.repository.PlaceRepository;
+import goingto.com.repository.geographic.CategoryRepository;
+import goingto.com.repository.geographic.PlaceRepository;
 import goingto.com.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import goingto.com.model.geographic.City;
 import goingto.com.model.geographic.Country;
-import goingto.com.repository.CityRepository;
+import goingto.com.repository.geographic.CityRepository;
 
 @Service
 public class CityServiceImpl implements goingto.com.service.CityService {

@@ -1,8 +1,8 @@
 package goingto.com.resource.converter;
 
 import goingto.com.model.interaction.Review;
-import goingto.com.resource.ReviewResource;
-import goingto.com.resource.SaveReviewResource;
+import goingto.com.resource.interaction.ReviewResource;
+import goingto.com.resource.interaction.SaveReviewResource;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

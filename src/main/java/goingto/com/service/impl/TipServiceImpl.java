@@ -2,7 +2,7 @@ package goingto.com.service.impl;
 
 import goingto.com.exception.ResourceNotFoundException;
 import goingto.com.model.interaction.Tip;
-import goingto.com.repository.TipRepository;
+import goingto.com.repository.interaction.TipRepository;
 import goingto.com.service.TipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

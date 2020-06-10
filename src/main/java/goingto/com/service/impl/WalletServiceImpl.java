@@ -1,6 +1,6 @@
 package goingto.com.service.impl;
 
-import goingto.com.repository.WalletRepository;
+import goingto.com.repository.account.WalletRepository;
 import goingto.com.service.WalletService;
 import goingto.com.model.account.Wallet;
 import org.springframework.beans.factory.annotation.Autowired;

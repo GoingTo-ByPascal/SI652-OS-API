@@ -2,7 +2,7 @@ package goingto.com.service.impl;
 
 import goingto.com.exception.ResourceNotFoundException;
 import goingto.com.model.interaction.Review;
-import goingto.com.repository.ReviewRepository;
+import goingto.com.repository.interaction.ReviewRepository;
 import goingto.com.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -55,8 +55,8 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public ResponseEntity<?> deleteReview(Integer reviewId) {
-        return reviewRepository.findById(reviewId).map(Language -> {
-            reviewRepository.delete(Language);
+        return reviewRepository.findById(reviewId).map(review -> {
+            reviewRepository.delete(review);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException("Review", "Id", reviewId));
     }

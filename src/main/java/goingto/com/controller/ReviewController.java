@@ -1,8 +1,8 @@
 package goingto.com.controller;
 
 import goingto.com.model.interaction.Review;
-import goingto.com.resource.ReviewResource;
-import goingto.com.resource.SaveReviewResource;
+import goingto.com.resource.interaction.ReviewResource;
+import goingto.com.resource.interaction.SaveReviewResource;
 import goingto.com.resource.converter.ReviewConverter;
 import goingto.com.service.ReviewService;
 import io.swagger.annotations.ApiOperation;

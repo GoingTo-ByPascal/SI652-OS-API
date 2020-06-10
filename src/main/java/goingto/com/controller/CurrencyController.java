@@ -1,8 +1,8 @@
 package goingto.com.controller;
 
 import goingto.com.model.geographic.Currency;
-import goingto.com.resource.CurrencyResource;
-import goingto.com.resource.SaveCurrencyResource;
+import goingto.com.resource.geographic.CurrencyResource;
+import goingto.com.resource.geographic.SaveCurrencyResource;
 import goingto.com.resource.converter.CurrencyConverter;
 import goingto.com.service.CurrencyService;
 import io.swagger.annotations.ApiOperation;

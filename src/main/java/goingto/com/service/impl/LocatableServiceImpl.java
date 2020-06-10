@@ -2,7 +2,7 @@ package goingto.com.service.impl;
 
 import goingto.com.exception.ResourceNotFoundException;
 import goingto.com.model.geographic.Locatable;
-import goingto.com.repository.LocatableRepository;
+import goingto.com.repository.geographic.LocatableRepository;
 import goingto.com.service.LocatableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

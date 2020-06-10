@@ -1,8 +1,8 @@
 package goingto.com.resource.converter;
 
 import goingto.com.model.account.Achievement;
-import goingto.com.resource.AchievementResource;
-import goingto.com.resource.SaveAchievementResource;
+import goingto.com.resource.account.AchievementResource;
+import goingto.com.resource.account.SaveAchievementResource;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

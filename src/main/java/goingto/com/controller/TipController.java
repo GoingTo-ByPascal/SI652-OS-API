@@ -1,8 +1,8 @@
 package goingto.com.controller;
 
 import goingto.com.model.interaction.Tip;
-import goingto.com.resource.TipResource;
-import goingto.com.resource.SaveTipResource;
+import goingto.com.resource.interaction.TipResource;
+import goingto.com.resource.interaction.SaveTipResource;
 import goingto.com.resource.converter.TipConverter;
 import goingto.com.service.TipService;
 import io.swagger.annotations.ApiOperation;

@@ -2,8 +2,8 @@ package goingto.com.resource.converter;
 
 
 import goingto.com.model.geographic.Currency;
-import goingto.com.resource.CurrencyResource;
-import goingto.com.resource.SaveCurrencyResource;
+import goingto.com.resource.geographic.CurrencyResource;
+import goingto.com.resource.geographic.SaveCurrencyResource;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

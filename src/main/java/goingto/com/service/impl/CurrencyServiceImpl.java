@@ -2,8 +2,8 @@ package goingto.com.service.impl;
 
 import goingto.com.exception.ResourceNotFoundException;
 import goingto.com.model.geographic.Currency;
-import goingto.com.repository.CountryRepository;
-import goingto.com.repository.CurrencyRepository;
+import goingto.com.repository.geographic.CountryRepository;
+import goingto.com.repository.geographic.CurrencyRepository;
 import goingto.com.service.CurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,8 +1,8 @@
 package goingto.com.controller;
 
 import goingto.com.model.geographic.Language;
-import goingto.com.resource.LanguageResource;
-import goingto.com.resource.SaveLanguageResource;
+import goingto.com.resource.geographic.LanguageResource;
+import goingto.com.resource.geographic.SaveLanguageResource;
 import goingto.com.resource.converter.LanguageConverter;
 import goingto.com.service.LanguageService;
 import io.swagger.annotations.ApiOperation;

@@ -1,8 +1,8 @@
 package goingto.com.resource.converter;
 
 import goingto.com.model.interaction.Tip;
-import goingto.com.resource.SaveTipResource;
-import goingto.com.resource.TipResource;
+import goingto.com.resource.interaction.SaveTipResource;
+import goingto.com.resource.interaction.TipResource;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
