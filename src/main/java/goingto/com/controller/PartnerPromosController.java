@@ -1,8 +1,8 @@
 package goingto.com.controller;
 
 
-import goingto.com.model.interaction.PartnerService;
 import goingto.com.resource.converter.PromoConverter;
+import goingto.com.service.PartnerService;
 import goingto.com.service.PromoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

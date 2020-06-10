@@ -11,6 +11,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.time.Instant;
 
 @Data
 @NoArgsConstructor
@@ -31,8 +32,8 @@ public class Review {
     private Integer stars;
 
     @NotEmpty
-    @Column(name = "reviewed_at", length = 12)
-    private String reviewedAt;
+    @Column(name = "reviewed_at", length = 10)
+    Instant reviewedAt;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "locatable_id")
