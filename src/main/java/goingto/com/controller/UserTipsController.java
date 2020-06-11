@@ -37,7 +37,7 @@ public class UserTipsController {
     @ApiOperation("Return Tips by User id")
     @GetMapping("/users/{userId}/tips")
     public ResponseEntity<?> getAllTipsByUserId(@PathVariable(name = "userId") Integer userId){
-        User existingUser = userService.findById(userId);
+        User existingUser = userService.getUserById(userId);
         if(existingUser==null)
             return ResponseEntity.notFound().build();
         var tips = tipService.getAllTipsByUserId(userId);

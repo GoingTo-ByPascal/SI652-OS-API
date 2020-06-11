@@ -2,7 +2,9 @@ package goingto.com.service.impl;
 
 import goingto.com.exception.ResourceNotFoundException;
 import goingto.com.model.business.Promo;
+import goingto.com.model.geographic.Language;
 import goingto.com.repository.business.PromoRepository;
+import goingto.com.repository.geographic.LocatableRepository;
 import goingto.com.service.PromoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,9 @@ public class PromoServiceImpl implements PromoService {
 
     @Autowired
     PromoRepository promoRepository;
+    @Autowired
+    LocatableRepository locatableRepository;
+
     @Override
     public List<Promo> getAllPromos() {
         return promoRepository.findAll();
@@ -23,6 +28,14 @@ public class PromoServiceImpl implements PromoService {
     @Override
     public List<Promo> getAllPromosByPartnerId(Integer partnerId) {
         return promoRepository.getByPartnerId(partnerId);
+    }
+
+    @Override
+    public List<Promo> getAllPromosByLocatableId(Integer locatableId) {
+        return locatableRepository.findById(locatableId).map(locatable -> {
+            List<Promo> promos = locatable.getPromos();
+            return promos;
+        }).orElseThrow(() -> new ResourceNotFoundException("Locatable", "Id",locatableId));
     }
 
     @Override

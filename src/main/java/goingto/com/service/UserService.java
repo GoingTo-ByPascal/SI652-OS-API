@@ -1,12 +1,13 @@
 package goingto.com.service;
 
 import goingto.com.model.account.User;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 public interface UserService {
-    List<User> ListUsers();
-    User findById(int userId);
-    User save(User user);
-    void delete (int userId);
+    List<User> getAllUsers();
+    User getUserById(Integer userId);
+    User createUser(User user);
+    ResponseEntity<?> deleteUser (Integer userId);
 }

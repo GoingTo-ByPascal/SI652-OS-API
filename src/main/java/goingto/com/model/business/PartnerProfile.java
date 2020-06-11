@@ -1,5 +1,6 @@
 package goingto.com.model.business;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,10 +27,15 @@ public class PartnerProfile {
     private String telephone;
 
     @NotEmpty
-    @Column(name = "email")
+    @Column(name = "email", length = 45)
     private String email;
 
     @NotEmpty
-    @Column(name = "address")
+    @Column(name = "address", length = 45)
     private String address;
+
+    @OneToOne
+    @JoinColumn(name = "partner_id")
+    @JsonIgnore
+    Partner partner;
 }

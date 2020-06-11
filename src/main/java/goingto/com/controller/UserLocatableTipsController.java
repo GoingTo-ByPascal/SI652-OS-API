@@ -30,7 +30,7 @@ public class UserLocatableTipsController {
     @ApiOperation("Return Tips by User id and Locatable id")
     @PostMapping("/users/{userId}/locatables/{locatableId}/tips")
     public ResponseEntity<?> createTip (@PathVariable Integer userId, @PathVariable Integer locatableId, @Valid @RequestBody SaveTipResource resource){
-        var existingUser = userService.findById(userId);
+        var existingUser = userService.getUserById(userId);
         var existingLocatable = locatableService.getLocatable(locatableId);
         if(existingLocatable==null)
             return ResponseEntity.notFound().build();

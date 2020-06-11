@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.Date;
+import java.time.Instant;
 
 @Data
 @NoArgsConstructor
@@ -20,9 +20,9 @@ public class PartnerBenefit {
 
     @NotEmpty
     @Column(name = "start_date", length = 15)
-    private Date startDate;
+    private Instant startDate;
 
     @NotEmpty
     @Column(name = "end_date", length = 15)
-    private Date endDate;
+    private Instant endDate;
 }

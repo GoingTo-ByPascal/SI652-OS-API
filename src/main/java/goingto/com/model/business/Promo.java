@@ -1,16 +1,16 @@
 package goingto.com.model.business;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import goingto.com.model.geographic.Country;
 import goingto.com.model.geographic.Locatable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
-import java.util.Locale;
 
 @Entity
 @Data
@@ -30,9 +30,12 @@ public class Promo {
     @Column(name = "discount")
     private Float discount;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "partner_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private Partner partner;
+
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE},

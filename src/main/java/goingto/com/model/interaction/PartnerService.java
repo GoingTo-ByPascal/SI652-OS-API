@@ -1,5 +1,6 @@
 package goingto.com.model.interaction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import goingto.com.model.business.Partner;
 import goingto.com.model.business.Service;
 import goingto.com.model.geographic.Locatable;
@@ -26,14 +27,17 @@ public class PartnerService {
 
     @OneToOne
     @JoinColumn(name = "locatable_id")
+    @JsonIgnore
     private Locatable locatable;
 
     @ManyToOne
     @JoinColumn(name = "service_id")
+    @JsonIgnore
     private Service service;
 
     @ManyToOne
     @JoinColumn(name = "partner_id")
+    @JsonIgnore
     private Partner partner;
 
 

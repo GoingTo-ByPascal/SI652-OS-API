@@ -36,7 +36,7 @@ public class UserReviewsController {
     @ApiOperation("Return Reviews by User id")
     @GetMapping("/users/{userId}/reviews")
     public ResponseEntity<?> getAllReviewsByUserId(@PathVariable(name = "userId") Integer userId){
-        User existingUser = userService.findById(userId);
+        User existingUser = userService.getUserById(userId);
         if(existingUser==null)
             return ResponseEntity.notFound().build();
         var reviews = reviewService.getAllReviewsByUserId(userId);

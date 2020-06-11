@@ -22,8 +22,4 @@ public class Partner {
     @Column(name = "name", length = 45)
     private String name;
 
-    @OneToOne
-    @JoinColumn(name = "profile_id")
-    private UserProfile profile;
-
 }

@@ -17,27 +17,27 @@ public class PartnerServiceImpl implements PartnerService {
     PartnerRepository partnerRepository;
 
     @Override
-    public List<Partner> ListPartners() {
+    public List<Partner> getAllPartners() {
         return partnerRepository.findAll();
     }
 
     @Override
-    public Partner findById(int partnerId) {
+    public Partner getPartnerById(Integer partnerId) {
         return partnerRepository.findById(partnerId)
-                .orElseThrow(() -> new ResourceNotFoundException("User", "Id", partnerId));
+                .orElseThrow(() -> new ResourceNotFoundException("Partner", "Id", partnerId));
     }
 
     @Override
-    public Partner save(Partner partner) {
+    public Partner createPartner(Partner partner) {
         return partnerRepository.save(partner);
     }
 
     @Override
-    public ResponseEntity<?> deletePartner(int partnerId) {
+    public ResponseEntity<?> deletePartner(Integer partnerId) {
         return partnerRepository.findById(partnerId).map(partner -> {
             partnerRepository.delete(partner);
             return ResponseEntity.ok().build();
-        }).orElseThrow(() -> new ResourceNotFoundException("Review", "Id", partnerId));
+        }).orElseThrow(() -> new ResourceNotFoundException("Partner", "Id", partnerId));
 
     }
 }
