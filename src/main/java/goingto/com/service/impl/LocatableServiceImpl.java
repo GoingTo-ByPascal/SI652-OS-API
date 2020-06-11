@@ -25,4 +25,7 @@ public class LocatableServiceImpl implements LocatableService {
     public List<Locatable> listAllLocatables() {
         return locatableRepository.findAll();
     }
+
+
+
 }

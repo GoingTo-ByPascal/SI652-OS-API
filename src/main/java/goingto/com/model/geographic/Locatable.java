@@ -1,6 +1,7 @@
 package goingto.com.model.geographic;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import goingto.com.model.account.Favourite;
 import goingto.com.model.business.Promo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -46,5 +47,7 @@ public class Locatable {
     @JsonIgnore
     private List<Promo> promos;
 
+    @OneToMany(mappedBy = "locatable")
+    List<Favourite> favourites;
 
 }

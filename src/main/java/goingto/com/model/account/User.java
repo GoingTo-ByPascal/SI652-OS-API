@@ -38,4 +38,7 @@ public class User {
     @JsonIgnore
     private List<Achievement> achievements;
 
+    @OneToMany(mappedBy = "user")
+    List<Favourite> favourites;
+
 }

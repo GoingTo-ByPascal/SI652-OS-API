@@ -1,5 +1,6 @@
 package goingto.com.controller;
 
+import goingto.com.model.business.Partner;
 import goingto.com.model.geographic.Country;
 import goingto.com.model.geographic.Locatable;
 import goingto.com.resource.converter.PromoConverter;
@@ -39,3 +40,4 @@ public class LocatablePromosController {
         return ResponseEntity.ok(result);
     }
 }
+
