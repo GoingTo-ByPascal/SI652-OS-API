@@ -41,4 +41,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     List<Favourite> favourites;
 
+    @OneToMany(mappedBy = "user")
+    List<PlanUser> planUsers;
+
+
+
 }

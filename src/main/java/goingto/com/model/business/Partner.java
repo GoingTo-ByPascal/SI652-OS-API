@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -22,4 +23,6 @@ public class Partner {
     @Column(name = "name", length = 45)
     private String name;
 
+    @OneToMany(mappedBy = "partner")
+    List<PartnerBenefit> partnerBenefits;
 }

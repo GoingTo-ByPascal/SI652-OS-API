@@ -1,5 +1,6 @@
 package goingto.com.model.business;
 
+import goingto.com.model.account.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,29 +9,29 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-@Table(name = "partner_benefits")
-public class PartnerBenefit {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name="plan_benefits")
+public class PlanBenefit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     @NotEmpty
-    @Column(name = "start_date", length = 15)
-    private Instant startDate;
+    @Column(name = "start_date")
+    Instant startDate;
 
     @NotEmpty
-    @Column(name = "end_date", length = 15)
-    private Instant endDate;
+    @Column(name = "end_date")
+    Instant endDate;
 
     @ManyToOne
     @JoinColumn(name = "benefit_id")
     private Benefit benefit;
 
     @ManyToOne
-    @JoinColumn(name = "partner_id")
-    private Partner partner;
+    @JoinColumn(name = "plan_id")
+    private Plan plan;
 }
