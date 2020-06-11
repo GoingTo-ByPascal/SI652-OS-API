@@ -18,11 +18,12 @@ public class FavouriteServiceImpl implements FavouriteService {
     @Autowired
     FavouriteRepository favouriteRepository;
 
-
+/*
     @Override
     public List<Favourite> getByUserIdVS(Integer userId) {
         return favouriteRepository.getByUserId(userId);
     }
+ */
 
     @Override
     public List<Locatable> getByUserId(Integer userId) {
