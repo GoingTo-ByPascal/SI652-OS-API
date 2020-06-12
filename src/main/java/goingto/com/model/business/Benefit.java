@@ -30,6 +30,4 @@ public class Benefit {
     @OneToMany(mappedBy = "benefit")
     List<PlanBenefit> planBenefits;
 
-    @OneToMany(mappedBy = "benefit")
-    List<PartnerBenefit> partnerBenefits;
 }

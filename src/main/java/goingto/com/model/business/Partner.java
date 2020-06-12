@@ -23,6 +23,4 @@ public class Partner {
     @Column(name = "name", length = 45)
     private String name;
 
-    @OneToMany(mappedBy = "partner")
-    List<PartnerBenefit> partnerBenefits;
 }

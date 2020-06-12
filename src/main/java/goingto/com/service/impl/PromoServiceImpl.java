@@ -50,8 +50,12 @@ public class PromoServiceImpl implements PromoService {
     }
 
     @Override
-    public Promo updatePromo(Integer PromoId, Promo promoDetails) {
-        return null;
+    public Promo updatePromo(Integer promoId, Promo promoDetails) {
+        return promoRepository.findById(promoId).map(promo -> {
+            promo.setText(promoDetails.getText());
+            promo.setDiscount(promoDetails.getDiscount());
+            return promoRepository.save(promo);
+        }).orElseThrow(() -> new ResourceNotFoundException("Promo", "Id", promoId));
     }
 
     @Override

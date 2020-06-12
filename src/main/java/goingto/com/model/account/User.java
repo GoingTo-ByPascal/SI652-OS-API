@@ -39,10 +39,10 @@ public class User {
     private List<Achievement> achievements;
 
     @OneToMany(mappedBy = "user")
-    List<Favourite> favourites;
+    private List<Favourite> favourites;
 
     @OneToMany(mappedBy = "user")
-    List<PlanUser> planUsers;
+    private List<PlanUser> planUsers;
 
 
 

@@ -12,25 +12,21 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "partner_benefits")
-public class PartnerBenefit {
+@Table(name = "estate_services")
+public class EstateService {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     @NotEmpty
-    @Column(name = "start_date", length = 15)
-    private Instant startDate;
-
-    @NotEmpty
-    @Column(name = "end_date", length = 15)
-    private Instant endDate;
+    @Column(name = "text")
+    private String text;
 
     @ManyToOne
-    @JoinColumn(name = "benefit_id")
-    private Benefit benefit;
+    @JoinColumn(name = "service_id")
+    private Service service;
 
     @ManyToOne
-    @JoinColumn(name = "partner_id")
-    private Partner partner;
+    @JoinColumn(name = "estate_id")
+    private Estate estate;
 }

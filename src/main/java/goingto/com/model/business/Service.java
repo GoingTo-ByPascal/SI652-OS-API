@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -20,4 +21,7 @@ public class Service {
     @NotEmpty
     @Column(name = "name", length = 15)
     private String name;
+
+    @OneToMany(mappedBy = "service")
+    List<EstateService> estateServices;
 }
