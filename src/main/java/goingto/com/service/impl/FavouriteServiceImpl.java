@@ -1,5 +1,6 @@
 package goingto.com.service.impl;
 
+import goingto.com.exception.ResourceNotFoundException;
 import goingto.com.model.account.Favourite;
 import goingto.com.model.geographic.Locatable;
 import goingto.com.repository.account.FavouriteRepository;
@@ -18,12 +19,6 @@ public class FavouriteServiceImpl implements FavouriteService {
     @Autowired
     FavouriteRepository favouriteRepository;
 
-/*
-    @Override
-    public List<Favourite> getByUserIdVS(Integer userId) {
-        return favouriteRepository.getByUserId(userId);
-    }
- */
 
     @Override
     public List<Locatable> getByUserId(Integer userId) {
@@ -32,4 +27,24 @@ public class FavouriteServiceImpl implements FavouriteService {
             return locatables;
         }).orElse(null);
     }
+
+    @Override
+    public Favourite createFavourite(Favourite favourite) {
+        return favouriteRepository.save(favourite);
+    }
+
+    @Override
+    public Favourite getByUserIdAndLocatableId(Integer userId, Integer locatableId) {
+        return favouriteRepository.findByUserIdAndLocatableId(userId,locatableId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Favourite not found with userId " + userId +
+                                " and locatableId " + locatableId));
+    }
+
+
+    @Override
+    public void deleteFavourite(Favourite favourite) {
+            favouriteRepository.delete(favourite);
+    }
+
 }

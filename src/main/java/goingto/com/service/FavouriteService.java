@@ -6,6 +6,8 @@ import goingto.com.model.geographic.Locatable;
 import java.util.List;
 
 public interface FavouriteService {
-    /*List<Favourite> getByUserIdVS(Integer userId);*/
     List<Locatable> getByUserId(Integer userId);
+    Favourite createFavourite(Favourite favourite);
+    Favourite getByUserIdAndLocatableId(Integer userId, Integer locatableId);
+    void deleteFavourite(Favourite favourite);
 }

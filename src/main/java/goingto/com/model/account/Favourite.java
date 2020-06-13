@@ -1,5 +1,6 @@
 package goingto.com.model.account;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import goingto.com.model.geographic.Locatable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,9 +25,11 @@ public class Favourite {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "locatable_id")
+    @JsonIgnore
     private Locatable locatable;
 }

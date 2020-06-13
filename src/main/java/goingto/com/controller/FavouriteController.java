@@ -3,20 +3,21 @@ package goingto.com.controller;
 import goingto.com.model.account.Favourite;
 import goingto.com.model.account.User;
 import goingto.com.model.geographic.Locatable;
+import goingto.com.resource.account.FavouriteResource;
+import goingto.com.resource.account.SaveFavouriteResource;
 import goingto.com.resource.converter.CategoryConverter;
 import goingto.com.resource.converter.FavouriteConverter;
 import goingto.com.resource.converter.LocatableConverter;
 import goingto.com.service.FavouriteService;
+import goingto.com.service.LocatableService;
 import goingto.com.service.PlaceService;
 import goingto.com.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -32,32 +33,47 @@ public class FavouriteController {
     private UserService userService;
 
     @Autowired
-    private FavouriteConverter mappervs;
+    private LocatableService locatableService;
 
     @Autowired
-    private LocatableConverter mapper;
+    private FavouriteConverter mapper;
 
-    /*
-    @ApiOperation("Return Locatables by User id")
-    @GetMapping("/users/{userId}/locatables")
-    public ResponseEntity<?> getAllLocatablesByUserIdVS(@PathVariable(name = "userId") Integer userId)
-    {
-        List<Favourite> favourites = favouriteService.getByUserIdVS(userId);
-        var result = favourites.stream().map(mappervs::convertToResource).collect(Collectors.toList());
-        return ResponseEntity.ok(result);
-
-    }*/
 
     @ApiOperation("Return Locatables by User id")
-    @GetMapping("/users/{userId}/locatables")
+    @GetMapping("/users/{userId}/favourites")
     public ResponseEntity<?> getAllLocatablesByUserId(@PathVariable(name = "userId") Integer userId)
     {
         User existingUser = userService.getUserById(userId);
         if(existingUser == null)
             return ResponseEntity.notFound().build();
-        List<Locatable> locatables= favouriteService.getByUserId(userId);
-        var result = locatables.stream().map(mapper::convertToResource).collect(Collectors.toList());
+        var result = existingUser.getFavourites();
         return ResponseEntity.ok(result);
+
+    }
+
+    @GetMapping("/users/{userId}/locatables/{locatableId}")
+    public Favourite getFavouriteByUserIdAndLocatableId(@PathVariable(name = "userId") Integer userId, @PathVariable(name = "locatableId") Integer locatableId){
+        return favouriteService.getByUserIdAndLocatableId(userId, locatableId);
+    }
+
+    @PostMapping("/users/{userId}/locatables/{locatableId}")
+    public Favourite assignFavourite(@PathVariable(name = "userId") Integer userId,
+                                      @PathVariable(name = "locatableId") Integer locatableId, @Valid @RequestBody SaveFavouriteResource resource) {
+        var existingUser = userService.getUserById(userId);
+        var existingLocatable = locatableService.getLocatable(locatableId);
+        var favourite = new Favourite();
+        favourite.setUser(existingUser);
+        favourite.setLocatable(existingLocatable);
+        favourite.setDescription(resource.getDescription());
+        return favouriteService.createFavourite(favourite);
+
+    }
+    @DeleteMapping("/users/{userId}/locatables/{locatableId}")
+    public void unassignFavourite(@PathVariable(name = "userId") Integer userId,
+                                             @PathVariable(name = "locatableId") Integer locatableId) {
+
+        var favourite = favouriteService.getByUserIdAndLocatableId(userId,locatableId);
+        favouriteService.deleteFavourite(favourite);
 
     }
 

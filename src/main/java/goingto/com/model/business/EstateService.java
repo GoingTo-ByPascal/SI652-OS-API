@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.time.Instant;
 
 @Data
 @NoArgsConstructor
@@ -16,7 +15,7 @@ import java.time.Instant;
 public class EstateService {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @NotEmpty
     @Column(name = "text")

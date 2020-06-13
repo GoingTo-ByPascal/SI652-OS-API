@@ -35,12 +35,12 @@ public class Estate {
     @JsonIgnore
     private Locatable locatable;
 
-
     @ManyToOne
     @JoinColumn(name = "partner_id")
     @JsonIgnore
     private Partner partner;
 
     @OneToMany(mappedBy = "estate")
+    @JsonIgnore
     List<EstateService> estateServices;
 }
