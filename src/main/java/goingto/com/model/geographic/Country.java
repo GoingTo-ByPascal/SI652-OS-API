@@ -33,6 +33,7 @@ public class Country {
 
 	@OneToOne
 	@JoinColumn(name = "locatable_id")
+    @JsonIgnore
 	private Locatable locatable;
 
     @ManyToMany(fetch = FetchType.LAZY,

@@ -10,7 +10,8 @@ public interface PlaceService {
 	Place getPlace(Integer id);
 	List<Place> listAllPlaces();
 	List<Place> getAllPlacesByCategoryId (Integer categoryId);
-	List<Place> listAllPlacesByCity(City city);
+	List<Place> getAllPlacesByCityId(Integer cityId);
+	List<Place> getAllPlacesByLocatableId(Integer locatableId);
 	Place save(Place place);
 	Place edit(Place place, Integer id);
 	void deleteById(Integer id);

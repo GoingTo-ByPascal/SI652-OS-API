@@ -21,6 +21,11 @@ public class CountryServiceImpl implements goingto.com.service.CountryService {
 	}
 
 	@Override
+	public List<Country> getAllCountriesByLocatableId(Integer locatableId) {
+		return countryRepository.findAllByLocatableId(locatableId);
+	}
+
+	@Override
 	public Country getCountryById(Integer countryId) {
 		return countryRepository.findById(countryId)
 				.orElseThrow(() -> new ResourceNotFoundException("Country", "Id", countryId));

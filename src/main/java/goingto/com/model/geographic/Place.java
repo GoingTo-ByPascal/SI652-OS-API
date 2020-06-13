@@ -27,10 +27,12 @@ public class Place {
 
 	@ManyToOne
 	@JoinColumn(name = "city_id")
+	@JsonIgnore
 	private City city;
 	
 	@OneToOne
 	@JoinColumn(name="locatable_id")
+	@JsonIgnore
 	private Locatable locatable;
 
 	@ManyToMany(fetch = FetchType.LAZY,

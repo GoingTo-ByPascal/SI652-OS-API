@@ -43,8 +43,13 @@ public class PlaceServiceImpl implements goingto.com.service.PlaceService {
 	}
 
 	@Override
-	public List<Place> listAllPlacesByCity(City city) {
-		return placeRepository.findAllByCity(city);
+	public List<Place> getAllPlacesByCityId(Integer cityId) {
+		return placeRepository.findAllByCity(cityId);
+	}
+
+	@Override
+	public List<Place> getAllPlacesByLocatableId(Integer locatableId) {
+		return placeRepository.findAllByLocatableId(locatableId);
 	}
 
 	@Override

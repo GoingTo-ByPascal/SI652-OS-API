@@ -32,6 +32,7 @@ public class City {
 
 	@ManyToOne
 	@JoinColumn(name = "country_id")
+	@JsonIgnore
 	private Country country;
 
 	@OneToOne

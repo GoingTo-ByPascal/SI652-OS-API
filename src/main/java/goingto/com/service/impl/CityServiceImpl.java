@@ -29,10 +29,12 @@ public class CityServiceImpl implements goingto.com.service.CityService {
 	}
 
 	@Override
-	public List<City> findByCountry(Country country) {
-		return cityRepository.findByCountryId(country);
+	public List<City> getAllCitiesByCountryId(Integer countryId) {
+		return cityRepository.findByCountryId(countryId);
 	}
 
-	
-
+	@Override
+	public List<City> getAllCitiesByLocatableId(Integer locatableId) {
+		return cityRepository.findAllByLocatableId(locatableId);
+	}
 }
