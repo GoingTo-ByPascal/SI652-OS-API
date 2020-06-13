@@ -5,6 +5,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import goingto.com.exception.ResourceNotFoundException;
+import goingto.com.model.geographic.Category;
+import goingto.com.repository.geographic.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import goingto.com.model.geographic.City;
@@ -17,8 +19,10 @@ public class PlaceServiceImpl implements goingto.com.service.PlaceService {
 
 	@Autowired
 	private PlaceRepository placeRepository;
-	
-	
+
+	@Autowired
+	private CategoryRepository categoryRepository;
+
 	@Override
 	public Place getPlace(Integer placeId) {
 		return placeRepository.findById(placeId)
@@ -28,6 +32,14 @@ public class PlaceServiceImpl implements goingto.com.service.PlaceService {
 	@Override
 	public List<Place> listAllPlaces() {
 		return placeRepository.findAll();
+	}
+
+	@Override
+	public List<Place> getAllPlacesByCategoryId(Integer categoryId) {
+		return categoryRepository.findById(categoryId).map(category -> {
+			List<Place> places = category.getPlaces();
+			return places;
+		}).orElseThrow(() -> new ResourceNotFoundException("Category", "Id",categoryId));
 	}
 
 	@Override
