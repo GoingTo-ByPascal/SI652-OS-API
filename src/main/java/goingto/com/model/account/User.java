@@ -28,6 +28,7 @@ public class User {
 
     @OneToOne
     @JoinColumn(name = "wallet_id")
+    @JsonIgnore
     private Wallet wallet;
 
     @ManyToMany(fetch = FetchType.LAZY,
@@ -43,6 +44,7 @@ public class User {
     private List<Favourite> favourites;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<PlanUser> planUsers;
 
 

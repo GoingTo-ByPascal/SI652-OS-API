@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.time.Instant;
 
 @Data
 @NoArgsConstructor
@@ -29,15 +30,15 @@ public class UserProfile {
 
     @NotEmpty
     @Column(name = "birth_date",length = 12)
-    private String birthdate;
+    private Instant birthdate;
 
     @NotEmpty
     @Column(name = "gender")
-    private Integer gender;
+    private String gender;
 
     @NotEmpty
     @Column(name = "created_at", length = 12)
-    private String createdAt;
+    private Instant createdAt;
 
     @ManyToOne
     @JoinColumn(name = "country_id")
