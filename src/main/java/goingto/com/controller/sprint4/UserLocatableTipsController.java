@@ -1,5 +1,7 @@
-package goingto.com.controller;
+package goingto.com.controller.sprint4;
 
+import goingto.com.model.account.Favourite;
+import goingto.com.model.interaction.Tip;
 import goingto.com.resource.interaction.SaveTipResource;
 import goingto.com.resource.converter.TipConverter;
 import goingto.com.service.LocatableService;
@@ -13,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,14 +30,14 @@ public class UserLocatableTipsController {
     @Autowired
     private TipConverter mapper;
 
-    @ApiOperation("Return Tips by User id and Locatable id")
+    @ApiOperation("Create Tips by User id and Locatable id")
     @PostMapping("/users/{userId}/locatables/{locatableId}/tips")
-    public ResponseEntity<?> createTip (@PathVariable Integer userId, @PathVariable Integer locatableId, @Valid @RequestBody SaveTipResource resource){
+    public ResponseEntity<?> createTip(@PathVariable Integer userId, @PathVariable Integer locatableId, @Valid @RequestBody SaveTipResource resource) {
         var existingUser = userService.getUserById(userId);
         var existingLocatable = locatableService.getLocatable(locatableId);
-        if(existingLocatable==null)
+        if (existingLocatable == null)
             return ResponseEntity.notFound().build();
-        if(existingUser==null)
+        if (existingUser == null)
             return ResponseEntity.notFound().build();
         var tip = mapper.convertToEntity(resource);
         tip.setLocatable(existingLocatable);
@@ -42,15 +45,15 @@ public class UserLocatableTipsController {
         var result = tipService.createTip(tip);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
-    /*
-    @GetMapping
-    public ResponseEntity<List<Tip>> getAllTipsByUserIdAndLocatableId(@PathVariable(name = "userId") Integer userId,
-                                                                      @PathVariable(name = "locatableId") Integer locatableId){
-        var existingUserId = userId;
-        var existingLocatableId = locatableId;
 
-        List<Tip> tips = new ArrayList<>();
-     */
+   /* @ApiOperation("Update Tips by User id and Locatable id")
+    @PutMapping("/users/{userId}/locatables/{locatableId}/tips")*/
 
+    @ApiOperation("Update Tips by User id and Locatable id")
+    @GetMapping("/users/{userId}/locatables/{locatableId}/tips")
+    public List<Tip> getTipByUserIdAndLocatableId(@PathVariable(name = "userId") Integer userId, @PathVariable(name = "locatableId") Integer locatableId){
+        return tipService.getByUserIdAndLocatableId(userId, locatableId);
     }
 
+
+}

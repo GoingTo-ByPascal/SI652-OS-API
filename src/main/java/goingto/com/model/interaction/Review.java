@@ -29,7 +29,7 @@ public class Review {
 
     @NotEmpty
     @Column(name = "stars")
-    private Integer stars;
+    private Float stars;
 
     @NotEmpty
     @Column(name = "reviewed_at", length = 10)

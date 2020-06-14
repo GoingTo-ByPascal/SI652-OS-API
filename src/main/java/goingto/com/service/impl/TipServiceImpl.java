@@ -33,6 +33,11 @@ public class TipServiceImpl implements TipService {
     }
 
     @Override
+    public List<Tip> getByUserIdAndLocatableId(Integer userId, Integer locatableId) {
+        return tipRepository.findByUserIdAndLocatableId(userId,locatableId);
+    }
+
+    @Override
     public Tip getTipById(Integer tipId) {
         return tipRepository.findById(tipId)
                 .orElseThrow(() -> new ResourceNotFoundException("Tip", "Id", tipId));

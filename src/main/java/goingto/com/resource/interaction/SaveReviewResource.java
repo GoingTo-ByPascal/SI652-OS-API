@@ -18,10 +18,5 @@ public class SaveReviewResource {
 
     @NotNull
     @NotBlank
-    private Integer stars;
-
-    @NotNull
-    @NotBlank
-    @Size(max = 12)
-    private String reviewedAt;
+    private Float stars;
 }
