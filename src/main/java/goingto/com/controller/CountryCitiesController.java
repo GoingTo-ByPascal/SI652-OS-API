@@ -1,10 +1,7 @@
 package goingto.com.controller;
 
-import goingto.com.model.geographic.Country;
-import goingto.com.model.geographic.Locatable;
 import goingto.com.resource.converter.CityConverter;
 import goingto.com.service.CityService;
-import goingto.com.service.CountryService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

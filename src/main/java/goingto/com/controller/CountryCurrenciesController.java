@@ -1,8 +1,6 @@
 package goingto.com.controller;
 
 import goingto.com.model.geographic.Country;
-import goingto.com.model.geographic.Currency;
-import goingto.com.model.geographic.Locatable;
 import goingto.com.resource.converter.CurrencyConverter;
 import goingto.com.service.CountryService;
 import goingto.com.service.CurrencyService;
@@ -15,8 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController

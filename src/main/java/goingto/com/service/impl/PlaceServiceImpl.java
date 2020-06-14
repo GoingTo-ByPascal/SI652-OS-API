@@ -5,11 +5,9 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import goingto.com.exception.ResourceNotFoundException;
-import goingto.com.model.geographic.Category;
 import goingto.com.repository.geographic.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import goingto.com.model.geographic.City;
 import goingto.com.model.geographic.Place;
 import goingto.com.repository.geographic.PlaceRepository;
 import org.springframework.stereotype.Service;
@@ -44,7 +42,7 @@ public class PlaceServiceImpl implements goingto.com.service.PlaceService {
 
 	@Override
 	public List<Place> getAllPlacesByCityId(Integer cityId) {
-		return placeRepository.findAllByCity(cityId);
+		return placeRepository.findAllByCityId(cityId);
 	}
 
 	@Override

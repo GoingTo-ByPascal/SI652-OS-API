@@ -1,7 +1,5 @@
 package goingto.com.controller;
 
-import goingto.com.model.geographic.Category;
-import goingto.com.model.geographic.Locatable;
 import goingto.com.model.geographic.Place;
 import goingto.com.resource.converter.CategoryConverter;
 import goingto.com.service.CategoryService;
@@ -15,8 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController

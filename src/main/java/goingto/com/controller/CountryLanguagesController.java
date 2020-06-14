@@ -1,7 +1,6 @@
 package goingto.com.controller;
 
 import goingto.com.model.geographic.Country;
-import goingto.com.model.geographic.Language;
 import goingto.com.resource.converter.LanguageConverter;
 import goingto.com.service.CountryService;
 import goingto.com.service.LanguageService;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController

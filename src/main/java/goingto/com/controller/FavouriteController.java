@@ -2,15 +2,9 @@ package goingto.com.controller;
 
 import goingto.com.model.account.Favourite;
 import goingto.com.model.account.User;
-import goingto.com.model.geographic.Locatable;
-import goingto.com.resource.account.FavouriteResource;
 import goingto.com.resource.account.SaveFavouriteResource;
-import goingto.com.resource.converter.CategoryConverter;
-import goingto.com.resource.converter.FavouriteConverter;
-import goingto.com.resource.converter.LocatableConverter;
 import goingto.com.service.FavouriteService;
 import goingto.com.service.LocatableService;
-import goingto.com.service.PlaceService;
 import goingto.com.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -34,10 +25,6 @@ public class FavouriteController {
 
     @Autowired
     private LocatableService locatableService;
-
-    @Autowired
-    private FavouriteConverter mapper;
-
 
     @ApiOperation("Return Locatables by User id")
     @GetMapping("/users/{userId}/favourites")
@@ -66,8 +53,8 @@ public class FavouriteController {
         favourite.setLocatable(existingLocatable);
         favourite.setDescription(resource.getDescription());
         return favouriteService.createFavourite(favourite);
-
     }
+
     @DeleteMapping("/users/{userId}/locatables/{locatableId}")
     public void unassignFavourite(@PathVariable(name = "userId") Integer userId,
                                              @PathVariable(name = "locatableId") Integer locatableId) {

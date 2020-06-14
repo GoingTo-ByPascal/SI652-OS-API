@@ -2,10 +2,8 @@ package goingto.com.controller;
 
 import goingto.com.model.geographic.Locatable;
 import goingto.com.resource.converter.ReviewConverter;
-import goingto.com.resource.converter.TipConverter;
 import goingto.com.service.LocatableService;
 import goingto.com.service.ReviewService;
-import goingto.com.service.TipService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

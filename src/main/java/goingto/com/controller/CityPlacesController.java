@@ -1,9 +1,6 @@
 package goingto.com.controller;
 
-import goingto.com.model.geographic.City;
-import goingto.com.model.geographic.Locatable;
 import goingto.com.resource.converter.PlaceConverter;
-import goingto.com.service.CityService;
 import goingto.com.service.PlaceService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +18,6 @@ import java.util.stream.Collectors;
 @ApiOperation("/Controller for CityPlaces")
 @RequestMapping("/api")
 public class CityPlacesController {
-
 
     @Autowired
     PlaceService placeService;

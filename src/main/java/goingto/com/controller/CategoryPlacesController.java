@@ -1,8 +1,6 @@
 package goingto.com.controller;
 
 import goingto.com.model.geographic.Category;
-import goingto.com.model.geographic.Place;
-import goingto.com.resource.converter.CategoryConverter;
 import goingto.com.resource.converter.PlaceConverter;
 import goingto.com.service.CategoryService;
 import goingto.com.service.PlaceService;

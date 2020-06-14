@@ -1,7 +1,5 @@
 package goingto.com.controller;
 
-
-import goingto.com.model.account.User;
 import goingto.com.model.business.Partner;
 import goingto.com.resource.converter.PromoConverter;
 import goingto.com.service.PartnerService;

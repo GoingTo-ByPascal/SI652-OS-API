@@ -1,7 +1,6 @@
 package goingto.com.controller;
 
 import goingto.com.resource.converter.ReviewConverter;
-import goingto.com.resource.interaction.ReviewResource;
 import goingto.com.service.EstateService;
 import goingto.com.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;

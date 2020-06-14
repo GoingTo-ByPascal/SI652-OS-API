@@ -1,6 +1,5 @@
 package goingto.com.controller;
 
-import goingto.com.model.account.User;
 import goingto.com.model.geographic.Locatable;
 import goingto.com.resource.converter.PlaceConverter;
 import goingto.com.service.LocatableService;

@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CountryResource {
-    public Integer id;
+
     public String shortName;
     public String fullName;
 }

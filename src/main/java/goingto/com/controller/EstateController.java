@@ -1,10 +1,8 @@
 package goingto.com.controller;
 
 import goingto.com.model.business.Estate;
-import goingto.com.model.geographic.Currency;
 import goingto.com.resource.business.EstateResource;
 import goingto.com.resource.converter.EstateConverter;
-import goingto.com.resource.geographic.CurrencyResource;
 import goingto.com.service.EstateService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
