@@ -55,5 +55,18 @@ public class UserLocatableTipsController {
         return tipService.getByUserIdAndLocatableId(userId, locatableId);
     }
 
+    @ApiOperation("Delete Tips by User id and Locatable id")
+    @DeleteMapping("/users/{userId}/locatables/{locatableId}/tips")
+    public void deleteTipByUserIdAndLocatableId (@PathVariable(name = "userId") Integer userId, @PathVariable(name = "locatableId") Integer locatableId)
+    {
+        List<Tip> tips = tipService.getByUserIdAndLocatableId(userId,locatableId);
+        var currentTip = new Tip();
+        for (int i = 0 ; i < tips.size(); i++){
+
+             currentTip = tips.get(i);
+            tipService.deleteTip(currentTip.getId());
+        }
+    }
+
 
 }

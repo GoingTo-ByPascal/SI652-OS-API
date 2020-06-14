@@ -55,4 +55,17 @@ public class UserLocatableReviewsController {
     public List<Review> getReviewByUserIdAndLocatableId(@PathVariable(name = "userId") Integer userId, @PathVariable(name = "locatableId") Integer locatableId){
         return reviewService.getByUserIdAndLocatableId(userId, locatableId);
     }
+
+    @ApiOperation("Delete Reviews by User id and Locatable id")
+    @DeleteMapping("/users/{userId}/locatables/{locatableId}/reviews")
+    public void deleteReviewByUserIdAndLocatableId (@PathVariable(name = "userId") Integer userId, @PathVariable(name = "locatableId") Integer locatableId)
+    {
+        List<Review> reviews = reviewService.getByUserIdAndLocatableId(userId,locatableId);
+        var currentReview = new Review();
+        for (int i = 0 ; i < reviews.size(); i++){
+
+            currentReview = reviews.get(i);
+            reviewService.deleteReview(currentReview.getId());
+        }
+    }
 }
