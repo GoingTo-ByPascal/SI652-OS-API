@@ -1,8 +1,8 @@
-package goingto.com.controller;
+package goingto.com.controller.sprint4;
 
 import goingto.com.model.account.User;
-import goingto.com.resource.converter.ReviewConverter;
-import goingto.com.service.ReviewService;
+import goingto.com.resource.converter.TipConverter;
+import goingto.com.service.TipService;
 import goingto.com.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -18,25 +18,26 @@ import java.util.stream.Collectors;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
-public class UserReviewsController {
+public class UserTipsController {
 
     @Autowired
-    ReviewService reviewService;
+    TipService tipService;
 
     @Autowired
     UserService userService;
 
     @Autowired
-    ReviewConverter mapper;
+    TipConverter mapper;
 
-    @ApiOperation("Return Reviews by User id")
-    @GetMapping("/users/{userId}/reviews")
-    public ResponseEntity<?> getAllReviewsByUserId(@PathVariable(name = "userId") Integer userId){
+    @ApiOperation("Return Tips by User id")
+    @GetMapping("/users/{userId}/tips")
+    public ResponseEntity<?> getAllTipsByUserId(@PathVariable(name = "userId") Integer userId){
         User existingUser = userService.getUserById(userId);
         if(existingUser==null)
             return ResponseEntity.notFound().build();
-        var reviews = reviewService.getAllReviewsByUserId(userId);
-        var result = reviews.stream().map(mapper::convertToResource).collect(Collectors.toList());
+        var tips = tipService.getAllTipsByUserId(userId);
+        var result = tips.stream().map(mapper::convertToResource).collect(Collectors.toList());
         return ResponseEntity.ok(result);
     }
+
 }

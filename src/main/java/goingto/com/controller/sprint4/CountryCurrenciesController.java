@@ -1,4 +1,4 @@
-package goingto.com.controller;
+package goingto.com.controller.sprint4;
 
 import goingto.com.model.geographic.Country;
 import goingto.com.resource.converter.CurrencyConverter;
