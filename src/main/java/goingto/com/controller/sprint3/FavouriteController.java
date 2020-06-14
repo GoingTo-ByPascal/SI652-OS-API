@@ -3,6 +3,7 @@ package goingto.com.controller.sprint3;
 import goingto.com.model.account.Favourite;
 import goingto.com.model.account.User;
 import goingto.com.resource.account.SaveFavouriteResource;
+import goingto.com.resource.converter.FavouriteConverter;
 import goingto.com.service.FavouriteService;
 import goingto.com.service.LocatableService;
 import goingto.com.service.UserService;
@@ -26,6 +27,9 @@ public class FavouriteController {
     @Autowired
     private LocatableService locatableService;
 
+    @Autowired
+    private FavouriteConverter mapper;
+
     @ApiOperation("Return Locatables by User id")
     @GetMapping("/users/{userId}/favourites")
     public ResponseEntity<?> getAllLocatablesByUserId(@PathVariable(name = "userId") Integer userId)
@@ -48,10 +52,9 @@ public class FavouriteController {
                                       @PathVariable(name = "locatableId") Integer locatableId, @Valid @RequestBody SaveFavouriteResource resource) {
         var existingUser = userService.getUserById(userId);
         var existingLocatable = locatableService.getLocatable(locatableId);
-        var favourite = new Favourite();
+        var favourite = mapper.convertToEntity(resource);
         favourite.setUser(existingUser);
         favourite.setLocatable(existingLocatable);
-        favourite.setDescription(resource.getDescription());
         return favouriteService.createFavourite(favourite);
     }
 

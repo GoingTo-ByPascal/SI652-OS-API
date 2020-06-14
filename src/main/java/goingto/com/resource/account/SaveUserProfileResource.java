@@ -6,7 +6,8 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.time.Instant;
+import java.sql.Date;
+
 
 @Getter
 @Setter
@@ -24,15 +25,13 @@ public class SaveUserProfileResource {
 
     @NotNull
     @NotBlank
-    private Instant birthdate;
+    private String birthdate;
 
     @NotNull
     @NotBlank
     @Size(max = 45)
     private String gender;
 
-    @NotNull
-    @NotBlank
-    private Instant createdAt;
+
 
 }

@@ -4,6 +4,7 @@ import goingto.com.model.account.Achievement;
 import goingto.com.model.account.UserProfile;
 import org.springframework.http.ResponseEntity;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface UserProfileService {

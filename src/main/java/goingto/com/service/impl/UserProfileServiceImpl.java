@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.time.Instant;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class UserProfileServiceImpl implements UserProfileService {
         return userProfileRepository.findById(userProfileId).map(userProfile -> {
             userProfile.setName(userProfileDetails.getName());
             userProfile.setSurname(userProfileDetails.getSurname());
-            userProfile.setBirthdate(userProfileDetails.getBirthdate());
+           //userProfile.setBirthdate(userProfileDetails.getBirthdate());
             userProfile.setGender(userProfile.getGender());
             return userProfileRepository.save(userProfile);
         }).orElseThrow(() -> new ResourceNotFoundException("User Profile", "Id", userProfileId));
