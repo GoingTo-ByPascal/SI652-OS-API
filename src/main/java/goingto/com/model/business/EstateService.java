@@ -1,5 +1,6 @@
 package goingto.com.model.business;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,9 +24,11 @@ public class EstateService {
 
     @ManyToOne
     @JoinColumn(name = "service_id")
+    @JsonIgnore
     private Service service;
 
     @ManyToOne
     @JoinColumn(name = "estate_id")
+    @JsonIgnore
     private Estate estate;
 }

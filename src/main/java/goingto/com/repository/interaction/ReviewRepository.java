@@ -10,4 +10,5 @@ import java.util.List;
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
     List<Review> getByUserId(Integer userId);
     List<Review> getByLocatableId(Integer locatableId);
+    List<Review> findByUserIdAndLocatableId(Integer userId, Integer LocatableId);
 }

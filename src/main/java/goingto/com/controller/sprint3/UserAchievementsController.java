@@ -1,4 +1,4 @@
-package goingto.com.controller;
+package goingto.com.controller.sprint3;
 
 import goingto.com.model.account.Achievement;
 import goingto.com.resource.converter.AchievementConverter;

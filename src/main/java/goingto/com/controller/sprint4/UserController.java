@@ -1,4 +1,4 @@
-package goingto.com.controller;
+package goingto.com.controller.sprint4;
 
 import goingto.com.model.account.User;
 import goingto.com.service.UserService;

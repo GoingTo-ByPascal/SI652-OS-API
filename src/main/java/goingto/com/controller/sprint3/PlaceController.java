@@ -1,4 +1,4 @@
-package goingto.com.controller;
+package goingto.com.controller.sprint3;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -33,6 +34,11 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
+    public List<Review> getByUserIdAndLocatableId(Integer userId, Integer locatableId) {
+        return reviewRepository.findByUserIdAndLocatableId(userId,locatableId);
+    }
+
+    @Override
     public Review getReviewById(Integer reviewId) {
         return reviewRepository.findById(reviewId)
                 .orElseThrow(() -> new ResourceNotFoundException("Review", "Id", reviewId));
@@ -40,6 +46,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public Review createReview(Review review) {
+        review.setReviewedAt(Instant.now());
         return reviewRepository.save(review);
     }
 

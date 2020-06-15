@@ -32,7 +32,6 @@ public class PromoController {
         List<Promo> promos = new ArrayList<>();
         promos = promoService.getAllPromos();
         return ResponseEntity.ok(promos);
-
     }
 
     @ApiOperation("Return Promo by id")

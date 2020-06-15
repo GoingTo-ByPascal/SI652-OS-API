@@ -1,9 +1,9 @@
-package goingto.com.controller;
+package goingto.com.controller.sprint4;
 
 import goingto.com.model.geographic.Locatable;
-import goingto.com.resource.converter.ReviewConverter;
+import goingto.com.resource.converter.TipConverter;
 import goingto.com.service.LocatableService;
-import goingto.com.service.ReviewService;
+import goingto.com.service.TipService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,23 +18,24 @@ import java.util.stream.Collectors;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
-public class LocatableReviewsController {
+public class LocatableTipsController {
 
     @Autowired
-    private ReviewService reviewService;
+    private TipService tipService;
     @Autowired
     private LocatableService locatableService;
     @Autowired
-    private ReviewConverter mapper;
+    private TipConverter mapper;
 
-    @ApiOperation("Return Reviews by Locatable id")
-    @GetMapping("/locatables/{locatableId}/reviews")
-    public ResponseEntity<?> getAllReviewsByLocatableId(@PathVariable Integer locatableId){
+    @ApiOperation("Return Tips by Locatable id")
+    @GetMapping("/locatables/{locatableId}/tips")
+    public ResponseEntity<?> getAllTipsByLocatableId(@PathVariable Integer locatableId){
         Locatable existingLocatable = locatableService.getLocatable(locatableId);
         if(existingLocatable==null)
             return ResponseEntity.notFound().build();
-        var reviews = reviewService.getAllReviewsByLocatableId(locatableId);
-        var result = reviews.stream().map(mapper::convertToResource).collect(Collectors.toList());
+        var tips = tipService.getAllTipsByLocatableId(locatableId);
+        var result = tips.stream().map(mapper::convertToResource).collect(Collectors.toList());
         return ResponseEntity.ok(result);
     }
+
 }

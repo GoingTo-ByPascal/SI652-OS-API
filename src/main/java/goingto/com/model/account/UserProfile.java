@@ -1,5 +1,6 @@
 package goingto.com.model.account;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import goingto.com.model.account.User;
 import goingto.com.model.geographic.Country;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.sql.Date;
+import java.time.Instant;
 
 @Data
 @NoArgsConstructor
@@ -27,17 +30,15 @@ public class UserProfile {
     @Column(name = "surname",length = 100)
     private String surname;
 
-    @NotEmpty
     @Column(name = "birth_date",length = 12)
-    private String birthdate;
+    private Date birthdate;
 
     @NotEmpty
     @Column(name = "gender")
-    private Integer gender;
+    private String gender;
 
-    @NotEmpty
     @Column(name = "created_at", length = 12)
-    private String createdAt;
+    private Instant createdAt;
 
     @ManyToOne
     @JoinColumn(name = "country_id")

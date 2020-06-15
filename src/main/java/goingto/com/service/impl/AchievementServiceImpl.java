@@ -60,5 +60,4 @@ public class AchievementServiceImpl implements AchievementService {
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException("Achievement", "Id", achievementId));
     }
-
 }

@@ -1,4 +1,4 @@
-package goingto.com.controller;
+package goingto.com.controller.sprint4;
 
 import goingto.com.model.geographic.Place;
 import goingto.com.resource.converter.CategoryConverter;
