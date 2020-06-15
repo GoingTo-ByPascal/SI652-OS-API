@@ -1,4 +1,4 @@
-package goingto.com.controller;
+package goingto.com.controller.sprint5;
 
 import goingto.com.resource.converter.ReviewConverter;
 import goingto.com.service.EstateService;

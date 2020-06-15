@@ -1,5 +1,6 @@
 package goingto.com.model.business;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,5 +24,6 @@ public class Service {
     private String name;
 
     @OneToMany(mappedBy = "service")
+    @JsonIgnore
     List<EstateService> estateServices;
 }

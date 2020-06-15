@@ -40,7 +40,7 @@ public class UserUserProfileController {
 
     @ApiOperation("Return UserProfile by User id")
     @GetMapping("/users/{userId}/user_profiles")
-    public ResponseEntity<?> getAllCountriesByLocatableId(@PathVariable(name = "userId") Integer userId) {
+    public ResponseEntity<?> getUserProfileByUserId(@PathVariable(name = "userId") Integer userId) {
         var userProfiles = userProfileService.getUserProfileByUserId(userId);
         var result = userProfiles;
         return ResponseEntity.ok(result);
@@ -69,7 +69,7 @@ public class UserUserProfileController {
 
    @ApiOperation("Delete existing User Profile by User id")
    @DeleteMapping("/users/{userId}/user_profiles")
-   public ResponseEntity<?> deleteAchievement(@PathVariable(name = "userId") Integer userId) {
+   public ResponseEntity<?> deleteUserProfileByUserId(@PathVariable(name = "userId") Integer userId) {
        var userProfile = userProfileService.getUserProfileByUserId(userId);
        return userProfileService.deleteUserProfile(userProfile.getId());
    }
