@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PartnerProfileRepository extends JpaRepository<PartnerProfile,Integer> {
+    PartnerProfile findByPartnerId(Integer partnerId);
 }
