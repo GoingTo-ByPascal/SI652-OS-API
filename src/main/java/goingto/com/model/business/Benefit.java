@@ -1,5 +1,6 @@
 package goingto.com.model.business;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import goingto.com.model.account.PlanUser;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +29,7 @@ public class Benefit {
     private String description;
 
     @OneToMany(mappedBy = "benefit")
+    @JsonIgnore
     List<PlanBenefit> planBenefits;
 
 }

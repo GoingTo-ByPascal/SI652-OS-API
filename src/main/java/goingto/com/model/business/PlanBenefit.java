@@ -1,5 +1,6 @@
 package goingto.com.model.business;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import goingto.com.model.account.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,9 +30,11 @@ public class PlanBenefit {
 
     @ManyToOne
     @JoinColumn(name = "benefit_id")
+    @JsonIgnore
     private Benefit benefit;
 
     @ManyToOne
     @JoinColumn(name = "plan_id")
+    @JsonIgnore
     private Plan plan;
 }
