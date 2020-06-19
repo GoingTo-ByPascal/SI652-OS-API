@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import goingto.com.model.geographic.Place;
 import goingto.com.service.PlaceService;
-
+@CrossOrigin (origins = "http://localhost:4200")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import goingto.com.model.geographic.Country;
 import goingto.com.service.CountryService;
 
+@CrossOrigin (origins = "http://localhost:4200")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
