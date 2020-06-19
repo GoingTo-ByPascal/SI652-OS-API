@@ -22,6 +22,11 @@ public class LocatableServiceImpl implements LocatableService {
     }
 
     @Override
+    public Locatable getLocatableByAddress(String address) {
+        return locatableRepository.findByAddress(address);
+    }
+
+    @Override
     public List<Locatable> listAllLocatables() {
         return locatableRepository.findAll();
     }

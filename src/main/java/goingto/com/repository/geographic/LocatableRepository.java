@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LocatableRepository extends JpaRepository<Locatable, Integer> {
+    Locatable findByAddress(String address);
+
 }

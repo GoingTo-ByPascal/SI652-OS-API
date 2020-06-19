@@ -43,4 +43,15 @@ public class LocatableController {
             return (ResponseEntity.ok(locatable));
     }
 
+    @ApiOperation("Return Locatable by address")
+    @GetMapping("/locatables/address/{algo}")
+    public ResponseEntity<Locatable>getByAddress(@PathVariable String algo)
+    {
+        Locatable locatable = locatableService.getLocatableByAddress(algo);
+        if(locatable ==null)
+            return ResponseEntity.notFound().build();
+        else
+            return (ResponseEntity.ok(locatable));
+    }
+
 }
