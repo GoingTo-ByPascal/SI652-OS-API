@@ -1,5 +1,6 @@
 package goingto.com.model.account;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import goingto.com.model.business.Plan;
 import goingto.com.model.geographic.Locatable;
 import lombok.AllArgsConstructor;
@@ -32,10 +33,12 @@ public class PlanUser {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "plan_id")
+    @JsonIgnore
     private Plan plan;
 
 

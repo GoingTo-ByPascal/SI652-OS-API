@@ -2,6 +2,7 @@ package goingto.com.controller.sprint3;
 
 import goingto.com.model.account.Favourite;
 import goingto.com.model.account.User;
+import goingto.com.model.geographic.Country;
 import goingto.com.resource.account.SaveFavouriteResource;
 import goingto.com.resource.converter.FavouriteConverter;
 import goingto.com.service.FavouriteService;
@@ -13,7 +14,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 public class FavouriteController {
@@ -29,6 +33,25 @@ public class FavouriteController {
 
     @Autowired
     private FavouriteConverter mapper;
+
+    @ApiOperation("Return all Favourites")
+    @GetMapping("/favourites")
+    public ResponseEntity<List<Favourite>> getAllFavourites(){
+        List<Favourite> favourites = new ArrayList<>();
+        favourites = favouriteService.getAllFavourites();
+        return ResponseEntity.ok(favourites);
+    }
+
+    @ApiOperation("Return Favourite by ID")
+    @GetMapping("/favourites/{id}")
+    public ResponseEntity<Favourite>getFavouriteById(@PathVariable Integer id)
+    {
+        Favourite favourite = favouriteService.getById(id);
+        if(favourite ==null)
+            return ResponseEntity.notFound().build();
+        else
+            return (ResponseEntity.ok(favourite));
+    }
 
     @ApiOperation("Return Locatables by User id")
     @GetMapping("/users/{userId}/favourites")

@@ -29,6 +29,17 @@ public class FavouriteServiceImpl implements FavouriteService {
     }
 
     @Override
+    public Favourite getById(Integer id) {
+        return favouriteRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Favourite", "Id", id));
+    }
+
+    @Override
+    public List<Favourite> getAllFavourites() {
+        return favouriteRepository.findAll();
+    }
+
+    @Override
     public Favourite createFavourite(Favourite favourite) {
         return favouriteRepository.save(favourite);
     }
