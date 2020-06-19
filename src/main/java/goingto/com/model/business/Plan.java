@@ -1,5 +1,6 @@
 package goingto.com.model.business;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import goingto.com.model.account.Favourite;
 import goingto.com.model.account.PlanUser;
 import lombok.AllArgsConstructor;
@@ -25,8 +26,10 @@ public class Plan {
     private String name;
 
     @OneToMany(mappedBy = "plan")
+    @JsonIgnore
     List<PlanUser> planUsers;
 
     @OneToMany(mappedBy = "plan")
+    @JsonIgnore
     List<PlanBenefit> planBenefits;
 }
