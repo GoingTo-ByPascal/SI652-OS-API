@@ -1,7 +1,10 @@
 package goingto.com.controller.sprint5;
 
 
+import goingto.com.model.account.Permission;
 import goingto.com.model.business.Estate;
+import goingto.com.model.business.Promo;
+import goingto.com.resource.business.PromoResource;
 import goingto.com.resource.business.SaveEstateServiceResource;
 import goingto.com.resource.converter.EstateServiceConverter;
 import goingto.com.resource.converter.FavouriteConverter;
@@ -12,7 +15,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 public class EstateServicesController {
@@ -28,6 +34,26 @@ public class EstateServicesController {
 
     @Autowired
     private EstateServiceConverter mapper;
+
+
+    @ApiOperation("Return all Estate Services")
+    @GetMapping("/estate_services")
+    public ResponseEntity<List<goingto.com.model.business.EstateService>> getAllEstateServices() {
+        List<goingto.com.model.business.EstateService> estateServices = new ArrayList<>();
+        estateServices = estateServiceService.getAll();
+        return ResponseEntity.ok(estateServices);
+    }
+
+    @ApiOperation("Return Estate Service by id")
+    @GetMapping("/estate_services/{id}")
+    public ResponseEntity<goingto.com.model.business.EstateService>getEstateServiceById(@PathVariable Integer id)
+    {
+        goingto.com.model.business.EstateService estateService = estateServiceService.getById(id);
+        if(estateService ==null)
+            return ResponseEntity.notFound().build();
+        else
+            return (ResponseEntity.ok(estateService));
+    }
 
     @ApiOperation("Return Services by Estate id")
     @GetMapping("/estates/{estateId}/services")
