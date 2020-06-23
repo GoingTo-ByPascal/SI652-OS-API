@@ -1,6 +1,5 @@
 package goingto.com.repository.interaction;
 
-import goingto.com.model.interaction.Review;
 import goingto.com.model.interaction.Tip;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
