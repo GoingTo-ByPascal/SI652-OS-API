@@ -6,10 +6,7 @@ import goingto.com.resource.converter.ReviewConverter;
 import goingto.com.resource.converter.TipConverter;
 import goingto.com.resource.interaction.SaveReviewResource;
 import goingto.com.resource.interaction.SaveTipResource;
-import goingto.com.service.LocatableService;
-import goingto.com.service.ReviewService;
-import goingto.com.service.TipService;
-import goingto.com.service.UserService;
+import goingto.com.service.*;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +23,7 @@ import java.util.List;
 public class UserLocatableReviewsController {
 
     @Autowired
-    private UserService userService;
+    private UserProfileService userProfileService;
     @Autowired
     private LocatableService locatableService;
     @Autowired
@@ -35,14 +32,14 @@ public class UserLocatableReviewsController {
     private ReviewConverter mapper;
 
     @ApiOperation("Create Tips by User id and Locatable id")
-    @PostMapping("/users/{userId}/locatables/{locatableId}/reviews")
-    public ResponseEntity<?> createReview(@PathVariable Integer userId, @PathVariable Integer locatableId, @Valid @RequestBody SaveReviewResource resource) {
+    @PostMapping("/user_profiles/{userProfileId}/locatables/{locatableId}/reviews")
+    public ResponseEntity<?> createReview(@PathVariable Integer userProfileId, @PathVariable Integer locatableId, @Valid @RequestBody SaveReviewResource resource) {
 
-        var existingUser = userService.getUserById(userId);
+        var existingUserProfile = userProfileService.getUserProfileById(userProfileId);
         var existingLocatable = locatableService.getLocatable(locatableId);
         var review = mapper.convertToEntity(resource);
         review.setLocatable(existingLocatable);
-        review.setUser(existingUser);
+        review.setUserProfile(existingUserProfile);
         var result = reviewService.createReview(review);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
@@ -51,16 +48,16 @@ public class UserLocatableReviewsController {
     @PutMapping("/users/{userId}/locatables/{locatableId}/tips")*/
 
     @ApiOperation("Update Tips by User id and Locatable id")
-    @GetMapping("/users/{userId}/locatables/{locatableId}/reviews")
-    public List<Review> getReviewByUserIdAndLocatableId(@PathVariable(name = "userId") Integer userId, @PathVariable(name = "locatableId") Integer locatableId){
-        return reviewService.getByUserIdAndLocatableId(userId, locatableId);
+    @GetMapping("/user_profiles/{userProfileId}/locatables/{locatableId}/reviews")
+    public List<Review> getReviewByUserIdAndLocatableId(@PathVariable(name = "userProfileId") Integer userProfileId, @PathVariable(name = "locatableId") Integer locatableId){
+        return reviewService.getByUserProfileIdAndLocatableId(userProfileId, locatableId);
     }
 
     @ApiOperation("Delete Reviews by User id and Locatable id")
-    @DeleteMapping("/users/{userId}/locatables/{locatableId}/reviews")
-    public void deleteReviewByUserIdAndLocatableId (@PathVariable(name = "userId") Integer userId, @PathVariable(name = "locatableId") Integer locatableId)
+    @DeleteMapping("/user_profiles/{userProfileId}/locatables/{locatableId}/reviews")
+    public void deleteReviewByUserIdAndLocatableId (@PathVariable(name = "userProfileId") Integer userProfileId, @PathVariable(name = "locatableId") Integer locatableId)
     {
-        List<Review> reviews = reviewService.getByUserIdAndLocatableId(userId,locatableId);
+        List<Review> reviews = reviewService.getByUserProfileIdAndLocatableId(userProfileId,locatableId);
         var currentReview = new Review();
         for (int i = 0 ; i < reviews.size(); i++){
 

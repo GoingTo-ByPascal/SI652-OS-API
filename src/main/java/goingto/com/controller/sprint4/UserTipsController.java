@@ -3,6 +3,7 @@ package goingto.com.controller.sprint4;
 import goingto.com.model.account.User;
 import goingto.com.resource.converter.TipConverter;
 import goingto.com.service.TipService;
+import goingto.com.service.UserProfileService;
 import goingto.com.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -24,18 +25,18 @@ public class UserTipsController {
     TipService tipService;
 
     @Autowired
-    UserService userService;
+    UserProfileService userProfileService;
 
     @Autowired
     TipConverter mapper;
 
-    @ApiOperation("Return Tips by User id")
-    @GetMapping("/users/{userId}/tips")
-    public ResponseEntity<?> getAllTipsByUserId(@PathVariable(name = "userId") Integer userId){
-        User existingUser = userService.getUserById(userId);
-        if(existingUser==null)
+    @ApiOperation("Return Tips by User Profile id")
+    @GetMapping("/user_profiles/{userProfileId}/tips")
+    public ResponseEntity<?> getAllTipsByUserProfileId(@PathVariable(name = "userProfileId") Integer userProfileId){
+        var existingUserProfile = userProfileService.getUserProfileById(userProfileId);
+        if(existingUserProfile==null)
             return ResponseEntity.notFound().build();
-        var tips = tipService.getAllTipsByUserId(userId);
+        var tips = tipService.getAllTipsByUserProfileId(userProfileId);
         var result = tips.stream().map(mapper::convertToResource).collect(Collectors.toList());
         return ResponseEntity.ok(result);
     }

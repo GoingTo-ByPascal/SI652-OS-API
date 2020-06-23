@@ -1,8 +1,10 @@
 package goingto.com.controller.sprint4;
 
 import goingto.com.model.account.User;
+import goingto.com.model.account.UserProfile;
 import goingto.com.resource.converter.ReviewConverter;
 import goingto.com.service.ReviewService;
+import goingto.com.service.UserProfileService;
 import goingto.com.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -24,18 +26,18 @@ public class UserReviewsController {
     ReviewService reviewService;
 
     @Autowired
-    UserService userService;
+    UserProfileService userProfileService;
 
     @Autowired
     ReviewConverter mapper;
 
-    @ApiOperation("Return Reviews by User id")
-    @GetMapping("/users/{userId}/reviews")
-    public ResponseEntity<?> getAllReviewsByUserId(@PathVariable(name = "userId") Integer userId){
-        User existingUser = userService.getUserById(userId);
-        if(existingUser==null)
+    @ApiOperation("Return Reviews by User Profile id")
+    @GetMapping("/user_profiles/{userProfileId}/reviews")
+    public ResponseEntity<?> getAllReviewsByUserProfileId(@PathVariable(name = "userProfileId") Integer userProfileId){
+        var existingUserProfile = userProfileService.getUserProfileById(userProfileId);
+        if(existingUserProfile==null)
             return ResponseEntity.notFound().build();
-        var reviews = reviewService.getAllReviewsByUserId(userId);
+        var reviews = reviewService.getAllReviewsByUserProfileId(userProfileId);
         var result = reviews.stream().map(mapper::convertToResource).collect(Collectors.toList());
         return ResponseEntity.ok(result);
     }

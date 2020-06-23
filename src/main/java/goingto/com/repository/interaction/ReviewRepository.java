@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
-    List<Review> getByUserId(Integer userId);
+    List<Review> getByUserProfileId(Integer userId);
     List<Review> getByLocatableId(Integer locatableId);
-    List<Review> findByUserIdAndLocatableId(Integer userId, Integer LocatableId);
+    List<Review> findByUserProfileIdAndLocatableId(Integer userProfileId, Integer LocatableId);
 }

@@ -9,9 +9,9 @@ import java.util.List;
 public interface ReviewService {
 
     List<Review> getAllReviews();
-    List<Review> getAllReviewsByUserId(Integer userId);
+    List<Review> getAllReviewsByUserProfileId(Integer userProfileId);
     List<Review> getAllReviewsByLocatableId(Integer locatableId);
-    List<Review> getByUserIdAndLocatableId(Integer userId, Integer locatableId);
+    List<Review> getByUserProfileIdAndLocatableId(Integer userProfileId, Integer locatableId);
     Review getReviewById(Integer reviewId);
     Review createReview(Review review);
     Review updateReview(Integer reviewId, Review reviewDetails);

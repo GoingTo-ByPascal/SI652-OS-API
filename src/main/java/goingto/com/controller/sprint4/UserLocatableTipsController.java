@@ -6,6 +6,7 @@ import goingto.com.resource.interaction.SaveTipResource;
 import goingto.com.resource.converter.TipConverter;
 import goingto.com.service.LocatableService;
 import goingto.com.service.TipService;
+import goingto.com.service.UserProfileService;
 import goingto.com.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class UserLocatableTipsController {
     @Autowired
-    private UserService userService;
+    private UserProfileService userProfileService;
     @Autowired
     private LocatableService locatableService;
     @Autowired
@@ -31,17 +32,17 @@ public class UserLocatableTipsController {
     private TipConverter mapper;
 
     @ApiOperation("Create Tips by User id and Locatable id")
-    @PostMapping("/users/{userId}/locatables/{locatableId}/tips")
-    public ResponseEntity<?> createTip(@PathVariable Integer userId, @PathVariable Integer locatableId, @Valid @RequestBody SaveTipResource resource) {
-        var existingUser = userService.getUserById(userId);
+    @PostMapping("/user_profiles/{userProfileId}/locatables/{locatableId}/tips")
+    public ResponseEntity<?> createTip(@PathVariable Integer userProfileId, @PathVariable Integer locatableId, @Valid @RequestBody SaveTipResource resource) {
+        var existingUserProfile = userProfileService.getUserProfileById(userProfileId);
         var existingLocatable = locatableService.getLocatable(locatableId);
         if (existingLocatable == null)
             return ResponseEntity.notFound().build();
-        if (existingUser == null)
+        if (existingUserProfile == null)
             return ResponseEntity.notFound().build();
         var tip = mapper.convertToEntity(resource);
         tip.setLocatable(existingLocatable);
-        tip.setUser(existingUser);
+        tip.setUserProfile(existingUserProfile);
         var result = tipService.createTip(tip);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
@@ -50,16 +51,16 @@ public class UserLocatableTipsController {
     @PutMapping("/users/{userId}/locatables/{locatableId}/tips")*/
 
     @ApiOperation("Update Tips by User id and Locatable id")
-    @GetMapping("/users/{userId}/locatables/{locatableId}/tips")
-    public List<Tip> getTipByUserIdAndLocatableId(@PathVariable(name = "userId") Integer userId, @PathVariable(name = "locatableId") Integer locatableId){
-        return tipService.getByUserIdAndLocatableId(userId, locatableId);
+    @GetMapping("/user_profiles/{userProfileId}/locatables/{locatableId}/tips")
+    public List<Tip> getTipByUserProfileIdAndLocatableId(@PathVariable(name = "userProfileId") Integer userProfileId, @PathVariable(name = "locatableId") Integer locatableId){
+        return tipService.getByUserProfileIdAndLocatableId(userProfileId, locatableId);
     }
 
     @ApiOperation("Delete Tips by User id and Locatable id")
-    @DeleteMapping("/users/{userId}/locatables/{locatableId}/tips")
-    public void deleteTipByUserIdAndLocatableId (@PathVariable(name = "userId") Integer userId, @PathVariable(name = "locatableId") Integer locatableId)
+    @DeleteMapping("/user_profiles/{userProfileId}/locatables/{locatableId}/tips")
+    public void deleteTipByUserProfileIdAndLocatableId (@PathVariable(name = "userProfileId") Integer userProfileId, @PathVariable(name = "locatableId") Integer locatableId)
     {
-        List<Tip> tips = tipService.getByUserIdAndLocatableId(userId,locatableId);
+        List<Tip> tips = tipService.getByUserProfileIdAndLocatableId(userProfileId,locatableId);
         var currentTip = new Tip();
         for (int i = 0 ; i < tips.size(); i++){
 

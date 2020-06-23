@@ -9,9 +9,9 @@ import java.util.List;
 public interface TipService {
 
     List<Tip> getAllTips();
-    List<Tip> getAllTipsByUserId(Integer userId);
+    List<Tip> getAllTipsByUserProfileId(Integer userProfileId);
     List<Tip> getAllTipsByLocatableId(Integer locatableId);
-    List<Tip> getByUserIdAndLocatableId(Integer userId, Integer locatableId);
+    List<Tip> getByUserProfileIdAndLocatableId(Integer userProfileId, Integer locatableId);
     Tip getTipById(Integer tipId);
     Tip createTip(Tip tip);
     Tip updateTip(Integer tipId, Tip tipDetails);

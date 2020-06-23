@@ -23,8 +23,9 @@ public class TipServiceImpl implements TipService {
 
 
     @Override
-    public List<Tip> getAllTipsByUserId(Integer userId) {
-        return tipRepository.getByUserId(userId);
+    public List<Tip> getAllTipsByUserProfileId(Integer userProfileId) {
+
+        return tipRepository.getByUserProfileId(userProfileId);
     }
 
     @Override
@@ -33,8 +34,8 @@ public class TipServiceImpl implements TipService {
     }
 
     @Override
-    public List<Tip> getByUserIdAndLocatableId(Integer userId, Integer locatableId) {
-        return tipRepository.findByUserIdAndLocatableId(userId,locatableId);
+    public List<Tip> getByUserProfileIdAndLocatableId(Integer userProfileId, Integer locatableId) {
+        return tipRepository.findByUserProfileIdAndLocatableId(userProfileId,locatableId);
     }
 
     @Override

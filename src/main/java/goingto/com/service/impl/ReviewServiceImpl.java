@@ -24,8 +24,8 @@ public class ReviewServiceImpl implements ReviewService {
 
 
     @Override
-    public List<Review> getAllReviewsByUserId(Integer userId) {
-        return reviewRepository.getByUserId(userId);
+    public List<Review> getAllReviewsByUserProfileId(Integer userProfileId) {
+        return reviewRepository.getByUserProfileId(userProfileId);
     }
 
     @Override
@@ -34,8 +34,8 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public List<Review> getByUserIdAndLocatableId(Integer userId, Integer locatableId) {
-        return reviewRepository.findByUserIdAndLocatableId(userId,locatableId);
+    public List<Review> getByUserProfileIdAndLocatableId(Integer userProfileId, Integer locatableId) {
+        return reviewRepository.findByUserProfileIdAndLocatableId(userProfileId,locatableId);
     }
 
     @Override
