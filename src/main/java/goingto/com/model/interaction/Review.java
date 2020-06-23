@@ -1,6 +1,7 @@
 package goingto.com.model.interaction;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import goingto.com.model.account.UserProfile;
 import goingto.com.model.geographic.Locatable;
 import goingto.com.model.account.User;
 import lombok.AllArgsConstructor;
@@ -42,8 +43,8 @@ public class Review {
     private Locatable locatable;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_profile_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private User user;
+    private UserProfile userProfile;
 }
