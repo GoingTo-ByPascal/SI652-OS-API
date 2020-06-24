@@ -65,7 +65,7 @@ public class PlaceServiceImpl implements goingto.com.service.PlaceService {
 		List<Place> places = Stream.concat(placesCategory.stream(), placesCity.stream())
 				.distinct()
 				.collect(Collectors.toList());
-		
+
 		return places;
 	}
 
