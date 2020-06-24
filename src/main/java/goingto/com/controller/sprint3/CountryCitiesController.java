@@ -1,5 +1,6 @@
 package goingto.com.controller.sprint3;
 
+import goingto.com.model.geographic.City;
 import goingto.com.resource.converter.CityConverter;
 import goingto.com.service.CityService;
 import io.swagger.annotations.ApiOperation;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.stream.Collectors;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -24,9 +26,9 @@ public class CountryCitiesController {
 
     @ApiOperation("Return Cities by Country id")
     @GetMapping("/countries/{countryId}/cities")
-    public ResponseEntity<?> getAllCitiesByCountryId(@PathVariable(name = "countryId") Integer countryId) {
+    public ResponseEntity<List<City>> getAllCitiesByCountryId(@PathVariable(name = "countryId") Integer countryId) {
         var cities = cityService.getAllCitiesByCountryId(countryId);
-        var result = cities.stream().map(mapper::convertToResource).collect(Collectors.toList());
-        return ResponseEntity.ok(result);
+        //var result = cities.stream().map(mapper::convertToResource).collect(Collectors.toList());
+        return ResponseEntity.ok(cities);
     }
 }

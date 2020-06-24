@@ -1,6 +1,7 @@
 package goingto.com.controller.sprint4;
 
 import goingto.com.model.geographic.Locatable;
+import goingto.com.model.interaction.Review;
 import goingto.com.resource.converter.ReviewConverter;
 import goingto.com.service.LocatableService;
 import goingto.com.service.ReviewService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -29,12 +31,12 @@ public class LocatableReviewsController {
 
     @ApiOperation("Return Reviews by Locatable id")
     @GetMapping("/locatables/{locatableId}/reviews")
-    public ResponseEntity<?> getAllReviewsByLocatableId(@PathVariable Integer locatableId){
+    public ResponseEntity<List<Review>> getAllReviewsByLocatableId(@PathVariable Integer locatableId){
         Locatable existingLocatable = locatableService.getLocatable(locatableId);
         if(existingLocatable==null)
             return ResponseEntity.notFound().build();
         var reviews = reviewService.getAllReviewsByLocatableId(locatableId);
-        var result = reviews.stream().map(mapper::convertToResource).collect(Collectors.toList());
-        return ResponseEntity.ok(result);
+        //var result = reviews.stream().map(mapper::convertToResource).collect(Collectors.toList());
+        return ResponseEntity.ok(reviews);
     }
 }

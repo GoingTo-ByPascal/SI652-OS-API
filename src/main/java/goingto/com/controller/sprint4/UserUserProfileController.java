@@ -22,6 +22,7 @@ import javax.validation.Valid;
 import java.sql.Date;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 
 @RestController
@@ -40,10 +41,9 @@ public class UserUserProfileController {
 
     @ApiOperation("Return UserProfile by User id")
     @GetMapping("/users/{userId}/user_profiles")
-    public ResponseEntity<?> getUserProfileByUserId(@PathVariable(name = "userId") Integer userId) {
+    public ResponseEntity<UserProfile> getUserProfileByUserId(@PathVariable(name = "userId") Integer userId) {
         var userProfiles = userProfileService.getUserProfileByUserId(userId);
-        var result = userProfiles;
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok(userProfiles);
     }
 
     @ApiOperation("Create UserProfile by User id")

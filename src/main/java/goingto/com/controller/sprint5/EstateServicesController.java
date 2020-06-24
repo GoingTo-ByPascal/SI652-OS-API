@@ -4,6 +4,7 @@ package goingto.com.controller.sprint5;
 import goingto.com.model.account.Permission;
 import goingto.com.model.business.Estate;
 import goingto.com.model.business.Promo;
+import goingto.com.model.business.Service;
 import goingto.com.resource.business.PromoResource;
 import goingto.com.resource.business.SaveEstateServiceResource;
 import goingto.com.resource.converter.EstateServiceConverter;
@@ -57,7 +58,7 @@ public class EstateServicesController {
 
     @ApiOperation("Return Services by Estate id")
     @GetMapping("/estates/{estateId}/services")
-    public ResponseEntity<?> getAllEstateServicesByEstateId(@PathVariable(name = "estateId") Integer estateId)
+    public ResponseEntity<List<goingto.com.model.business.EstateService>> getAllEstateServicesByEstateId(@PathVariable(name = "estateId") Integer estateId)
     {
         Estate existingEstate = estateService.getEstateById(estateId);
         if(existingEstate == null)

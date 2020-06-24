@@ -55,7 +55,7 @@ public class FavouriteController {
 
     @ApiOperation("Return Locatables by User id")
     @GetMapping("/users/{userId}/favourites")
-    public ResponseEntity<?> getAllLocatablesByUserId(@PathVariable(name = "userId") Integer userId)
+    public ResponseEntity<List<Favourite>> getAllLocatablesByUserId(@PathVariable(name = "userId") Integer userId)
     {
         User existingUser = userService.getUserById(userId);
         if(existingUser == null)

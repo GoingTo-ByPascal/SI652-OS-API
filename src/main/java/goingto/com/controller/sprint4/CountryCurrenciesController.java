@@ -1,6 +1,7 @@
 package goingto.com.controller.sprint4;
 
 import goingto.com.model.geographic.Country;
+import goingto.com.model.geographic.Currency;
 import goingto.com.resource.converter.CurrencyConverter;
 import goingto.com.service.CountryService;
 import goingto.com.service.CurrencyService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -31,12 +33,12 @@ public class CountryCurrenciesController {
 
     @ApiOperation("Return Currencies by Country id")
     @GetMapping("/countries/{countryId}/currencies")
-    public ResponseEntity<?> getAllCurrenciesByCountryId(@PathVariable(name = "countryId") Integer countryId) {
+    public ResponseEntity<List<Currency>> getAllCurrenciesByCountryId(@PathVariable(name = "countryId") Integer countryId) {
             Country existingCountry = countryService.getCountryById(countryId);
             if(existingCountry==null)
                 return ResponseEntity.notFound().build();
             var currencies = currencyService.getAllCurrenciesByCountryId(countryId);
-            var result = currencies.stream().map(mapper::convertToResource).collect(Collectors.toList());
-            return ResponseEntity.ok(result);
+            //var result = currencies.stream().map(mapper::convertToResource).collect(Collectors.toList());
+            return ResponseEntity.ok(currencies);
         }
 }

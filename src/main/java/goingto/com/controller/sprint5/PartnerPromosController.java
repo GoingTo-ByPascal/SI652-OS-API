@@ -33,13 +33,13 @@ public class PartnerPromosController {
 
     @ApiOperation("Return Promos by Partner id")
     @GetMapping("/partners/{partnerId}/promos")
-    public ResponseEntity<?> getAllPromosByPartnerId(@PathVariable(name = "partnerId") Integer partnerId){
+    public ResponseEntity<List<Promo>> getAllPromosByPartnerId(@PathVariable(name = "partnerId") Integer partnerId){
         Partner existingPartner = partnerService.getPartnerById(partnerId);
         if(existingPartner==null)
             return ResponseEntity.notFound().build();
         var promos = promoService.getAllPromosByPartnerId(partnerId);
-        var result = promos.stream().map(mapper::convertToResource).collect(Collectors.toList());
-        return ResponseEntity.ok(result);
+        //var result = promos.stream().map(mapper::convertToResource).collect(Collectors.toList());
+        return ResponseEntity.ok(promos);
     }
 
     @ApiOperation("Create Promos by Partner ID")

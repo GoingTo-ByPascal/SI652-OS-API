@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @RestController
@@ -30,10 +31,10 @@ public class PartnerPartnerProfileController {
 
     @ApiOperation("Return PartnerProfile by Partner id")
     @GetMapping("/partners/{partnerId}/partner_profiles")
-    public ResponseEntity<?> getPartnerProfileByPartnerId(@PathVariable(name = "partnerId") Integer partnerId) {
+    public ResponseEntity<PartnerProfile> getPartnerProfileByPartnerId(@PathVariable(name = "partnerId") Integer partnerId) {
         var partnerProfiles = partnerProfileService.getPartnerProfileByPartnerId(partnerId);
-        var result = partnerProfiles;
-        return ResponseEntity.ok(result);
+        //var result = partnerProfiles;
+        return ResponseEntity.ok(partnerProfiles);
     }
 
     @ApiOperation("Create PartnerProfile by Partner id")
