@@ -48,6 +48,7 @@ public class Locatable {
     private List<Promo> promos;
 
     @OneToMany(mappedBy = "locatable")
+    @JsonIgnore
     List<Favourite> favourites;
 
 }

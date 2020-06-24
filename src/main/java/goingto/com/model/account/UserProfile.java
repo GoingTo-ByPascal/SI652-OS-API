@@ -1,6 +1,7 @@
 package goingto.com.model.account;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import goingto.com.model.account.User;
 import goingto.com.model.geographic.Country;
 import lombok.AllArgsConstructor;
@@ -42,9 +43,11 @@ public class UserProfile {
 
     @ManyToOne
     @JoinColumn(name = "country_id")
+    @JsonIgnore
     private Country country;
 
     @OneToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 }
