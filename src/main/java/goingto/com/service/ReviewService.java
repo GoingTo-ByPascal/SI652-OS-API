@@ -1,6 +1,5 @@
 package goingto.com.service;
 
-import goingto.com.model.account.Favourite;
 import goingto.com.model.interaction.Review;
 import org.springframework.http.ResponseEntity;
 

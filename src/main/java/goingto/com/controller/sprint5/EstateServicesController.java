@@ -1,14 +1,9 @@
 package goingto.com.controller.sprint5;
 
 
-import goingto.com.model.account.Permission;
 import goingto.com.model.business.Estate;
-import goingto.com.model.business.Promo;
-import goingto.com.model.business.Service;
-import goingto.com.resource.business.PromoResource;
 import goingto.com.resource.business.SaveEstateServiceResource;
 import goingto.com.resource.converter.EstateServiceConverter;
-import goingto.com.resource.converter.FavouriteConverter;
 import goingto.com.service.*;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

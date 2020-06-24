@@ -1,7 +1,6 @@
 package goingto.com.model.business;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import goingto.com.model.account.Favourite;
 import goingto.com.model.account.PlanUser;
 import lombok.AllArgsConstructor;
 import lombok.Data;
