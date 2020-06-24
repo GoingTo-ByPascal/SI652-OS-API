@@ -1,6 +1,8 @@
 package goingto.com.service.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.transaction.Transactional;
 
@@ -48,6 +50,23 @@ public class PlaceServiceImpl implements goingto.com.service.PlaceService {
 	@Override
 	public List<Place> getAllPlacesByLocatableId(Integer locatableId) {
 		return placeRepository.findAllByLocatableId(locatableId);
+	}
+
+	@Override
+	public List<Place> getByCategoryIdAndCityId(Integer categoryId, Integer cityId) {
+
+		var placesCity = placeRepository.findAllByCityId(cityId);
+
+		 var placesCategory = categoryRepository.findById(categoryId).map(category -> {
+			List<Place> placesAux = category.getPlaces();
+			return placesAux;
+		}).orElseThrow(() -> new ResourceNotFoundException("Category", "Id",categoryId));
+
+		List<Place> places = Stream.concat(placesCategory.stream(), placesCity.stream())
+				.distinct()
+				.collect(Collectors.toList());
+		
+		return places;
 	}
 
 	@Override
