@@ -1,5 +1,6 @@
 package goingto.com.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -63,10 +64,14 @@ public class PlaceServiceImpl implements goingto.com.service.PlaceService {
 		}).orElseThrow(() -> new ResourceNotFoundException("Category", "Id",categoryId));
 
 		List<Place> places = Stream.concat(placesCategory.stream(), placesCity.stream())
+				.collect(Collectors.toList());
+
+		var result = places.stream()
+				.filter(e -> Collections.frequency(places, e) > 1)
 				.distinct()
 				.collect(Collectors.toList());
 
-		return places;
+		return result;
 	}
 
 	@Override
