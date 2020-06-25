@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api")
 public class LocatablePlaceController {
 
-    @Autowired
+    @Autowired 
     LocatableService locatableService;
 
     @Autowired
