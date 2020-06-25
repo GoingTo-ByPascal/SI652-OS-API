@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PlaceRepository extends JpaRepository<Place, Integer> {
 	List<Place> findAllByCityId(Integer cityId);
-	List<Place> findAllByLocatableId(Integer locatableId);
+	Place findByLocatableId(Integer locatableId);
 }

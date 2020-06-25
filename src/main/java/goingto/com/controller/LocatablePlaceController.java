@@ -1,6 +1,7 @@
 package goingto.com.controller;
 
 import goingto.com.model.geographic.Locatable;
+import goingto.com.model.geographic.Place;
 import goingto.com.resource.converter.PlaceConverter;
 import goingto.com.service.LocatableService;
 import goingto.com.service.PlaceService;
@@ -28,12 +29,12 @@ public class LocatablePlaceController {
 
     @ApiOperation("Return Places by Locatable id")
     @GetMapping("/locatables/{locatableId}/places")
-    public ResponseEntity<?> getAllPlacesByLocatableId(@PathVariable(name = "locatableId") Integer locatableId) {
+    public ResponseEntity<Place> getPlaceByLocatableId(@PathVariable(name = "locatableId") Integer locatableId) {
         Locatable existingLocatable = locatableService.getLocatable(locatableId);
         if (existingLocatable == null)
             return ResponseEntity.notFound().build();
-        var places = placeService.getAllPlacesByLocatableId(locatableId);
-        var result = places.stream().map(mapper::convertToResource).collect(Collectors.toList());
-        return ResponseEntity.ok(result);
+        var place = placeService.getPlaceByLocatableId(locatableId);
+        //var result = places.stream().map(mapper::convertToResource).collect(Collectors.toList());
+        return ResponseEntity.ok(place);
     }
 }

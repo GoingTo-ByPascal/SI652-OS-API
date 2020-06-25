@@ -8,6 +8,6 @@ public interface CityService {
 	City getCity(Integer id);
 	List<City> listAllCities();
 	List<City> getAllCitiesByCountryId(Integer countryId);
-	List<City> getAllCitiesByLocatableId(Integer locatableId);
+	City getCityByLocatableId(Integer locatableId);
 	
 }

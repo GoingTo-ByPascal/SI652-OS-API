@@ -9,6 +9,6 @@ public interface CountryService {
 
 	Country getCountryById(Integer id);
 	List<Country> getAllCountries();
-	List<Country> getAllCountriesByLocatableId(Integer locatableId);
+	Country getCountryByLocatableId(Integer locatableId);
 	
 }

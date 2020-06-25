@@ -34,7 +34,7 @@ public class CityServiceImpl implements goingto.com.service.CityService {
 	}
 
 	@Override
-	public List<City> getAllCitiesByLocatableId(Integer locatableId) {
-		return cityRepository.findAllByLocatableId(locatableId);
+	public City getCityByLocatableId(Integer locatableId) {
+		return cityRepository.findByLocatableId(locatableId);
 	}
 }

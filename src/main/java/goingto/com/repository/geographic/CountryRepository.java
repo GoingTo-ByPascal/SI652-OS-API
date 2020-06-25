@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface CountryRepository extends JpaRepository<Country, Integer> {
-    List<Country> findAllByLocatableId(Integer locatableId);
+    Country findByLocatableId(Integer locatableId);
 }
