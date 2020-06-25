@@ -53,7 +53,7 @@ public class FavouriteController {
             return (ResponseEntity.ok(favourite));
     }
 
-    @ApiOperation("Return Favourite by ID")
+    @ApiOperation("Return Locatables by User ID")
     @GetMapping("/users/{userId}/locatables")
     public ResponseEntity<List<Locatable>> getAllLocatablesByUserId(@PathVariable(name = "userId") Integer userId)
     {
