@@ -1,11 +1,13 @@
 package goingto.com.controller.sprint4;
 
+import goingto.com.model.account.Favourite;
 import goingto.com.model.interaction.Tip;
 import goingto.com.resource.interaction.SaveTipResource;
 import goingto.com.resource.converter.TipConverter;
 import goingto.com.service.LocatableService;
 import goingto.com.service.TipService;
 import goingto.com.service.UserProfileService;
+import goingto.com.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

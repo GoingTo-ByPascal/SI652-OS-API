@@ -1,7 +1,6 @@
 package goingto.com.model.account;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import goingto.com.model.geographic.Locatable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,13 +39,9 @@ public class User {
     @JsonIgnore
     private List<Achievement> achievements;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "favourites",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "locatable_id")})
+    @OneToMany(mappedBy = "user")
     @JsonIgnore
-    private List<Locatable> locatables;
+    private List<Favourite> favourites;
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore

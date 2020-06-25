@@ -1,7 +1,7 @@
 package goingto.com.model.geographic;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import goingto.com.model.account.User;
+import goingto.com.model.account.Favourite;
 import goingto.com.model.business.Promo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -47,10 +47,8 @@ public class Locatable {
     @JsonIgnore
     private List<Promo> promos;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-            mappedBy = "locatables")
+    @OneToMany(mappedBy = "locatable")
     @JsonIgnore
-    private List<User> users;
+    List<Favourite> favourites;
 
 }
