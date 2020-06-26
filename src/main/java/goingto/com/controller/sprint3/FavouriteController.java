@@ -3,6 +3,7 @@ package goingto.com.controller.sprint3;
 import goingto.com.model.account.Favourite;
 import goingto.com.model.account.User;
 import goingto.com.model.geographic.Locatable;
+import goingto.com.resource.account.FavouriteResource;
 import goingto.com.resource.account.SaveFavouriteResource;
 import goingto.com.resource.converter.FavouriteConverter;
 import goingto.com.service.FavouriteService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -36,10 +38,11 @@ public class FavouriteController {
 
     @ApiOperation("Return all Favourites")
     @GetMapping("/favourites")
-    public ResponseEntity<List<Favourite>> getAllFavourites(){
+    public ResponseEntity<List<FavouriteResource>> getAllFavourites(){
         List<Favourite> favourites = new ArrayList<>();
         favourites = favouriteService.getAllFavourites();
-        return ResponseEntity.ok(favourites);
+        var result = favourites.stream().map(mapper::convertToResource).collect(Collectors.toList());
+        return ResponseEntity.ok(result);
     }
 
     @ApiOperation("Return Favourite by ID")
