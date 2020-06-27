@@ -20,6 +20,7 @@ import javax.validation.Valid;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -40,10 +41,11 @@ public class UserProfileController {
 
     @ApiOperation("Return all User Profiles")
     @GetMapping("/user_profiles")
-    public ResponseEntity<List<UserProfile>> getAllUserProfiles(){
+    public ResponseEntity<List<UserProfileResource>> getAllUserProfiles(){
         List<UserProfile> userProfiles = new ArrayList<>();
         userProfiles = userProfileService.getAllUserProfiles();
-        return ResponseEntity.ok(userProfiles);
+        var result = userProfiles.stream().map(mapper::convertToResource).collect(Collectors.toList());
+        return ResponseEntity.ok(result);
     }
 
     @ApiOperation("Return User Profile by id")
