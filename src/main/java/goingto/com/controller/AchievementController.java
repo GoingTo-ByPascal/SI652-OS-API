@@ -25,7 +25,6 @@ public class AchievementController {
     @Autowired
     private AchievementService achievementService;
 
-    /*
     @ApiOperation("Return all Achievements")
     @GetMapping("/achievements")
     public ResponseEntity<List<Achievement>> getAllAchievements() {
@@ -34,7 +33,7 @@ public class AchievementController {
         return ResponseEntity.ok(achievements);
 
     }
-     */
+
     @ApiOperation("Return Achievement by id")
     @GetMapping("/achievements/{id}")
     public AchievementResource getAchievementById(@PathVariable(name = "id") Integer achievementId) {
