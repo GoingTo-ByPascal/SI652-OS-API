@@ -29,4 +29,3 @@ jobs:
         app-name: 'goingto-os'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_9e503e45e8dd4e22b98327f8b2a3ab63 }}
-        package: '${{ github.workspace }}/target/*.war'
