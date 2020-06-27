@@ -46,7 +46,7 @@ public class UserProfileServiceImpl implements UserProfileService {
         return userProfileRepository.findById(userProfileId).map(userProfile -> {
             userProfile.setName(userProfileDetails.getName());
             userProfile.setSurname(userProfileDetails.getSurname());
-           //userProfile.setBirthdate(userProfileDetails.getBirthdate());
+           userProfile.setBirthdate(userProfileDetails.getBirthdate());
             userProfile.setGender(userProfile.getGender());
             return userProfileRepository.save(userProfile);
         }).orElseThrow(() -> new ResourceNotFoundException("User Profile", "Id", userProfileId));

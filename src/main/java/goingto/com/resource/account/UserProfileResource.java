@@ -19,7 +19,7 @@ public class UserProfileResource {
     private Date birthdate;
 
     Integer countryId;
-    
+
     Integer userId;
 
     private String gender;
