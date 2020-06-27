@@ -24,8 +24,10 @@ jobs:
       run: mvn clean install
 
     - name: Deploy to Azure Web App
-      uses: azure/webapps-deploy@v1
+      uses: aAzure/webapps-deploy@v2
       with:
         app-name: 'goingto-os'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_9e503e45e8dd4e22b98327f8b2a3ab63 }}
+        package: '${{ github.workspace }}/target/*.war'
+        
