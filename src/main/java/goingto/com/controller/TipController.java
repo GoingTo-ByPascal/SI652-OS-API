@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @CrossOrigin (origins = "http://localhost:4200")
 @RestController
 @RequiredArgsConstructor
@@ -28,10 +30,11 @@ public class TipController {
 
     @ApiOperation("Return all Tips")
     @GetMapping("/tips")
-    public ResponseEntity<List<Tip>> getAllTips() {
+    public ResponseEntity<List<TipResource>> getAllTips() {
         List<Tip> tips = new ArrayList<>();
         tips = tipService.getAllTips();
-        return ResponseEntity.ok(tips);
+        var result = tips.stream().map(mapper::convertToResource).collect(Collectors.toList());
+        return ResponseEntity.ok(result);
 
     }
 

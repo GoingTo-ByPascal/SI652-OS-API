@@ -6,6 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TipResource {
+    Integer userId;
+    Integer locatableId;
     public Integer id;
     public String text;
 }
