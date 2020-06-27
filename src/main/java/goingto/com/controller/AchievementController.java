@@ -24,14 +24,13 @@ public class AchievementController {
 
     @Autowired
     private AchievementService achievementService;
-    
+
     @ApiOperation("Return all Achievements")
     @GetMapping("/achievements")
     public ResponseEntity<List<Achievement>> getAllAchievements() {
         List<Achievement> achievements = new ArrayList<>();
         achievements = achievementService.getAllAchievements();
         return ResponseEntity.ok(achievements);
-
     }
 
     @ApiOperation("Return Achievement by id")

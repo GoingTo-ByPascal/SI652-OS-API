@@ -4,6 +4,7 @@ import goingto.com.model.account.User;
 import goingto.com.model.account.UserProfile;
 import goingto.com.model.interaction.Review;
 import goingto.com.resource.converter.ReviewConverter;
+import goingto.com.resource.interaction.ReviewResource;
 import goingto.com.service.ReviewService;
 import goingto.com.service.UserProfileService;
 import goingto.com.service.UserService;
@@ -33,12 +34,12 @@ public class UserReviewsController {
 
     @ApiOperation("Return Reviews by User Profile id")
     @GetMapping("/user_profiles/{userProfileId}/reviews")
-    public ResponseEntity<List<Review>> getAllReviewsByUserProfileId(@PathVariable(name = "userProfileId") Integer userProfileId){
+    public ResponseEntity<List<ReviewResource>> getAllReviewsByUserProfileId(@PathVariable(name = "userProfileId") Integer userProfileId){
         var existingUserProfile = userProfileService.getUserProfileById(userProfileId);
         if(existingUserProfile==null)
             return ResponseEntity.notFound().build();
         var reviews = reviewService.getAllReviewsByUserProfileId(userProfileId);
-        //var result = reviews.stream().map(mapper::convertToResource).collect(Collectors.toList());
-        return ResponseEntity.ok(reviews);
+        var result = reviews.stream().map(mapper::convertToResource).collect(Collectors.toList());
+        return ResponseEntity.ok(result);
     }
 }

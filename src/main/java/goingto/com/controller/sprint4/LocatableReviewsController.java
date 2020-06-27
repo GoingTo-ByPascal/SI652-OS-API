@@ -3,6 +3,7 @@ package goingto.com.controller.sprint4;
 import goingto.com.model.geographic.Locatable;
 import goingto.com.model.interaction.Review;
 import goingto.com.resource.converter.ReviewConverter;
+import goingto.com.resource.interaction.ReviewResource;
 import goingto.com.service.LocatableService;
 import goingto.com.service.ReviewService;
 import io.swagger.annotations.ApiOperation;
@@ -31,12 +32,12 @@ public class LocatableReviewsController {
 
     @ApiOperation("Return Reviews by Locatable id")
     @GetMapping("/locatables/{locatableId}/reviews")
-    public ResponseEntity<List<Review>> getAllReviewsByLocatableId(@PathVariable Integer locatableId){
+    public ResponseEntity<List<ReviewResource>> getAllReviewsByLocatableId(@PathVariable Integer locatableId){
         Locatable existingLocatable = locatableService.getLocatable(locatableId);
         if(existingLocatable==null)
             return ResponseEntity.notFound().build();
         var reviews = reviewService.getAllReviewsByLocatableId(locatableId);
-        //var result = reviews.stream().map(mapper::convertToResource).collect(Collectors.toList());
-        return ResponseEntity.ok(reviews);
+        var result = reviews.stream().map(mapper::convertToResource).collect(Collectors.toList());
+        return ResponseEntity.ok(result);
     }
 }
