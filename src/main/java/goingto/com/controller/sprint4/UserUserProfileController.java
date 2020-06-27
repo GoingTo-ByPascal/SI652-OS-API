@@ -41,9 +41,10 @@ public class UserUserProfileController {
 
     @ApiOperation("Return UserProfile by User id")
     @GetMapping("/users/{userId}/user_profiles")
-    public ResponseEntity<UserProfile> getUserProfileByUserId(@PathVariable(name = "userId") Integer userId) {
-        var userProfiles = userProfileService.getUserProfileByUserId(userId);
-        return ResponseEntity.ok(userProfiles);
+    public ResponseEntity<UserProfileResource> getUserProfileByUserId(@PathVariable(name = "userId") Integer userId) {
+        var userProfile = userProfileService.getUserProfileByUserId(userId);
+        var result = mapper.convertToResource(userProfile);
+        return ResponseEntity.ok(result);
     }
 
     @ApiOperation("Create UserProfile by User id")
