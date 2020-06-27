@@ -6,6 +6,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ReviewResource {
+    Integer id;
+    Integer userId;
+    Integer locatableId;
     public String comment;
     public Float stars;
 }
