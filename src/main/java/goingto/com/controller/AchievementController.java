@@ -28,7 +28,7 @@ public class AchievementController {
     @ApiOperation("Return all Achievements")
     @GetMapping("/achievements")
     public ResponseEntity<List<Achievement>> getAllAchievements() {
-        List<Achievemet> achievements = new ArrayList<>();
+        List<Achievement> achievements = new ArrayList<>();
         achievements = achievementService.getAllAchievements();
         return ResponseEntity.ok(achievements);
 
