@@ -60,10 +60,10 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public ResponseEntity<?> deleteReview(Integer reviewId) {
+    public Review deleteReview(Integer reviewId) {
         return reviewRepository.findById(reviewId).map(review -> {
             reviewRepository.delete(review);
-            return ResponseEntity.ok().build();
+            return review;
         }).orElseThrow(() -> new ResourceNotFoundException("Review", "Id", reviewId));
     }
 }
