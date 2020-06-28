@@ -7,6 +7,8 @@ import lombok.Setter;
 @Setter
 public class PlaceResource {
 
+    public Integer id;
+    public Integer cityId;
     public String name;
     public Integer stars;
 }
