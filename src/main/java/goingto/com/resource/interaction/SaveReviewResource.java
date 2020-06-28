@@ -17,5 +17,5 @@ public class SaveReviewResource {
     private String comment;
 
     @NotNull
-    private int stars;
+    private Float stars;
 }

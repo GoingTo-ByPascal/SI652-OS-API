@@ -49,14 +49,14 @@ public class UserUserProfileController {
 
     @ApiOperation("Create UserProfile by User id")
     @PostMapping("/users/{userId}/user_profiles")
-    public UserProfile createUserProfile(@PathVariable Integer userId, @Valid @RequestBody SaveUserProfileResource resource) {
+    public ResponseEntity<UserProfileResource> createUserProfile(@PathVariable Integer userId, @Valid @RequestBody SaveUserProfileResource resource) {
         var existingUser = userService.getUserById(userId);
         var userProfile = mapper.convertToEntity(resource);
         var date = Date.valueOf(resource.getBirthdate());
         userProfile.setUser(existingUser);
         userProfile.setBirthdate(date);
-        var result = userProfileService.createUserProfile(userProfile);
-        return result;
+        var result = mapper.convertToResource(userProfileService.createUserProfile(userProfile));
+        return ResponseEntity.ok(result);
     }
 
    /* @ApiOperation("Update User Profile by User id")

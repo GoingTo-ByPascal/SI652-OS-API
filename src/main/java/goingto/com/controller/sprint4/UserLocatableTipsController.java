@@ -50,8 +50,22 @@ public class UserLocatableTipsController {
         return ResponseEntity.ok(result);
     }
 
-   /* @ApiOperation("Update Tips by User id and Locatable id")
-    @PutMapping("/users/{userId}/locatables/{locatableId}/tips")*/
+    /* NO USAR
+    @ApiOperation("Update Tips by User id and Locatable id")
+    @PutMapping("/users/{userId}/locatables/{locatableId}/tips")
+    public ResponseEntity<TipResource> updateReview(@PathVariable Integer userProfileId, @PathVariable Integer locatableId, @Valid @RequestBody SaveTipResource resource){
+
+        var existingUserProfile = userProfileService.getUserProfileById(userProfileId);
+        var existingLocatable = locatableService.getLocatable(locatableId);
+        var tip = mapper.convertToEntity(resource);
+        tip.setLocatable(existingLocatable);
+        tip.setUserProfile(existingUserProfile);
+        var result = mapper.convertToResource(tipService.updateTip(tip.getId(),tip));
+        return  ResponseEntity.ok(result);
+
+    }
+
+     */
 
     @ApiOperation("Get Tips by User id and Locatable id")
     @GetMapping("/user_profiles/{userProfileId}/locatables/{locatableId}/tips")

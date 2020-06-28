@@ -10,5 +10,5 @@ public class ReviewResource {
     Integer userId;
     Integer locatableId;
     public String comment;
-    public Float stars;
+    public float stars;
 }
