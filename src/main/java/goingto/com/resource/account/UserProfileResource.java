@@ -10,11 +10,17 @@ import java.time.Instant;
 @Setter
 public class UserProfileResource {
 
+    Integer id;
+
     private String name;
 
     private String surname;
 
     private Date birthdate;
+
+    Integer countryId;
+
+    Integer userId;
 
     private String gender;
 

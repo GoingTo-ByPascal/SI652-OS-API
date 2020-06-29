@@ -28,11 +28,11 @@ public class Review {
     @Column(name = "comment",length = 100)
     private String comment;
 
-    @NotEmpty
+
     @Column(name = "stars")
     private Float stars;
 
-    @NotEmpty
+
     @Column(name = "reviewed_at", length = 10)
     Instant reviewedAt;
 

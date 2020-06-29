@@ -2,7 +2,10 @@ package goingto.com.controller.sprint3;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import goingto.com.resource.converter.PlaceConverter;
+import goingto.com.resource.geographic.PlaceResource;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +24,21 @@ public class PlaceController {
 	@Autowired
 	private PlaceService placeService;
 
+	@Autowired
+	private PlaceConverter mapper;
+
 	@ApiOperation("Return all Places")
 	@GetMapping("/places")
-	public ResponseEntity<List<Place>> listPlaces(){
+	public ResponseEntity<List<PlaceResource>> listPlaces(){
 		List<Place> places = new ArrayList<>();
 		
 		places = placeService.listAllPlaces();
 			if(places.isEmpty()) {
 				return ResponseEntity.noContent().build();
 			}
-	
-		return ResponseEntity.ok(places);
+
+		var result = places.stream().map(mapper::convertToResource).collect(Collectors.toList());
+		return ResponseEntity.ok(result);
 	}
 
 	@ApiOperation("Return Place by id")

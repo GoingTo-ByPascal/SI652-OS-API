@@ -15,5 +15,5 @@ public interface ReviewService {
     Review getReviewById(Integer reviewId);
     Review createReview(Review review);
     Review updateReview(Integer reviewId, Review reviewDetails);
-    ResponseEntity<?> deleteReview(Integer reviewId);
+    Review deleteReview(Integer reviewId);
 }

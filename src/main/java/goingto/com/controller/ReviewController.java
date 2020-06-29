@@ -52,14 +52,15 @@ public class ReviewController {
 
     @ApiOperation("Update existing Review by id")
     @PutMapping("/reviews/{id}")
-    public ReviewResource updateReview(@PathVariable(name = "id") Integer ReviewId, @Valid @RequestBody SaveReviewResource resource) {
-        return mapper.convertToResource(reviewService.updateReview(ReviewId, mapper.convertToEntity(resource)));
+    public ResponseEntity<ReviewResource> updateReview(@PathVariable(name = "id") Integer ReviewId, @Valid @RequestBody SaveReviewResource resource) {
+        return ResponseEntity.ok(
+                mapper.convertToResource(reviewService.updateReview(ReviewId, mapper.convertToEntity(resource))));
     }
 
     @ApiOperation("Delete existing Review by id")
     @DeleteMapping("/reviews/{id}")
-    public ResponseEntity<?> deleteReview(@PathVariable(name = "id") Integer ReviewId) {
-        return reviewService.deleteReview(ReviewId);
+    public ResponseEntity<ReviewResource> deleteReview(@PathVariable(name = "id") Integer ReviewId) {
+        return  ResponseEntity.ok(mapper.convertToResource(reviewService.deleteReview(ReviewId)));
     }
 
 

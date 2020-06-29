@@ -31,7 +31,6 @@ public class AchievementController {
         List<Achievement> achievements = new ArrayList<>();
         achievements = achievementService.getAllAchievements();
         return ResponseEntity.ok(achievements);
-
     }
 
     @ApiOperation("Return Achievement by id")

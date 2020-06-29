@@ -3,6 +3,7 @@ package goingto.com.controller.sprint4;
 import goingto.com.model.geographic.Locatable;
 import goingto.com.model.interaction.Tip;
 import goingto.com.resource.converter.TipConverter;
+import goingto.com.resource.interaction.TipResource;
 import goingto.com.service.LocatableService;
 import goingto.com.service.TipService;
 import io.swagger.annotations.ApiOperation;
@@ -31,13 +32,13 @@ public class LocatableTipsController {
 
     @ApiOperation("Return Tips by Locatable id")
     @GetMapping("/locatables/{locatableId}/tips")
-    public ResponseEntity<List<Tip>> getAllTipsByLocatableId(@PathVariable Integer locatableId){
+    public ResponseEntity<List<TipResource>> getAllTipsByLocatableId(@PathVariable Integer locatableId){
         Locatable existingLocatable = locatableService.getLocatable(locatableId);
         if(existingLocatable==null)
             return ResponseEntity.notFound().build();
         var tips = tipService.getAllTipsByLocatableId(locatableId);
-        //var result = tips.stream().map(mapper::convertToResource).collect(Collectors.toList());
-        return ResponseEntity.ok(tips);
+        var result = tips.stream().map(mapper::convertToResource).collect(Collectors.toList());
+        return ResponseEntity.ok(result);
     }
 
 }

@@ -4,6 +4,7 @@ import goingto.com.model.interaction.Review;
 import goingto.com.model.interaction.Tip;
 import goingto.com.resource.converter.ReviewConverter;
 import goingto.com.resource.converter.TipConverter;
+import goingto.com.resource.interaction.ReviewResource;
 import goingto.com.resource.interaction.SaveReviewResource;
 import goingto.com.resource.interaction.SaveTipResource;
 import goingto.com.service.*;
@@ -15,7 +16,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.Instant;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -34,24 +37,43 @@ public class UserLocatableReviewsController {
 
     @ApiOperation("Create Tips by User id and Locatable id")
     @PostMapping("/user_profiles/{userProfileId}/locatables/{locatableId}/reviews")
-    public ResponseEntity<?> createReview(@PathVariable Integer userProfileId, @PathVariable Integer locatableId, @Valid @RequestBody SaveReviewResource resource) {
+    public ResponseEntity<ReviewResource> createReview(@PathVariable Integer userProfileId, @PathVariable Integer locatableId, @Valid @RequestBody SaveReviewResource resource) {
+
+        var existingUserProfile = userProfileService.getUserProfileById(userProfileId);
+        var existingLocatable = locatableService.getLocatable(locatableId);
+        if (existingLocatable == null)
+            return ResponseEntity.notFound().build();
+        if (existingUserProfile == null)
+            return ResponseEntity.notFound().build();
+        var review = mapper.convertToEntity(resource);
+       /* var f = Float.parseFloat(resource.getStars());*/
+        review.setLocatable(existingLocatable);
+        review.setUserProfile(existingUserProfile);
+        /*review.setStars(f);*/
+        var result = mapper.convertToResource(reviewService.createReview(review));
+        return ResponseEntity.ok(result);
+    }
+
+    /*
+    @ApiOperation("Update Tips by User id and Locatable id")
+    @PutMapping("/users/{userId}/locatables/{locatableId}/tips")
+    public ResponseEntity<ReviewResource> updateReview(@PathVariable Integer userProfileId, @PathVariable Integer locatableId, @Valid @RequestBody SaveReviewResource resource){
 
         var existingUserProfile = userProfileService.getUserProfileById(userProfileId);
         var existingLocatable = locatableService.getLocatable(locatableId);
         var review = mapper.convertToEntity(resource);
         review.setLocatable(existingLocatable);
         review.setUserProfile(existingUserProfile);
-        var result = reviewService.createReview(review);
-        return ResponseEntity.status(HttpStatus.CREATED).body(result);
+
     }
 
-   /* @ApiOperation("Update Tips by User id and Locatable id")
-    @PutMapping("/users/{userId}/locatables/{locatableId}/tips")*/
+     */
 
-    @ApiOperation("Update Tips by User id and Locatable id")
+    @ApiOperation("Get Reviews by User id and Locatable id")
     @GetMapping("/user_profiles/{userProfileId}/locatables/{locatableId}/reviews")
-    public List<Review> getReviewByUserIdAndLocatableId(@PathVariable(name = "userProfileId") Integer userProfileId, @PathVariable(name = "locatableId") Integer locatableId){
-        return reviewService.getByUserProfileIdAndLocatableId(userProfileId, locatableId);
+    public List<ReviewResource> getReviewByUserIdAndLocatableId(@PathVariable(name = "userProfileId") Integer userProfileId, @PathVariable(name = "locatableId") Integer locatableId){
+       var reviews = reviewService.getByUserProfileIdAndLocatableId(userProfileId, locatableId);
+        return reviews.stream().map(mapper::convertToResource).collect(Collectors.toList());
     }
 
     @ApiOperation("Delete Reviews by User id and Locatable id")
