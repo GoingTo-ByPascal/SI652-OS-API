@@ -1,11 +1,10 @@
 pipeline {
-  agent none
-  stages {
-    stage('Build') {
-      steps {
-        build(job: 'Build', quietPeriod: 2, wait: true, propagate: true)
-      }
+    agent { docker { image 'maven:3.3.3' } }
+    stages {
+        stage('build') {
+            steps {
+                sh 'mvn --version'
+            }
+        }
     }
-
-  }
 }
