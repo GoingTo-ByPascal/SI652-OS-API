@@ -46,10 +46,8 @@ public class UserLocatableReviewsController {
         if (existingUserProfile == null)
             return ResponseEntity.notFound().build();
         var review = mapper.convertToEntity(resource);
-       /* var f = Float.parseFloat(resource.getStars());*/
         review.setLocatable(existingLocatable);
         review.setUserProfile(existingUserProfile);
-        /*review.setStars(f);*/
         var result = mapper.convertToResource(reviewService.createReview(review));
         return ResponseEntity.ok(result);
     }
